@@ -1,0 +1,96 @@
+{
+  "name": "stack-editor",
+  "version": "1.0.0",
+  "description": "StackEditor - Enterprise-grade, professional free & open-source rich text editor with zero API restrictions.",
+  "author": "Shivira Stack",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Shivira-Stack/StackEditor.git"
+  },
+  "homepage": "https://github.com/Shivira-Stack/StackEditor#readme",
+  "bugs": {
+    "url": "https://github.com/Shivira-Stack/StackEditor/issues"
+  },
+  "keywords": [
+    "stack-editor",
+    "wysiwyg",
+    "rich-text-editor",
+    "editor",
+    "editor-component",
+    "react-editor",
+    "typescript",
+    "tables",
+    "latex",
+    "markdown"
+  ],
+  "main": "./dist/stack-editor.cjs",
+  "module": "./dist/stack-editor.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/stack-editor.js",
+      "require": "./dist/stack-editor.cjs"
+    },
+    "./style.css": "./dist/stack-editor.css",
+    "./stack-editor.css": "./dist/stack-editor.css",
+    "./react": {
+      "types": "./dist/react/index.d.ts",
+      "import": "./dist/react.js",
+      "require": "./dist/react.cjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "build:lib": "vite build --mode lib",
+    "prepare": "npm run build:lib",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@tiptap/core": "^2.11.5",
+    "@tiptap/extension-character-count": "^2.11.5",
+    "@tiptap/extension-code-block-lowlight": "^2.11.5",
+    "@tiptap/extension-color": "^2.11.5",
+    "@tiptap/extension-highlight": "^2.11.5",
+    "@tiptap/extension-image": "^2.11.5",
+    "@tiptap/extension-link": "^2.11.5",
+    "@tiptap/extension-placeholder": "^2.11.5",
+    "@tiptap/extension-subscript": "^2.11.5",
+    "@tiptap/extension-superscript": "^2.11.5",
+    "@tiptap/extension-table": "^2.11.5",
+    "@tiptap/extension-table-cell": "^2.11.5",
+    "@tiptap/extension-table-header": "^2.11.5",
+    "@tiptap/extension-table-row": "^2.11.5",
+    "@tiptap/extension-task-item": "^2.11.5",
+    "@tiptap/extension-task-list": "^2.11.5",
+    "@tiptap/extension-text-align": "^2.11.5",
+    "@tiptap/extension-text-style": "^2.11.5",
+    "@tiptap/extension-typography": "^2.11.5",
+    "@tiptap/extension-underline": "^2.11.5",
+    "@tiptap/pm": "^2.11.5",
+    "@tiptap/starter-kit": "^2.11.5",
+    "highlight.js": "^11.11.1",
+    "katex": "^0.16.21",
+    "lowlight": "^3.3.0",
+    "lucide": "^0.475.0",
+    "turndown": "^7.2.0"
+  },
+  "devDependencies": {
+    "@types/katex": "^0.16.7",
+    "@types/node": "^22.13.4",
+    "@types/react": "^18.3.18",
+    "@types/react-dom": "^18.3.5",
+    "@types/turndown": "^5.0.5",
+    "@vitejs/plugin-react": "^4.3.4",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "typescript": "^5.7.3",
+    "vite": "^6.1.0",
+    "vite-plugin-dts": "^4.5.0"
+  }
+}

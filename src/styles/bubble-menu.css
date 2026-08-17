@@ -1,0 +1,39 @@
+/* Bubble / Floating Menu */
+.nova-bubble-menu {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 4px;
+  background: var(--ne-bg-primary);
+  border: 1px solid var(--ne-border-color);
+  border-radius: var(--ne-radius-lg);
+  box-shadow: var(--ne-shadow-xl);
+  z-index: 60;
+  pointer-events: auto;
+  transition: opacity var(--ne-transition-fast), transform var(--ne-transition-fast);
+}
+
+.nova-bubble-menu.is-hidden {
+  opacity: 0 !important;
+  pointer-events: none !important;
+  transform: translateY(6px);
+  display: none !important;
+}
+
+.nova-bubble-menu .nova-btn {
+  width: 28px;
+  height: 28px;
+}
+
+.nova-bubble-menu .nova-btn svg {
+  width: 15px;
+  height: 15px;
+}
+
+.nova-bubble-divider {
+  width: 1px;
+  height: 18px;
+  background: var(--ne-border-color);
+  margin: 0 3px;
+}

@@ -1,0 +1,368 @@
+/* StackEditor Container */
+.stack-editor-wrapper,
+.nova-editor-wrapper {
+  display: flex;
+  flex-direction: column;
+  background: var(--ne-bg-primary);
+  border: 1px solid var(--ne-border-color);
+  border-radius: var(--ne-radius-xl);
+  color: var(--ne-text-primary);
+  font-family: var(--ne-font-family);
+  position: relative;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  transition: border-color var(--ne-transition-base), box-shadow var(--ne-transition-base);
+  overflow: hidden;
+}
+
+.stack-editor-wrapper:focus-within,
+.nova-editor-wrapper:focus-within {
+  border-color: #006ce0;
+  box-shadow: 0 0 0 1px #006ce0;
+}
+
+/* Fullscreen Mode */
+.stack-editor-wrapper.fullscreen,
+.nova-editor-wrapper.fullscreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 99999;
+  border-radius: 0;
+  border: none;
+}
+
+.nova-editor-wrapper.fullscreen .nova-editor-body {
+  height: calc(100vh - 90px);
+}
+
+/* Editor Scroll Container */
+.nova-editor-body {
+  flex: 1;
+  overflow-y: auto;
+  min-height: 250px;
+  position: relative;
+  cursor: text;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ProseMirror Content Area & Focus Ring Elimination */
+.nova-editor-content,
+.stack-editor-content,
+.ProseMirror,
+.ProseMirror:focus,
+.ProseMirror:focus-visible,
+.ProseMirror-focused,
+.nova-editor-content .ProseMirror,
+.nova-editor-content .ProseMirror:focus,
+.nova-editor-content .ProseMirror:focus-visible,
+.nova-editor-content [contenteditable="true"],
+.nova-editor-content [contenteditable="true"]:focus,
+.nova-editor-content [contenteditable="true"]:focus-visible,
+[contenteditable="true"]:focus,
+[contenteditable="true"]:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+.nova-editor-content {
+  padding: 24px 32px;
+  outline: none !important;
+  min-height: 250px;
+  line-height: 1.65;
+  font-size: 15px;
+  color: var(--ne-text-primary);
+  flex: 1;
+}
+
+.nova-editor-content .ProseMirror {
+  min-height: 250px;
+  outline: none !important;
+  border: none !important;
+}
+
+/* In-Body HTML Source Code View */
+.nova-inbody-source-view {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 480px;
+  flex: 1;
+  background: #ffffff;
+  box-sizing: border-box;
+}
+
+.nova-inbody-source-view .nova-source-header {
+  border-bottom: 1px solid #e2e8f0;
+  padding: 6px 14px;
+}
+
+.nova-inbody-source-view .nova-source-editor-wrap {
+  flex: 1;
+  margin: 0;
+  border: none;
+  border-radius: 0;
+  min-height: 420px;
+}
+
+/* Placeholder */
+.nova-editor-content p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  float: left;
+  color: var(--ne-text-muted);
+  pointer-events: none;
+  height: 0;
+}
+
+/* Selection */
+.nova-editor-content ::selection {
+  background-color: var(--ne-bg-selected);
+  color: var(--ne-text-primary);
+}
+
+/* Typography styles */
+.nova-editor-content h1,
+.nova-editor-content h2,
+.nova-editor-content h3,
+.nova-editor-content h4,
+.nova-editor-content h5,
+.nova-editor-content h6 {
+  font-weight: 700;
+  line-height: 1.25;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+  color: var(--ne-text-primary);
+}
+
+.nova-editor-content h1 { font-size: 2.1em; letter-spacing: -0.02em; }
+.nova-editor-content h2 { font-size: 1.65em; letter-spacing: -0.015em; }
+.nova-editor-content h3 { font-size: 1.35em; }
+.nova-editor-content h4 { font-size: 1.15em; }
+.nova-editor-content h5 { font-size: 1.0em; }
+.nova-editor-content h6 { font-size: 0.88em; text-transform: uppercase; letter-spacing: 0.05em; }
+
+.nova-editor-content p {
+  margin-top: 0;
+  margin-bottom: 1em;
+}
+
+.nova-editor-content hr {
+  border: none;
+  border-top: 2px solid var(--ne-border-color);
+  margin: 2em 0;
+}
+
+.nova-editor-content blockquote {
+  border-left: 3.5px solid var(--ne-accent);
+  padding-left: 1.2em;
+  margin: 1.2em 0;
+  color: var(--ne-text-secondary);
+  font-style: italic;
+}
+
+/* Lists */
+.nova-editor-content ul,
+.nova-editor-content ol {
+  padding-left: 1.8em;
+  margin-bottom: 1em;
+}
+
+.nova-editor-content ul[data-list-style="disc"],
+.nova-editor-content ul.list-disc { list-style-type: disc; }
+.nova-editor-content ul[data-list-style="circle"],
+.nova-editor-content ul.list-circle { list-style-type: circle; }
+.nova-editor-content ul[data-list-style="square"],
+.nova-editor-content ul.list-square { list-style-type: square; }
+.nova-editor-content ul[data-list-style="diamond"],
+.nova-editor-content ul.list-diamond { list-style-type: '◈ '; }
+
+.nova-editor-content ol[data-list-style="decimal"],
+.nova-editor-content ol.list-decimal { list-style-type: decimal; }
+.nova-editor-content ol[data-list-style="lower-alpha"],
+.nova-editor-content ol.list-lower-alpha { list-style-type: lower-alpha; }
+.nova-editor-content ol[data-list-style="upper-alpha"],
+.nova-editor-content ol.list-upper-alpha { list-style-type: upper-alpha; }
+.nova-editor-content ol[data-list-style="lower-roman"],
+.nova-editor-content ol.list-lower-roman { list-style-type: lower-roman; }
+.nova-editor-content ol[data-list-style="upper-roman"],
+.nova-editor-content ol.list-upper-roman { list-style-type: upper-roman; }
+
+.nova-editor-content li {
+  margin-bottom: 0.35em;
+}
+
+.nova-editor-content li p {
+  margin: 0;
+}
+
+/* Task / Checklist */
+.nova-editor-content ul[data-type="taskList"] {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 1em;
+}
+
+.nova-editor-content ul[data-type="taskList"] li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 0.5em;
+}
+
+.nova-editor-content ul[data-type="taskList"] li > label {
+  user-select: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  margin-top: 3px;
+}
+
+.nova-editor-content ul[data-type="taskList"] li > label input[type="checkbox"] {
+  appearance: none;
+  width: 17px;
+  height: 17px;
+  border: 1.5px solid var(--ne-border-hover);
+  border-radius: var(--ne-radius-sm);
+  background: var(--ne-bg-primary);
+  cursor: pointer;
+  position: relative;
+  transition: all var(--ne-transition-fast);
+}
+
+.nova-editor-content ul[data-type="taskList"] li > label input[type="checkbox"]:checked {
+  background: var(--ne-accent);
+  border-color: var(--ne-accent);
+}
+
+.nova-editor-content ul[data-type="taskList"] li > label input[type="checkbox"]:checked::after {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 1px;
+  width: 4px;
+  height: 9px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.nova-editor-content ul[data-type="taskList"] li[data-checked="true"] > div {
+  text-decoration: line-through;
+  color: var(--ne-text-muted);
+}
+
+/* Inline Code */
+.nova-editor-content code {
+  background: var(--ne-bg-tertiary);
+  color: var(--ne-accent-text);
+  font-family: var(--ne-font-mono);
+  font-size: 0.9em;
+  padding: 0.2em 0.4em;
+  border-radius: var(--ne-radius-sm);
+}
+
+/* Code Block */
+.nova-editor-content pre {
+  background: #1e293b;
+  color: #f8fafc;
+  font-family: var(--ne-font-mono);
+  font-size: 13.5px;
+  padding: 16px 20px;
+  border-radius: var(--ne-radius-md);
+  overflow-x: auto;
+  margin: 1.5em 0;
+  position: relative;
+}
+
+.nova-editor-content pre code {
+  background: transparent;
+  color: inherit;
+  padding: 0;
+  font-size: inherit;
+}
+
+.nova-code-block-header {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  color: #94a3b8;
+  user-select: none;
+}
+
+.nova-code-copy-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #f8fafc;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  cursor: pointer;
+  transition: background var(--ne-transition-fast);
+}
+
+.nova-code-copy-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Links */
+.nova-editor-content a {
+  color: var(--ne-accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  cursor: pointer;
+}
+
+/* Highlights */
+.nova-editor-content mark {
+  background-color: #fef08a;
+  color: inherit;
+  padding: 0.1em 0.2em;
+  border-radius: 2px;
+}
+
+/* Math / KaTeX nodes */
+.nova-math-inline,
+.nova-math-block {
+  display: inline-flex;
+  align-items: center;
+  background: var(--ne-bg-secondary);
+  border: 1px solid var(--ne-border-color);
+  border-radius: var(--ne-radius-sm);
+  padding: 2px 8px;
+  cursor: pointer;
+  transition: all var(--ne-transition-fast);
+  user-select: none;
+}
+
+.nova-math-inline:hover,
+.nova-math-block:hover {
+  border-color: var(--ne-accent);
+  box-shadow: 0 0 0 1px var(--ne-accent);
+}
+
+.nova-math-block {
+  display: flex;
+  justify-content: center;
+  padding: 12px 16px;
+  margin: 1em 0;
+}
+
+/* Find & Replace search match highlights */
+.nova-find-match {
+  background-color: rgba(254, 240, 138, 0.7);
+  border-bottom: 2px solid #eab308;
+  border-radius: 2px;
+}
+
+.nova-find-match-current {
+  background-color: rgba(249, 115, 22, 0.8);
+  color: white;
+  border-bottom: 2px solid #c2410c;
+}

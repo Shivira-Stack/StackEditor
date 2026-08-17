@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StackEditor — Professional Free & Open-Source Rich Text Editor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto:wght@400;500;700&family=Georgia&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="demo-app">
+    <!-- Header -->
+    <header class="demo-header">
+      <div class="demo-brand">
+        <div class="demo-logo" style="background: #006ce0;">S</div>
+        <div>
+          <h1 class="demo-title">StackEditor</h1>
+        </div>
+        <span class="demo-badge">Enterprise Grade • 100% Free & Open-Source</span>
+      </div>
+
+      <div class="demo-actions">
+        <select id="theme-select" class="demo-select">
+          <option value="light">Light Theme</option>
+          <option value="dark">Dark Theme</option>
+        </select>
+        <button type="button" id="btn-export-word" class="demo-btn">Word (.docx)</button>
+        <button type="button" id="btn-export-pdf" class="demo-btn demo-btn-primary">Export PDF</button>
+      </div>
+    </header>
+
+    <!-- Main Workspace -->
+    <main class="demo-main">
+      <div class="demo-editor-card">
+        <div id="editor-mount"></div>
+      </div>
+
+      <!-- Real-time Inspector -->
+      <div class="demo-output-card">
+        <div class="demo-output-tabs">
+          <button type="button" class="demo-tab-btn is-active" data-tab="html">HTML Output</button>
+          <button type="button" class="demo-tab-btn" data-tab="markdown">Markdown Output</button>
+          <button type="button" class="demo-tab-btn" data-tab="json">JSON Document AST</button>
+        </div>
+        <div id="output-body" class="demo-output-body"></div>
+      </div>
+    </main>
+  </div>
+
+  <script type="module" src="/src/demo/demo.ts"></script>
+</body>
+</html>

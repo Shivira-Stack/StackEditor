@@ -1,0 +1,289 @@
+/* Main Ribbon Toolbar */
+.nova-toolbar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 3px;
+  padding: 4px 10px;
+  background: var(--ne-bg-primary);
+  border-bottom: 1px solid var(--ne-border-color);
+  user-select: none;
+  font-family: inherit;
+  position: relative;
+  z-index: 50;
+}
+
+.nova-toolbar-group {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.nova-toolbar-divider {
+  width: 1px;
+  height: 20px;
+  background: var(--ne-border-color);
+  margin: 0 4px;
+}
+
+/* Button Control */
+.nova-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 34px;
+  min-width: 34px;
+  padding: 0 4px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  color: var(--ne-text-primary);
+  cursor: pointer;
+  font-size: 14px;
+  transition: background var(--ne-transition-fast), color var(--ne-transition-fast);
+  position: relative;
+}
+
+.nova-btn:hover {
+  background: var(--ne-bg-hover);
+  color: var(--ne-text-primary);
+}
+
+.nova-btn.is-active {
+  background: var(--ne-bg-active);
+  color: var(--ne-text-primary);
+  border-color: transparent;
+}
+
+.nova-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.nova-btn svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+.nova-btn .nova-caret-mini {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 2px;
+  color: var(--ne-text-muted);
+  pointer-events: none;
+}
+
+.nova-btn .nova-caret-mini svg {
+  width: 10px;
+  height: 10px;
+  fill: currentColor;
+}
+
+/* Dropdown Selectors */
+.nova-select-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 34px;
+  padding: 0 8px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ne-text-primary);
+  cursor: pointer;
+  transition: background var(--ne-transition-fast);
+}
+
+.nova-select-btn:hover {
+  background: var(--ne-bg-hover);
+  color: var(--ne-text-primary);
+}
+
+.nova-select-btn svg {
+  width: 10px;
+  height: 10px;
+  color: var(--ne-text-muted);
+  fill: currentColor;
+}
+
+/* Stepper Control (Font Size) */
+.nova-stepper {
+  display: inline-flex;
+  align-items: center;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  height: 34px;
+  padding: 0 2px;
+}
+
+.nova-stepper-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 28px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--ne-text-muted);
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 3px;
+}
+
+.nova-stepper-btn:hover {
+  background: var(--ne-bg-hover);
+  color: var(--ne-text-primary);
+}
+
+.nova-stepper-value {
+  padding: 0 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ne-text-primary);
+  min-width: 42px;
+  text-align: center;
+  border: 2px solid transparent;
+  border-radius: 4px;
+  cursor: text;
+  outline: none;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nova-stepper-value:focus {
+  border-color: var(--ne-accent);
+  background: var(--ne-bg-secondary);
+}
+
+/* Toolbar Dropdown Container */
+.nova-toolbar-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.nova-toolbar-dropdown.is-open > .nova-dropdown-panel {
+  display: flex !important;
+}
+
+.nova-dropdown-panel {
+  position: absolute;
+  top: calc(100% + 2px);
+  left: 0;
+  background: var(--ne-bg-tertiary, #ffffff);
+  border: 1px solid var(--ne-border-color);
+  border-radius: 6px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  padding: 4px;
+  z-index: 10000;
+  display: none !important;
+  flex-direction: column;
+  animation: novaFadeIn 0.12s ease-out;
+}
+
+/* Color Toolbar Button Indicator */
+.nova-color-btn {
+  position: relative;
+}
+
+.nova-color-bar {
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  border-radius: 1px;
+}
+
+/* List Style Selector Grid */
+.nova-list-preview-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+  padding: 4px;
+  min-width: 140px;
+}
+
+.nova-list-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 8px;
+  border: 1px solid var(--ne-border-color);
+  border-radius: 4px;
+  background: var(--ne-bg-secondary);
+  cursor: pointer;
+  transition: all var(--ne-transition-fast);
+}
+
+.nova-list-card:hover {
+  border-color: var(--ne-accent);
+  background: var(--ne-bg-hover);
+}
+
+/* Oxide Floating Tooltip UI */
+.nova-tooltip,
+.tox-tooltip {
+  position: fixed;
+  z-index: 999999;
+  background: #222f3e;
+  color: #ffffff;
+  font-size: 11.5px;
+  font-family: var(--ne-font-family);
+  font-weight: 500;
+  line-height: 1.2;
+  padding: 5px 8px;
+  border-radius: 3px;
+  pointer-events: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.12s ease-out;
+}
+
+.nova-tooltip.is-visible,
+.tox-tooltip.is-visible {
+  opacity: 1;
+}
+
+.nova-tooltip-arrow,
+.tox-tooltip-arrow {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+}
+
+.nova-tooltip-arrow--top,
+.tox-tooltip-arrow--top {
+  top: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-bottom: 4px solid #222f3e;
+}
+
+.nova-tooltip-arrow--bottom,
+.tox-tooltip-arrow--bottom {
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-top: 4px solid #222f3e;
+}
+
+@keyframes novaFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

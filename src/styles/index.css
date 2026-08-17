@@ -1,0 +1,13 @@
+@import './variables.css';
+@import './menubar.css';
+@import './editor.css';
+@import './toolbar.css';
+@import './bubble-menu.css';
+@import './slash-menu.css';
+@import './table.css';
+@import './image-ui.css';
+@import './modals.css';
+@import './status-bar.css';
+
+/* Import KaTeX CSS for LaTeX math rendering */
+@import 'katex/dist/katex.min.css';

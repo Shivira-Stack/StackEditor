@@ -1,0 +1,82 @@
+/* Slash Command Palette */
+.nova-slash-menu {
+  position: absolute;
+  width: 280px;
+  max-height: 320px;
+  overflow-y: auto;
+  background: var(--ne-bg-primary);
+  border: 1px solid var(--ne-border-color);
+  border-radius: var(--ne-radius-lg);
+  box-shadow: var(--ne-shadow-xl);
+  padding: 6px;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  animation: novaFadeIn 0.15s ease-out;
+}
+
+.nova-slash-category {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--ne-text-muted);
+  padding: 6px 10px 2px;
+  letter-spacing: 0.05em;
+}
+
+.nova-slash-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 10px;
+  border-radius: var(--ne-radius-md);
+  border: none;
+  background: transparent;
+  color: var(--ne-text-primary);
+  text-align: left;
+  cursor: pointer;
+  transition: all var(--ne-transition-fast);
+}
+
+.nova-slash-item:hover,
+.nova-slash-item.is-selected {
+  background: var(--ne-bg-hover);
+}
+
+.nova-slash-item-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--ne-radius-sm);
+  background: var(--ne-bg-tertiary);
+  color: var(--ne-text-secondary);
+}
+
+.nova-slash-item.is-selected .nova-slash-item-icon {
+  background: var(--ne-accent-light);
+  color: var(--ne-accent);
+}
+
+.nova-slash-item-icon svg {
+  width: 16px;
+  height: 16px;
+}
+
+.nova-slash-item-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.nova-slash-item-title {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ne-text-primary);
+}
+
+.nova-slash-item-desc {
+  font-size: 11px;
+  color: var(--ne-text-muted);
+}

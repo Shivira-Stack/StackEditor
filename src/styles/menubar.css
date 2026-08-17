@@ -1,0 +1,337 @@
+/* Menubar Top Navigation */
+.nova-menubar {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 4px 8px;
+  background: var(--ne-bg-primary);
+  border-bottom: 1px solid var(--ne-border-color);
+  font-size: 13px;
+  color: var(--ne-text-primary);
+  user-select: none;
+  position: relative;
+  z-index: 100;
+}
+
+.nova-menu-item {
+  position: relative;
+  display: inline-block;
+}
+
+.nova-menu-btn {
+  background: transparent;
+  border: none;
+  padding: 4px 8px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ne-text-primary);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all var(--ne-transition-fast);
+}
+
+.nova-menu-btn:hover {
+  background: var(--ne-bg-hover);
+  color: var(--ne-text-primary);
+}
+
+.nova-menu-item.is-open .nova-menu-btn {
+  background: var(--ne-bg-active) !important;
+  color: var(--ne-text-primary) !important;
+}
+
+/* Dropdown Menu Box - Overflow visible so submenus fly out without clipping */
+.nova-menu-dropdown {
+  position: absolute;
+  top: calc(100% + 2px);
+  left: 0;
+  min-width: 220px;
+  background: var(--ne-bg-tertiary, #ffffff);
+  border: 1px solid var(--ne-border-color);
+  border-radius: 6px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  padding: 4px;
+  z-index: 10000;
+  display: none !important;
+  flex-direction: column;
+  overflow: visible !important;
+  animation: novaFadeIn 0.12s ease-out;
+}
+
+.nova-menu-item.is-open > .nova-menu-dropdown {
+  display: flex !important;
+}
+
+/* Menu Item Row */
+.nova-menu-subitem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 8px;
+  border: none;
+  background: transparent;
+  color: var(--ne-text-primary);
+  font-size: 13px;
+  border-radius: 4px;
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+  box-sizing: border-box;
+  transition: background var(--ne-transition-fast), color var(--ne-transition-fast);
+  position: relative;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.nova-menu-subitem:hover {
+  background: var(--ne-bg-hover);
+  color: var(--ne-text-primary);
+}
+
+.nova-menu-subitem.is-active,
+.nova-menu-subitem.is-selected {
+  background: var(--ne-bg-selected) !important;
+  color: var(--ne-accent) !important;
+  font-weight: 600;
+}
+
+.nova-menu-subitem.is-active .nova-menu-icon,
+.nova-menu-subitem.is-selected .nova-menu-icon {
+  color: var(--ne-accent) !important;
+}
+
+.nova-menu-subitem.is-active .nova-menu-icon svg,
+.nova-menu-subitem.is-selected .nova-menu-icon svg {
+  stroke: var(--ne-accent) !important;
+  fill: currentColor;
+}
+
+.nova-menu-check {
+  font-weight: 700;
+  color: var(--ne-accent);
+  margin-left: auto;
+  padding-left: 10px;
+}
+
+.nova-menu-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nova-menu-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  color: var(--ne-text-muted);
+  flex-shrink: 0;
+}
+
+.nova-menu-icon svg {
+  width: 15px;
+  height: 15px;
+  fill: currentColor;
+}
+
+.nova-menu-shortcut {
+  font-size: 11.5px;
+  color: var(--ne-text-muted);
+  margin-left: 20px;
+  font-family: inherit;
+}
+
+.nova-menu-arrow {
+  display: flex;
+  align-items: center;
+  color: var(--ne-text-muted);
+  margin-left: 16px;
+}
+
+.nova-menu-arrow svg {
+  width: 12px;
+  height: 12px;
+  fill: currentColor;
+}
+
+.nova-menu-divider {
+  height: 1px;
+  background: var(--ne-border-color);
+  margin: 4px 0;
+}
+
+/* Nested Cascading Submenus */
+.nova-menu-has-submenu {
+  position: relative;
+  width: 100%;
+}
+
+.nova-menu-has-submenu:hover > .nova-menu-subitem {
+  background: var(--ne-bg-hover) !important;
+  color: var(--ne-text-primary) !important;
+}
+
+.nova-menu-has-submenu:hover > .nova-menu-subitem .nova-menu-icon,
+.nova-menu-has-submenu:hover > .nova-menu-subitem .nova-menu-arrow,
+.nova-menu-has-submenu:hover > .nova-menu-subitem .nova-menu-shortcut {
+  color: var(--ne-text-primary) !important;
+}
+
+/* Submenu Flyout Window - MUST be display: none by default, ONLY show on hover! */
+.nova-submenu {
+  position: absolute;
+  top: -4px;
+  left: calc(100% - 3px);
+  min-width: 160px;
+  background: var(--ne-bg-tertiary, #ffffff);
+  border: 1px solid var(--ne-border-color);
+  border-radius: 6px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  padding: 4px;
+  z-index: 10001;
+  display: none !important;
+  flex-direction: column;
+  overflow: visible;
+}
+
+.nova-menu-has-submenu:hover > .nova-submenu {
+  display: flex !important;
+}
+
+/* Deep 3rd level submenus */
+.nova-submenu .nova-menu-has-submenu:hover > .nova-submenu {
+  z-index: 10002;
+  display: flex !important;
+}
+
+/* Dedicated Scrollable Leaf Submenus */
+.nova-submenu-scrollable {
+  max-height: 320px;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+}
+
+/* Embedded Table Grid In Submenu (10x10) */
+.nova-submenu-table-grid {
+  padding: 8px;
+  background: var(--ne-bg-tertiary, #ffffff);
+  border: 1px solid var(--ne-border-color);
+  border-radius: 6px;
+  flex-direction: column;
+  align-items: center;
+  width: max-content;
+  overflow: hidden !important;
+}
+
+.nova-table-matrix {
+  display: grid;
+  grid-template-columns: repeat(10, 18px);
+  grid-template-rows: repeat(10, 18px);
+  gap: 3px;
+  padding: 2px;
+}
+
+.nova-matrix-cell {
+  width: 18px;
+  height: 18px;
+  border: 1px solid var(--ne-border-color);
+  border-radius: 2px;
+  background: var(--ne-bg-secondary);
+  cursor: pointer;
+  box-sizing: border-box;
+  transition: background 0.05s, border-color 0.05s;
+}
+
+.nova-matrix-cell.highlighted {
+  background: var(--ne-accent-light);
+  border-color: var(--ne-accent);
+}
+
+.nova-matrix-label {
+  margin-top: 8px;
+  font-size: 13px;
+  color: var(--ne-text-primary);
+  font-weight: 600;
+  text-align: center;
+}
+
+/* Color Palette Swatches In Submenu */
+.nova-color-swatch-box {
+  padding: 8px;
+  background: var(--ne-bg-tertiary, #ffffff);
+  border: 1px solid var(--ne-border-color);
+  border-radius: 6px;
+  flex-direction: column;
+  gap: 6px;
+  width: max-content !important;
+  overflow: hidden !important;
+  box-sizing: border-box;
+}
+
+.nova-color-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 22px);
+  gap: 4px;
+}
+
+.nova-color-swatch {
+  width: 22px;
+  height: 22px;
+  border-radius: 3px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  box-sizing: border-box;
+  transition: transform 0.1s ease;
+}
+
+.nova-color-swatch:hover {
+  transform: scale(1.15);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.nova-color-swatch-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 4px;
+  padding-top: 6px;
+  border-top: 1px solid var(--ne-border-color);
+  gap: 8px;
+}
+
+.nova-color-btn-tool {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 3px;
+  border: 1px solid var(--ne-border-color);
+  background: transparent;
+  cursor: pointer;
+  color: var(--ne-text-primary);
+  box-sizing: border-box;
+}
+
+.nova-color-btn-tool:hover {
+  background: var(--ne-bg-hover);
+}
+
+/* Custom Scrollbar */
+.nova-submenu-scrollable::-webkit-scrollbar {
+  width: 5px;
+}
+
+.nova-submenu-scrollable::-webkit-scrollbar-track {
+  background: var(--ne-bg-primary);
+}
+
+.nova-submenu-scrollable::-webkit-scrollbar-thumb {
+  background: var(--ne-border-color);
+  border-radius: 3px;
+}
+
+.nova-submenu-scrollable::-webkit-scrollbar-thumb:hover {
+  background: var(--ne-text-muted);
+}

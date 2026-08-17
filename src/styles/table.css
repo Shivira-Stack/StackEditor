@@ -1,0 +1,114 @@
+/* Table Styles */
+.nova-editor-content table {
+  border-collapse: collapse;
+  table-layout: fixed;
+  width: 100%;
+  margin: 1.5em 0;
+  overflow: hidden;
+}
+
+.nova-editor-content table td,
+.nova-editor-content table th {
+  min-width: 1em;
+  border: 1px solid var(--ne-border-color);
+  padding: 8px 12px;
+  vertical-align: top;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.nova-editor-content table th {
+  font-weight: 600;
+  text-align: left;
+  background-color: var(--ne-bg-secondary);
+}
+
+.nova-editor-content table .selectedCell:after {
+  z-index: 2;
+  position: absolute;
+  content: "";
+  left: 0; right: 0; top: 0; bottom: 0;
+  background: rgba(59, 130, 246, 0.15);
+  pointer-events: none;
+}
+
+.nova-editor-content table .column-resize-handle {
+  position: absolute;
+  right: -2px;
+  top: 0;
+  bottom: -2px;
+  width: 4px;
+  background-color: var(--ne-accent);
+  pointer-events: none;
+}
+
+.nova-editor-content .tableWrapper {
+  overflow-x: auto;
+  margin: 1.5em 0;
+}
+
+.nova-editor-content .resize-cursor {
+  cursor: col-resize;
+}
+
+/* Floating Table Toolbar */
+.nova-table-toolbar {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  padding: 4px 6px;
+  background: var(--ne-bg-primary);
+  border: 1px solid var(--ne-border-color);
+  border-radius: var(--ne-radius-md);
+  box-shadow: var(--ne-shadow-lg);
+  z-index: 85;
+}
+
+.nova-table-toolbar .nova-btn {
+  width: 26px;
+  height: 26px;
+}
+
+.nova-table-toolbar .nova-btn svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* Modal Table Grid Picker (8x8) */
+.nova-grid-picker {
+  display: grid;
+  grid-template-columns: repeat(8, 24px);
+  grid-template-rows: repeat(8, 24px);
+  gap: 3px;
+  padding: 8px;
+  background: var(--ne-bg-secondary);
+  border: 1px solid var(--ne-border-color);
+  border-radius: var(--ne-radius-md);
+  margin-bottom: 8px;
+}
+
+.nova-grid-cell {
+  width: 24px;
+  height: 24px;
+  border: 1px solid var(--ne-border-color);
+  border-radius: 2px;
+  background: var(--ne-bg-primary);
+  cursor: pointer;
+  box-sizing: border-box;
+  transition: all 0.08s ease;
+}
+
+.nova-grid-cell.highlighted {
+  background: var(--ne-accent-light);
+  border-color: var(--ne-accent);
+}
+
+.nova-grid-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ne-text-primary);
+  text-align: center;
+  margin-bottom: 8px;
+}
+
