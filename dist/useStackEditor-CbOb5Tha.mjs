@@ -45539,34 +45539,34 @@ class Ng {
       " "
     ).trim() || "x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}";
     this.backdrop.innerHTML = `
-      <div class="nova-modal nova-math-modal" style="max-width: 860px; width: 96vw;">
+      <div class="nova-modal nova-math-modal" style="max-width: 680px; width: 92vw;">
         <!-- Header -->
-        <div class="nova-modal-header">
+        <div class="nova-modal-header" style="padding: 10px 16px;">
           <div style="display: flex; align-items: center; gap: 8px;">
-            <span style="font-size: 20px; color: var(--ne-accent); font-weight: bold; line-height: 1;">∑</span>
-            <h3 class="nova-modal-title">Complete Math & Scientific Formula Studio</h3>
+            <span style="font-size: 18px; color: var(--ne-accent); font-weight: bold; line-height: 1;">∑</span>
+            <h3 class="nova-modal-title" style="font-size: 14px;">Math & Scientific Formula Studio</h3>
           </div>
           <button type="button" class="nova-modal-close-btn" data-action="close">${_.close}</button>
         </div>
 
         <!-- Body -->
-        <div class="nova-modal-body" style="gap: 10px; padding: 14px 20px;">
+        <div class="nova-modal-body" style="gap: 7px; padding: 10px 16px;">
           <!-- Search & Filter Bar -->
-          <div style="display: flex; gap: 8px; align-items: center;">
-            <input type="text" id="ne-math-search" class="nova-form-input" placeholder="🔍 Search any formula (e.g. newton, quadratic, hardy, enzyme, gibbs, bayes, integral, matrix, fourier, stokes)..." style="font-size: 12.5px; padding: 7px 10px; flex: 1;" />
+          <div style="display: flex; gap: 6px; align-items: center;">
+            <input type="text" id="ne-math-search" class="nova-form-input" placeholder="🔍 Search formula (e.g. newton, quadratic, hardy, enzyme, gibbs, bayes, integral, matrix)..." style="font-size: 11.5px; padding: 4px 8px; height: 28px; flex: 1;" />
           </div>
 
           <!-- Category Tabs -->
           <div class="nova-math-tabs" id="ne-math-tab-bar">
             <button type="button" class="nova-math-tab-btn is-active" data-tab="structures">📐 Structures</button>
-            <button type="button" class="nova-math-tab-btn" data-tab="algebra">📐 Algebra & Geo</button>
+            <button type="button" class="nova-math-tab-btn" data-tab="algebra">📐 Algebra</button>
             <button type="button" class="nova-math-tab-btn" data-tab="calculus">📈 Calculus</button>
             <button type="button" class="nova-math-tab-btn" data-tab="matrices">🔢 Matrices</button>
-            <button type="button" class="nova-math-tab-btn" data-tab="trig">📐 Trig & Logs</button>
+            <button type="button" class="nova-math-tab-btn" data-tab="trig">📐 Trig</button>
             <button type="button" class="nova-math-tab-btn" data-tab="physics">⚡ Physics</button>
             <button type="button" class="nova-math-tab-btn" data-tab="chemistry">🧪 Chemistry</button>
             <button type="button" class="nova-math-tab-btn" data-tab="biology">🧬 Biology</button>
-            <button type="button" class="nova-math-tab-btn" data-tab="stats">📊 Statistics & AI</button>
+            <button type="button" class="nova-math-tab-btn" data-tab="stats">📊 Stats & AI</button>
             <button type="button" class="nova-math-tab-btn" data-tab="symbols">🔣 Symbols</button>
             <button type="button" class="nova-math-tab-btn" data-tab="greek">🏛️ Greek</button>
           </div>
@@ -45577,38 +45577,38 @@ class Ng {
           </div>
 
           <!-- Live KaTeX Equation Preview -->
-          <div class="nova-form-group" style="margin-top: 2px;">
-            <label class="nova-form-label" style="display: flex; justify-content: space-between; align-items: center;">
+          <div class="nova-form-group" style="margin-top: 1px; gap: 3px;">
+            <label class="nova-form-label" style="display: flex; justify-content: space-between; align-items: center; font-size: 11px; margin-bottom: 0;">
               <span>Live Equation Preview</span>
-              <span style="font-size: 11px; font-weight: normal; color: var(--ne-text-muted);">Real-time KaTeX Output</span>
+              <span style="font-size: 10px; font-weight: normal; color: var(--ne-text-muted);">Real-time KaTeX</span>
             </label>
             <div id="ne-math-preview" class="nova-math-preview-box"></div>
           </div>
 
           <!-- LaTeX Expression Textarea -->
-          <div class="nova-form-group">
-            <label class="nova-form-label">LaTeX Code</label>
-            <textarea class="nova-form-textarea" id="ne-math-input" placeholder="Type LaTeX formula or click any template above..." style="min-height: 65px; font-size: 13.5px; font-family: var(--ne-font-mono);">${t}</textarea>
+          <div class="nova-form-group" style="gap: 3px;">
+            <label class="nova-form-label" style="font-size: 11px; margin-bottom: 0;">LaTeX Code</label>
+            <textarea class="nova-form-textarea" id="ne-math-input" placeholder="LaTeX code..." style="min-height: 36px; height: 38px; padding: 5px 8px; font-size: 12px; font-family: var(--ne-font-mono); resize: none;">${t}</textarea>
           </div>
 
           <!-- Equation Mode & Clear -->
-          <div style="display: flex; align-items: center; justify-content: space-between;">
-            <div style="display: flex; gap: 18px; align-items: center;">
-              <label style="display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 500; cursor: pointer;">
-                <input type="radio" name="ne-math-type" value="block" checked /> Block Equation (Centered)
+          <div style="display: flex; align-items: center; justify-content: space-between; padding-top: 1px;">
+            <div style="display: flex; gap: 14px; align-items: center;">
+              <label style="display: flex; align-items: center; gap: 5px; font-size: 11.5px; font-weight: 500; cursor: pointer;">
+                <input type="radio" name="ne-math-type" value="block" checked /> Block (Centered)
               </label>
-              <label style="display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 500; cursor: pointer;">
-                <input type="radio" name="ne-math-type" value="inline" /> Inline Equation
+              <label style="display: flex; align-items: center; gap: 5px; font-size: 11.5px; font-weight: 500; cursor: pointer;">
+                <input type="radio" name="ne-math-type" value="inline" /> Inline
               </label>
             </div>
-            <button type="button" class="nova-btn-secondary" id="ne-math-clear" style="padding: 4px 10px; font-size: 12px;">Clear Code</button>
+            <button type="button" class="nova-btn-secondary" id="ne-math-clear" style="padding: 2px 8px; font-size: 11px; height: 24px;">Clear</button>
           </div>
         </div>
 
         <!-- Footer -->
-        <div class="nova-modal-footer">
-          <button type="button" class="nova-btn-secondary" data-action="close">Cancel</button>
-          <button type="button" class="nova-btn-primary" data-action="save">Insert Equation</button>
+        <div class="nova-modal-footer" style="padding: 8px 16px;">
+          <button type="button" class="nova-btn-secondary" data-action="close" style="padding: 5px 12px; font-size: 12px;">Cancel</button>
+          <button type="button" class="nova-btn-primary" data-action="save" style="padding: 5px 14px; font-size: 12px;">Insert Equation</button>
         </div>
       </div>
     `, document.body.appendChild(this.backdrop);
