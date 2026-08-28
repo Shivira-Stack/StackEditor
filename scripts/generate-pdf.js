@@ -3,40 +3,35 @@ const path = require('path');
 const { execSync } = require('child_process');
 const katex = require('katex');
 
-// 1. Load KaTeX CSS for embedding into self-contained HTML
+// 1. Load KaTeX CSS
 const katexCssPath = path.join(__dirname, '../node_modules/katex/dist/katex.min.css');
 const katexCss = fs.existsSync(katexCssPath) ? fs.readFileSync(katexCssPath, 'utf8') : '';
 
 // 2. Import formula list
 const { ALL_MATH_ITEMS, SYMBOL_ITEMS, GREEK_ITEMS } = require('./formula-data');
 
-const categoryTitles = {
-  structures: '1. Basic Mathematical Structures, Radicals & Notations',
-  algebra: '2. Algebra, Factoring, Series, Finance & Conic Geometry',
-  calculus: '3. Calculus, Series Expansions, Differential Equations & Vector Calculus',
-  matrices: '4. Linear Algebra, Matrix Operations & Vector Spaces',
-  trig: '5. Trigonometry, Analytic Identities & Logarithmic Functions',
-  physics: '6. Classical, Electromagnetic, Thermodynamic & Quantum Physics',
-  chemistry: '7. Stoichiometry, Chemical Kinetics, Thermodynamics & Electrochemistry',
-  biology: '8. Population Genetics, Enzymology, Ecology, Physiology & Biophysics',
-  stats: '9. Probability, Inferential Statistics & Artificial Intelligence / Machine Learning',
-  symbols: '10. Mathematical Operators, Relations, Sets, Logic & Arrows',
-  greek: '11. The Complete Greek Alphabet (Lowercase & Uppercase)',
-};
+// Group formulas by chapter
+const chaptersMap = new Map();
 
-const categories = ['structures', 'algebra', 'calculus', 'matrices', 'trig', 'physics', 'chemistry', 'biology', 'stats'];
+ALL_MATH_ITEMS.forEach((item) => {
+  const ch = item.chapter || 'Mathematics';
+  if (!chaptersMap.has(ch)) {
+    chaptersMap.set(ch, []);
+  }
+  chaptersMap.get(ch).push(item);
+});
 
 let htmlContent = `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>StackEditor - Complete Mathematical & Scientific Formula Catalog</title>
+  <title>Global Education Formula Handbook (Class 1 to PhD) • Complete Reference</title>
   <style>
     ${katexCss}
 
     @page {
       size: A4 portrait;
-      margin: 14mm 12mm 14mm 12mm;
+      margin: 12mm 10mm 12mm 10mm;
     }
 
     * {
@@ -47,26 +42,26 @@ let htmlContent = `<!DOCTYPE html>
 
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      color: #1e293b;
+      color: #0f172a;
       background: #ffffff;
       margin: 0;
       padding: 0;
-      font-size: 11pt;
-      line-height: 1.45;
+      font-size: 10pt;
+      line-height: 1.4;
     }
 
     /* Cover / Header */
     .catalog-header {
       border-bottom: 3px solid #2563eb;
-      padding-bottom: 12px;
-      margin-bottom: 20px;
+      padding-bottom: 10px;
+      margin-bottom: 18px;
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
     }
 
     .catalog-title {
-      font-size: 20pt;
+      font-size: 18pt;
       font-weight: 800;
       color: #0f172a;
       margin: 0 0 4px 0;
@@ -76,38 +71,38 @@ let htmlContent = `<!DOCTYPE html>
     }
 
     .catalog-subtitle {
-      font-size: 10pt;
-      color: #64748b;
+      font-size: 9.5pt;
+      color: #475569;
       margin: 0;
     }
 
     .catalog-badge {
       background: #eff6ff;
-      color: #2563eb;
+      color: #1d4ed8;
       border: 1px solid #bfdbfe;
-      padding: 4px 10px;
+      padding: 4px 8px;
       border-radius: 6px;
-      font-size: 9pt;
+      font-size: 8.5pt;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.5px;
     }
 
-    /* Category Section */
-    .category-section {
-      margin-bottom: 24px;
+    /* Chapter Section */
+    .chapter-section {
+      margin-bottom: 20px;
       page-break-inside: auto;
     }
 
-    .category-heading {
-      font-size: 12.5pt;
+    .chapter-heading {
+      font-size: 12pt;
       font-weight: 700;
       color: #1e3a8a;
       background: #f1f5f9;
-      padding: 6px 10px;
+      padding: 5px 10px;
       border-left: 4px solid #2563eb;
       border-radius: 0 4px 4px 0;
-      margin: 18px 0 10px 0;
+      margin: 16px 0 8px 0;
       page-break-after: avoid;
     }
 
@@ -126,52 +121,52 @@ let htmlContent = `<!DOCTYPE html>
 
     table.formula-table th {
       background: #f8fafc;
-      color: #475569;
-      font-size: 9pt;
+      color: #334155;
+      font-size: 8.5pt;
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.5px;
-      padding: 6px 8px;
+      padding: 5px 8px;
       border: 1px solid #cbd5e1;
       text-align: left;
     }
 
     table.formula-table td {
-      padding: 6px 8px;
+      padding: 5px 8px;
       border: 1px solid #e2e8f0;
       vertical-align: middle;
-      font-size: 9.5pt;
+      font-size: 9pt;
     }
 
     table.formula-table tr:nth-child(even) {
-      background: #fafafa;
+      background: #f8fafc;
     }
 
     .formula-name {
       font-weight: 600;
       color: #0f172a;
-      font-size: 9.5pt;
+      font-size: 9pt;
     }
 
-    .formula-desc {
-      font-size: 8pt;
+    .formula-section {
+      font-size: 7.5pt;
       color: #64748b;
-      margin-top: 2px;
+      margin-top: 1px;
     }
 
     .formula-display {
       text-align: center;
-      padding: 6px;
+      padding: 4px;
       background: #ffffff;
-      font-size: 11pt;
+      font-size: 10.5pt;
     }
 
     .formula-latex {
       font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
-      font-size: 8pt;
+      font-size: 7.5pt;
       color: #0f766e;
       background: #f0fdf4;
-      padding: 3px 6px;
+      padding: 2px 5px;
       border-radius: 3px;
       border: 1px solid #dcfce7;
       word-break: break-all;
@@ -181,35 +176,35 @@ let htmlContent = `<!DOCTYPE html>
     .symbols-grid {
       display: grid;
       grid-template-columns: repeat(6, 1fr);
-      gap: 6px;
-      margin-bottom: 14px;
+      gap: 5px;
+      margin-bottom: 12px;
       page-break-inside: avoid;
     }
 
     .symbol-card {
       border: 1px solid #e2e8f0;
       border-radius: 4px;
-      padding: 6px 4px;
+      padding: 4px;
       text-align: center;
       background: #ffffff;
       page-break-inside: avoid;
     }
 
     .symbol-char {
-      font-size: 13pt;
+      font-size: 12pt;
       font-weight: bold;
       color: #0f172a;
-      margin-bottom: 2px;
+      margin-bottom: 1px;
     }
 
     .symbol-latex {
       font-family: monospace;
-      font-size: 7.5pt;
+      font-size: 7pt;
       color: #2563eb;
     }
 
     .symbol-desc {
-      font-size: 7pt;
+      font-size: 6.5pt;
       color: #64748b;
       white-space: nowrap;
       overflow: hidden;
@@ -221,7 +216,7 @@ let htmlContent = `<!DOCTYPE html>
       border-top: 1px solid #cbd5e1;
       padding-top: 8px;
       margin-top: 20px;
-      font-size: 8pt;
+      font-size: 7.5pt;
       color: #94a3b8;
       display: flex;
       justify-content: space-between;
@@ -233,21 +228,19 @@ let htmlContent = `<!DOCTYPE html>
   <!-- Cover Header -->
   <div class="catalog-header">
     <div>
-      <h1 class="catalog-title">∑ StackEditor Formula Reference Catalog</h1>
-      <p class="catalog-subtitle">Comprehensive All-Level Mathematical, Physical, Chemical, Biological & Statistical Equation Library</p>
+      <h1 class="catalog-title">∑ Global Education Formula Handbook (Class 1 to PhD)</h1>
+      <p class="catalog-subtitle">Comprehensive All-Level Multi-Disciplinary Formula & Scientific Reference • 580+ Core Formulas</p>
     </div>
-    <div class="catalog-badge">v1.1.0 Official</div>
+    <div class="catalog-badge">Class 1 to PhD</div>
   </div>
 `;
 
-// Render discipline sections
-categories.forEach((catKey) => {
-  const items = ALL_MATH_ITEMS.filter((m) => m.category === catKey);
-  if (items.length === 0) return;
-
+// Render discipline chapters
+let chapterCounter = 1;
+for (const [chapterName, items] of chaptersMap.entries()) {
   htmlContent += `
-  <div class="category-section">
-    <div class="category-heading">${categoryTitles[catKey] || catKey}</div>
+  <div class="chapter-section">
+    <div class="chapter-heading">${chapterCounter++}. ${chapterName} (${items.length} Formulas)</div>
     <table class="formula-table">
       <thead>
         <tr>
@@ -264,7 +257,7 @@ categories.forEach((catKey) => {
     try {
       renderedKatex = katex.renderToString(item.latex, {
         throwOnError: false,
-        displayMode: item.isPreset ? true : false,
+        displayMode: true,
       });
     } catch {
       renderedKatex = item.latex;
@@ -274,7 +267,7 @@ categories.forEach((catKey) => {
         <tr>
           <td>
             <div class="formula-name">${item.name}</div>
-            ${item.desc ? `<div class="formula-desc">${item.desc}</div>` : ''}
+            ${item.section ? `<div class="formula-section">${item.section}</div>` : ''}
           </td>
           <td class="formula-display">${renderedKatex}</td>
           <td><code class="formula-latex">${escapeHtml(item.latex)}</code></td>
@@ -287,12 +280,12 @@ categories.forEach((catKey) => {
     </table>
   </div>
   `;
-});
+}
 
 // Render Symbols Section
 htmlContent += `
-  <div class="category-section">
-    <div class="category-heading">${categoryTitles['symbols']}</div>
+  <div class="chapter-section">
+    <div class="chapter-heading">${chapterCounter++}. Mathematical Operators, Relations, Sets, Logic & Arrows</div>
     <div class="symbols-grid">
 `;
 
@@ -313,8 +306,8 @@ htmlContent += `
 
 // Render Greek Alphabet Section
 htmlContent += `
-  <div class="category-section">
-    <div class="category-heading">${categoryTitles['greek']}</div>
+  <div class="chapter-section">
+    <div class="chapter-heading">${chapterCounter++}. Complete Greek Alphabet (Lowercase & Uppercase)</div>
     <div class="symbols-grid">
 `;
 
@@ -333,7 +326,7 @@ htmlContent += `
   </div>
 
   <div class="catalog-footer">
-    <span>StackEditor • Enterprise-Grade Free & Open Source Rich Text Editor</span>
+    <span>StackEditor • Global Education Formula Handbook (Class 1 to PhD)</span>
     <span>Generated: ${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })} • GitHub: Shivira-Stack/StackEditor</span>
   </div>
 

@@ -1,5 +1,16 @@
-// Global Education Formula Handbook (Class 1 to PhD) Data
-const ALL_MATH_ITEMS = [
+export interface MathItem {
+  id: string;
+  name: string;
+  category: string;
+  chapter?: string;
+  section?: string;
+  latex: string;
+  display: string;
+  desc?: string;
+  isPreset?: boolean;
+}
+
+export const ALL_MATH_ITEMS: MathItem[] = [
   {
     "id": "hb-1",
     "name": "Physics",
@@ -5862,123 +5873,564 @@ const ALL_MATH_ITEMS = [
   }
 ];
 
-const SYMBOL_ITEMS = [
-  { label: '±', latex: '\\pm ', desc: 'Plus-minus' },
-  { label: '∓', latex: '\\mp ', desc: 'Minus-plus' },
-  { label: '×', latex: '\\times ', desc: 'Multiplication cross' },
-  { label: '÷', latex: '\\div ', desc: 'Division sign' },
-  { label: '·', latex: '\\cdot ', desc: 'Center dot product' },
-  { label: '∘', latex: '\\circ ', desc: 'Function composition' },
-  { label: '∗', latex: '\\ast ', desc: 'Asterisk / convolution' },
-  { label: '⊕', latex: '\\oplus ', desc: 'Direct sum' },
-  { label: '⊗', latex: '\\otimes ', desc: 'Tensor product' },
-  { label: '⊙', latex: '\\odot ', desc: 'Hadamard product' },
-  { label: '†', latex: '\\dagger ', desc: 'Hermitian conjugate' },
-  { label: '=', latex: '= ', desc: 'Equals' },
-  { label: '≠', latex: '\\neq ', desc: 'Not equal' },
-  { label: '≈', latex: '\\approx ', desc: 'Approximately equal' },
-  { label: '≡', latex: '\\equiv ', desc: 'Identical / congruent' },
-  { label: '∼', latex: '\\sim ', desc: 'Similar / distributed as' },
-  { label: '∝', latex: '\\propto ', desc: 'Proportional to' },
-  { label: '<', latex: '< ', desc: 'Less than' },
-  { label: '>', latex: '> ', desc: 'Greater than' },
-  { label: '≤', latex: '\\leq ', desc: 'Less than or equal' },
-  { label: '≥', latex: '\\geq ', desc: 'Greater than or equal' },
-  { label: '≪', latex: '\\ll ', desc: 'Much less than' },
-  { label: '≫', latex: '\\gg ', desc: 'Much greater than' },
-  { label: '≅', latex: '\\cong ', desc: 'Isomorphic / congruent' },
-  { label: '∈', latex: '\\in ', desc: 'Element of' },
-  { label: '∉', latex: '\\notin ', desc: 'Not element of' },
-  { label: '⊂', latex: '\\subset ', desc: 'Proper subset' },
-  { label: '⊆', latex: '\\subseteq ', desc: 'Subset or equal' },
-  { label: '⊄', latex: '\\not\\subset ', desc: 'Not a subset' },
-  { label: '⊃', latex: '\\supset ', desc: 'Superset' },
-  { label: '⊇', latex: '\\supseteq ', desc: 'Superset or equal' },
-  { label: '∪', latex: '\\cup ', desc: 'Set union' },
-  { label: '∩', latex: '\\cap ', desc: 'Set intersection' },
-  { label: '∅', latex: '\\emptyset ', desc: 'Empty set' },
-  { label: '∖', latex: '\\setminus ', desc: 'Set difference' },
-  { label: '∀', latex: '\\forall ', desc: 'For all' },
-  { label: '∃', latex: '\\exists ', desc: 'There exists' },
-  { label: '∄', latex: '\\nexists ', desc: 'There does not exist' },
-  { label: '¬', latex: '\\neg ', desc: 'Logical NOT' },
-  { label: '∧', latex: '\\land ', desc: 'Logical AND' },
-  { label: '∨', latex: '\\lor ', desc: 'Logical OR' },
-  { label: '∴', latex: '\\therefore ', desc: 'Therefore' },
-  { label: '∵', latex: '\\because ', desc: 'Because / since' },
-  { label: 'ℝ', latex: '\\mathbb{R} ', desc: 'Real numbers' },
-  { label: 'ℂ', latex: '\\mathbb{C} ', desc: 'Complex numbers' },
-  { label: 'ℕ', latex: '\\mathbb{N} ', desc: 'Natural numbers' },
-  { label: 'ℤ', latex: '\\mathbb{Z} ', desc: 'Integers' },
-  { label: 'ℚ', latex: '\\mathbb{Q} ', desc: 'Rational numbers' },
-  { label: '→', latex: '\\rightarrow ', desc: 'Right arrow' },
-  { label: '←', latex: '\\leftarrow ', desc: 'Left arrow' },
-  { label: '↔', latex: '\\leftrightarrow ', desc: 'Bidirectional arrow' },
-  { label: '⇒', latex: '\\Rightarrow ', desc: 'Implies' },
-  { label: '⇐', latex: '\\Leftarrow ', desc: 'Is implied by' },
-  { label: '⇔', latex: '\\Leftrightarrow ', desc: 'If and only if (IFF)' },
-  { label: '↦', latex: '\\mapsto ', desc: 'Maps to' },
-  { label: '↑', latex: '\\uparrow ', desc: 'Up arrow' },
-  { label: '↓', latex: '\\downarrow ', desc: 'Down arrow' },
-  { label: '∞', latex: '\\infty ', desc: 'Infinity' },
-  { label: '∂', latex: '\\partial ', desc: 'Partial differential' },
-  { label: '∇', latex: '\\nabla ', desc: 'Nabla / Del gradient' },
-  { label: 'ℏ', latex: '\\hbar ', desc: 'Reduced Planck constant' },
-  { label: 'ℓ', latex: '\\ell ', desc: 'Script l' },
-  { label: 'ℵ', latex: '\\aleph ', desc: 'Aleph cardinal' },
-  { label: '∠', latex: '\\angle ', desc: 'Angle' },
-  { label: '⊥', latex: '\\perp ', desc: 'Perpendicular' },
-  { label: '∥', latex: '\\parallel ', desc: 'Parallel' },
-  { label: '…', latex: '\\dots ', desc: 'Horizontal ellipsis' },
-  { label: '⋮', latex: '\\vdots ', desc: 'Vertical ellipsis' },
-  { label: '⋱', latex: '\\ddots ', desc: 'Diagonal ellipsis' }
+export const SYMBOL_ITEMS = [
+  {
+    "label": "±",
+    "latex": "\\pm ",
+    "desc": "Plus-minus"
+  },
+  {
+    "label": "∓",
+    "latex": "\\mp ",
+    "desc": "Minus-plus"
+  },
+  {
+    "label": "×",
+    "latex": "\\times ",
+    "desc": "Multiplication cross"
+  },
+  {
+    "label": "÷",
+    "latex": "\\div ",
+    "desc": "Division sign"
+  },
+  {
+    "label": "·",
+    "latex": "\\cdot ",
+    "desc": "Center dot product"
+  },
+  {
+    "label": "∘",
+    "latex": "\\circ ",
+    "desc": "Function composition"
+  },
+  {
+    "label": "∗",
+    "latex": "\\ast ",
+    "desc": "Asterisk / convolution"
+  },
+  {
+    "label": "⊕",
+    "latex": "\\oplus ",
+    "desc": "Direct sum"
+  },
+  {
+    "label": "⊗",
+    "latex": "\\otimes ",
+    "desc": "Tensor product"
+  },
+  {
+    "label": "⊙",
+    "latex": "\\odot ",
+    "desc": "Hadamard product"
+  },
+  {
+    "label": "†",
+    "latex": "\\dagger ",
+    "desc": "Hermitian conjugate"
+  },
+  {
+    "label": "=",
+    "latex": "= ",
+    "desc": "Equals"
+  },
+  {
+    "label": "≠",
+    "latex": "\\neq ",
+    "desc": "Not equal"
+  },
+  {
+    "label": "≈",
+    "latex": "\\approx ",
+    "desc": "Approximately equal"
+  },
+  {
+    "label": "≡",
+    "latex": "\\equiv ",
+    "desc": "Identical / congruent"
+  },
+  {
+    "label": "∼",
+    "latex": "\\sim ",
+    "desc": "Similar / distributed as"
+  },
+  {
+    "label": "∝",
+    "latex": "\\propto ",
+    "desc": "Proportional to"
+  },
+  {
+    "label": "<",
+    "latex": "< ",
+    "desc": "Less than"
+  },
+  {
+    "label": ">",
+    "latex": "> ",
+    "desc": "Greater than"
+  },
+  {
+    "label": "≤",
+    "latex": "\\leq ",
+    "desc": "Less than or equal"
+  },
+  {
+    "label": "≥",
+    "latex": "\\geq ",
+    "desc": "Greater than or equal"
+  },
+  {
+    "label": "≪",
+    "latex": "\\ll ",
+    "desc": "Much less than"
+  },
+  {
+    "label": "≫",
+    "latex": "\\gg ",
+    "desc": "Much greater than"
+  },
+  {
+    "label": "≅",
+    "latex": "\\cong ",
+    "desc": "Isomorphic / congruent"
+  },
+  {
+    "label": "∈",
+    "latex": "\\in ",
+    "desc": "Element of"
+  },
+  {
+    "label": "∉",
+    "latex": "\\notin ",
+    "desc": "Not element of"
+  },
+  {
+    "label": "⊂",
+    "latex": "\\subset ",
+    "desc": "Proper subset"
+  },
+  {
+    "label": "⊆",
+    "latex": "\\subseteq ",
+    "desc": "Subset or equal"
+  },
+  {
+    "label": "⊄",
+    "latex": "\\not\\subset ",
+    "desc": "Not a subset"
+  },
+  {
+    "label": "⊃",
+    "latex": "\\supset ",
+    "desc": "Superset"
+  },
+  {
+    "label": "⊇",
+    "latex": "\\supseteq ",
+    "desc": "Superset or equal"
+  },
+  {
+    "label": "∪",
+    "latex": "\\cup ",
+    "desc": "Set union"
+  },
+  {
+    "label": "∩",
+    "latex": "\\cap ",
+    "desc": "Set intersection"
+  },
+  {
+    "label": "∅",
+    "latex": "\\emptyset ",
+    "desc": "Empty set"
+  },
+  {
+    "label": "∖",
+    "latex": "\\setminus ",
+    "desc": "Set difference"
+  },
+  {
+    "label": "∀",
+    "latex": "\\forall ",
+    "desc": "For all"
+  },
+  {
+    "label": "∃",
+    "latex": "\\exists ",
+    "desc": "There exists"
+  },
+  {
+    "label": "∄",
+    "latex": "\\nexists ",
+    "desc": "There does not exist"
+  },
+  {
+    "label": "¬",
+    "latex": "\\neg ",
+    "desc": "Logical NOT"
+  },
+  {
+    "label": "∧",
+    "latex": "\\land ",
+    "desc": "Logical AND"
+  },
+  {
+    "label": "∨",
+    "latex": "\\lor ",
+    "desc": "Logical OR"
+  },
+  {
+    "label": "∴",
+    "latex": "\\therefore ",
+    "desc": "Therefore"
+  },
+  {
+    "label": "∵",
+    "latex": "\\because ",
+    "desc": "Because / since"
+  },
+  {
+    "label": "ℝ",
+    "latex": "\\mathbb{R} ",
+    "desc": "Real numbers"
+  },
+  {
+    "label": "ℂ",
+    "latex": "\\mathbb{C} ",
+    "desc": "Complex numbers"
+  },
+  {
+    "label": "ℕ",
+    "latex": "\\mathbb{N} ",
+    "desc": "Natural numbers"
+  },
+  {
+    "label": "ℤ",
+    "latex": "\\mathbb{Z} ",
+    "desc": "Integers"
+  },
+  {
+    "label": "ℚ",
+    "latex": "\\mathbb{Q} ",
+    "desc": "Rational numbers"
+  },
+  {
+    "label": "→",
+    "latex": "\\rightarrow ",
+    "desc": "Right arrow"
+  },
+  {
+    "label": "←",
+    "latex": "\\leftarrow ",
+    "desc": "Left arrow"
+  },
+  {
+    "label": "↔",
+    "latex": "\\leftrightarrow ",
+    "desc": "Bidirectional arrow"
+  },
+  {
+    "label": "⇒",
+    "latex": "\\Rightarrow ",
+    "desc": "Implies"
+  },
+  {
+    "label": "⇐",
+    "latex": "\\Leftarrow ",
+    "desc": "Is implied by"
+  },
+  {
+    "label": "⇔",
+    "latex": "\\Leftrightarrow ",
+    "desc": "If and only if (IFF)"
+  },
+  {
+    "label": "↦",
+    "latex": "\\mapsto ",
+    "desc": "Maps to"
+  },
+  {
+    "label": "↑",
+    "latex": "\\uparrow ",
+    "desc": "Up arrow"
+  },
+  {
+    "label": "↓",
+    "latex": "\\downarrow ",
+    "desc": "Down arrow"
+  },
+  {
+    "label": "∞",
+    "latex": "\\infty ",
+    "desc": "Infinity"
+  },
+  {
+    "label": "∂",
+    "latex": "\\partial ",
+    "desc": "Partial differential"
+  },
+  {
+    "label": "∇",
+    "latex": "\\nabla ",
+    "desc": "Nabla / Del gradient"
+  },
+  {
+    "label": "ℏ",
+    "latex": "\\hbar ",
+    "desc": "Reduced Planck constant"
+  },
+  {
+    "label": "ℓ",
+    "latex": "\\ell ",
+    "desc": "Script l"
+  },
+  {
+    "label": "ℵ",
+    "latex": "\\aleph ",
+    "desc": "Aleph cardinal"
+  },
+  {
+    "label": "∠",
+    "latex": "\\angle ",
+    "desc": "Angle"
+  },
+  {
+    "label": "⊥",
+    "latex": "\\perp ",
+    "desc": "Perpendicular"
+  },
+  {
+    "label": "∥",
+    "latex": "\\parallel ",
+    "desc": "Parallel"
+  },
+  {
+    "label": "…",
+    "latex": "\\dots ",
+    "desc": "Horizontal ellipsis"
+  },
+  {
+    "label": "⋮",
+    "latex": "\\vdots ",
+    "desc": "Vertical ellipsis"
+  },
+  {
+    "label": "⋱",
+    "latex": "\\ddots ",
+    "desc": "Diagonal ellipsis"
+  }
 ];
 
-const GREEK_ITEMS = [
-  { label: 'α', latex: '\\alpha ', name: 'alpha' },
-  { label: 'β', latex: '\\beta ', name: 'beta' },
-  { label: 'γ', latex: '\\gamma ', name: 'gamma' },
-  { label: 'δ', latex: '\\delta ', name: 'delta' },
-  { label: 'ε', latex: '\\epsilon ', name: 'epsilon' },
-  { label: 'ɛ', latex: '\\varepsilon ', name: 'varepsilon' },
-  { label: 'ζ', latex: '\\zeta ', name: 'zeta' },
-  { label: 'η', latex: '\\eta ', name: 'eta' },
-  { label: 'θ', latex: '\\theta ', name: 'theta' },
-  { label: 'ϑ', latex: '\\vartheta ', name: 'vartheta' },
-  { label: 'ι', latex: '\\iota ', name: 'iota' },
-  { label: 'κ', latex: '\\kappa ', name: 'kappa' },
-  { label: 'λ', latex: '\\lambda ', name: 'lambda' },
-  { label: 'μ', latex: '\\mu ', name: 'mu' },
-  { label: 'ν', latex: '\\nu ', name: 'nu' },
-  { label: 'ξ', latex: '\\xi ', name: 'xi' },
-  { label: 'π', latex: '\\pi ', name: 'pi' },
-  { label: 'ϖ', latex: '\\varpi ', name: 'varpi' },
-  { label: 'ρ', latex: '\\rho ', name: 'rho' },
-  { label: 'ϱ', latex: '\\varrho ', name: 'varrho' },
-  { label: 'σ', latex: '\\sigma ', name: 'sigma' },
-  { label: 'ς', latex: '\\varsigma ', name: 'varsigma' },
-  { label: 'τ', latex: '\\tau ', name: 'tau' },
-  { label: 'υ', latex: '\\upsilon ', name: 'upsilon' },
-  { label: 'φ', latex: '\\phi ', name: 'phi' },
-  { label: 'ϕ', latex: '\\varphi ', name: 'varphi' },
-  { label: 'χ', latex: '\\chi ', name: 'chi' },
-  { label: 'ψ', latex: '\\psi ', name: 'psi' },
-  { label: 'ω', latex: '\\omega ', name: 'omega' },
-  { label: 'Γ', latex: '\\Gamma ', name: 'Gamma', isUpper: true },
-  { label: 'Δ', latex: '\\Delta ', name: 'Delta', isUpper: true },
-  { label: 'Θ', latex: '\\Theta ', name: 'Theta', isUpper: true },
-  { label: 'Λ', latex: '\\Lambda ', name: 'Lambda', isUpper: true },
-  { label: 'Ξ', latex: '\\Xi ', name: 'Xi', isUpper: true },
-  { label: 'Π', latex: '\\Pi ', name: 'Pi', isUpper: true },
-  { label: 'Σ', latex: '\\Sigma ', name: 'Sigma', isUpper: true },
-  { label: 'Υ', latex: '\\Upsilon ', name: 'Upsilon', isUpper: true },
-  { label: 'Φ', latex: '\\Phi ', name: 'Phi', isUpper: true },
-  { label: 'Ψ', latex: '\\Psi ', name: 'Psi', isUpper: true },
-  { label: 'Ω', latex: '\\Omega ', name: 'Omega', isUpper: true }
+export const GREEK_ITEMS = [
+  {
+    "label": "α",
+    "latex": "\\alpha ",
+    "name": "alpha"
+  },
+  {
+    "label": "β",
+    "latex": "\\beta ",
+    "name": "beta"
+  },
+  {
+    "label": "γ",
+    "latex": "\\gamma ",
+    "name": "gamma"
+  },
+  {
+    "label": "δ",
+    "latex": "\\delta ",
+    "name": "delta"
+  },
+  {
+    "label": "ε",
+    "latex": "\\epsilon ",
+    "name": "epsilon"
+  },
+  {
+    "label": "ɛ",
+    "latex": "\\varepsilon ",
+    "name": "varepsilon"
+  },
+  {
+    "label": "ζ",
+    "latex": "\\zeta ",
+    "name": "zeta"
+  },
+  {
+    "label": "η",
+    "latex": "\\eta ",
+    "name": "eta"
+  },
+  {
+    "label": "θ",
+    "latex": "\\theta ",
+    "name": "theta"
+  },
+  {
+    "label": "ϑ",
+    "latex": "\\vartheta ",
+    "name": "vartheta"
+  },
+  {
+    "label": "ι",
+    "latex": "\\iota ",
+    "name": "iota"
+  },
+  {
+    "label": "κ",
+    "latex": "\\kappa ",
+    "name": "kappa"
+  },
+  {
+    "label": "λ",
+    "latex": "\\lambda ",
+    "name": "lambda"
+  },
+  {
+    "label": "μ",
+    "latex": "\\mu ",
+    "name": "mu"
+  },
+  {
+    "label": "ν",
+    "latex": "\\nu ",
+    "name": "nu"
+  },
+  {
+    "label": "ξ",
+    "latex": "\\xi ",
+    "name": "xi"
+  },
+  {
+    "label": "π",
+    "latex": "\\pi ",
+    "name": "pi"
+  },
+  {
+    "label": "ϖ",
+    "latex": "\\varpi ",
+    "name": "varpi"
+  },
+  {
+    "label": "ρ",
+    "latex": "\\rho ",
+    "name": "rho"
+  },
+  {
+    "label": "ϱ",
+    "latex": "\\varrho ",
+    "name": "varrho"
+  },
+  {
+    "label": "σ",
+    "latex": "\\sigma ",
+    "name": "sigma"
+  },
+  {
+    "label": "ς",
+    "latex": "\\varsigma ",
+    "name": "varsigma"
+  },
+  {
+    "label": "τ",
+    "latex": "\\tau ",
+    "name": "tau"
+  },
+  {
+    "label": "υ",
+    "latex": "\\upsilon ",
+    "name": "upsilon"
+  },
+  {
+    "label": "φ",
+    "latex": "\\phi ",
+    "name": "phi"
+  },
+  {
+    "label": "ϕ",
+    "latex": "\\varphi ",
+    "name": "varphi"
+  },
+  {
+    "label": "χ",
+    "latex": "\\chi ",
+    "name": "chi"
+  },
+  {
+    "label": "ψ",
+    "latex": "\\psi ",
+    "name": "psi"
+  },
+  {
+    "label": "ω",
+    "latex": "\\omega ",
+    "name": "omega"
+  },
+  {
+    "label": "Γ",
+    "latex": "\\Gamma ",
+    "name": "Gamma",
+    "isUpper": true
+  },
+  {
+    "label": "Δ",
+    "latex": "\\Delta ",
+    "name": "Delta",
+    "isUpper": true
+  },
+  {
+    "label": "Θ",
+    "latex": "\\Theta ",
+    "name": "Theta",
+    "isUpper": true
+  },
+  {
+    "label": "Λ",
+    "latex": "\\Lambda ",
+    "name": "Lambda",
+    "isUpper": true
+  },
+  {
+    "label": "Ξ",
+    "latex": "\\Xi ",
+    "name": "Xi",
+    "isUpper": true
+  },
+  {
+    "label": "Π",
+    "latex": "\\Pi ",
+    "name": "Pi",
+    "isUpper": true
+  },
+  {
+    "label": "Σ",
+    "latex": "\\Sigma ",
+    "name": "Sigma",
+    "isUpper": true
+  },
+  {
+    "label": "Υ",
+    "latex": "\\Upsilon ",
+    "name": "Upsilon",
+    "isUpper": true
+  },
+  {
+    "label": "Φ",
+    "latex": "\\Phi ",
+    "name": "Phi",
+    "isUpper": true
+  },
+  {
+    "label": "Ψ",
+    "latex": "\\Psi ",
+    "name": "Psi",
+    "isUpper": true
+  },
+  {
+    "label": "Ω",
+    "latex": "\\Omega ",
+    "name": "Omega",
+    "isUpper": true
+  }
 ];
-
-module.exports = {
-  ALL_MATH_ITEMS,
-  SYMBOL_ITEMS,
-  GREEK_ITEMS
-};
