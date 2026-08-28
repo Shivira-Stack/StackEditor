@@ -7349,14 +7349,14 @@ function Jv(n, e, t, r, i) {
 function Qv(n, e, t, r) {
   return Zu(n, "handleDoubleClickOn", e, t, r) || n.someProp("handleDoubleClick", (i) => i(n, e, r));
 }
-function e4(n, e, t, r) {
-  return Zu(n, "handleTripleClickOn", e, t, r) || n.someProp("handleTripleClick", (i) => i(n, e, r)) || t4(n, t, r);
+function e2(n, e, t, r) {
+  return Zu(n, "handleTripleClickOn", e, t, r) || n.someProp("handleTripleClick", (i) => i(n, e, r)) || t2(n, t, r);
 }
-function t4(n, e, t) {
+function t2(n, e, t) {
   if (t.button != 0)
     return !1;
   let r = Up(n, e, !0), i = n.state.doc;
-  return r ? (ua(n, r), r instanceof ue && i.eq(n.state.doc) && (n.input.mouseDown = new r4(n, r)), !0) : !1;
+  return r ? (ua(n, r), r instanceof ue && i.eq(n.state.doc) && (n.input.mouseDown = new r2(n, r)), !0) : !1;
 }
 function Up(n, e, t) {
   let r = n.state.doc;
@@ -7382,7 +7382,7 @@ hn.mousedown = (n, e) => {
   let r = ju(n), i = Date.now(), s = "singleClick";
   i - n.input.lastClick.time < 500 && jv(t, n.input.lastClick) && !t[Vp] && n.input.lastClick.button == t.button && (n.input.lastClick.type == "singleClick" ? s = "doubleClick" : n.input.lastClick.type == "doubleClick" && (s = "tripleClick")), n.input.lastClick = { time: i, x: t.clientX, y: t.clientY, type: s, button: t.button }, n.input.mouseDown && n.input.mouseDown.done();
   let a = n.posAtCoords(ca(t));
-  a && (s == "singleClick" ? n.input.mouseDown = new n4(n, a, t, !!r) : (s == "doubleClick" ? Qv : e4)(n, a.pos, a.inside, t) ? t.preventDefault() : Er(n, "pointer"));
+  a && (s == "singleClick" ? n.input.mouseDown = new n2(n, a, t, !!r) : (s == "doubleClick" ? Qv : e2)(n, a.pos, a.inside, t) ? t.preventDefault() : Er(n, "pointer"));
 };
 class Wp {
   constructor(e) {
@@ -7401,7 +7401,7 @@ class Wp {
     return !1;
   }
 }
-class n4 extends Wp {
+class n2 extends Wp {
   constructor(e, t, r, i) {
     super(e), this.pos = t, this.event = r, this.flushed = i, this.delayedSelectionSync = !1, this.startDoc = e.state.doc, this.selectNode = !!r[Vp], this.allowDefault = r.shiftKey;
     let s, a;
@@ -7452,7 +7452,7 @@ class n4 extends Wp {
     return this.allowDefault ? (this.delayedSelectionSync = !0, !0) : !1;
   }
 }
-class r4 extends Wp {
+class r2 extends Wp {
   constructor(e, t) {
     super(e), this.startSelection = t, this.startDoc = e.state.doc;
   }
@@ -7479,12 +7479,12 @@ hn.contextmenu = (n) => ju(n);
 function Gp(n, e) {
   return n.composing ? !0 : Qt && Math.abs(Date.now() - n.input.compositionEndedAt) < 500 ? (n.input.compositionEndedAt = -2e8, !0) : !1;
 }
-const i4 = wr ? 5e3 : -1;
+const i2 = wr ? 5e3 : -1;
 fn.compositionstart = fn.compositionupdate = (n) => {
   if (!n.composing) {
     n.domObserver.flush();
     let { state: e } = n, t = e.selection.$to;
-    if (e.selection instanceof ue && (e.storedMarks || !t.textOffset && t.parentOffset && t.nodeBefore.marks.some((r) => r.type.spec.inclusive === !1) || Gt && wp && s4(n)))
+    if (e.selection instanceof ue && (e.storedMarks || !t.textOffset && t.parentOffset && t.nodeBefore.marks.some((r) => r.type.spec.inclusive === !1) || Gt && wp && s2(n)))
       n.markCursor = n.state.storedMarks || t.marks(), co(n, !0), n.markCursor = null;
     else if (co(n, !e.selection.empty), Hn && e.selection.empty && t.parentOffset && !t.textOffset && t.nodeBefore.marks.length) {
       let r = n.domSelectionRange();
@@ -7502,9 +7502,9 @@ fn.compositionstart = fn.compositionupdate = (n) => {
     }
     n.input.composing = !0;
   }
-  Kp(n, i4);
+  Kp(n, i2);
 };
-function s4(n) {
+function s2(n) {
   let { focusNode: e, focusOffset: t } = n.domSelectionRange();
   if (!e || e.nodeType != 1 || t >= e.childNodes.length)
     return !1;
@@ -7521,7 +7521,7 @@ function Zp(n) {
   for (n.composing && (n.input.composing = !1, n.input.compositionEndedAt = Date.now()); n.input.compositionNodes.length > 0; )
     n.input.compositionNodes.pop().markParentsDirty();
 }
-function a4(n) {
+function a2(n) {
   let e = n.domSelectionRange();
   if (!e.focusNode)
     return null;
@@ -7549,7 +7549,7 @@ function co(n, e = !1) {
     return !1;
   }
 }
-function o4(n, e) {
+function o2(n, e) {
   if (!n.dom.parentNode)
     return;
   let t = n.dom.parentNode.appendChild(document.createElement("div"));
@@ -7565,12 +7565,12 @@ hn.copy = fn.cut = (n, e) => {
   if (r.empty)
     return;
   let s = Zs ? null : t.clipboardData, a = r.content(), { dom: o, text: l } = Gu(n, a);
-  s ? (t.preventDefault(), s.clearData(), s.setData("text/html", o.innerHTML), s.setData("text/plain", l)) : o4(n, o), i && n.dispatch(n.state.tr.deleteSelection().scrollIntoView().setMeta("uiEvent", "cut"));
+  s ? (t.preventDefault(), s.clearData(), s.setData("text/html", o.innerHTML), s.setData("text/plain", l)) : o2(n, o), i && n.dispatch(n.state.tr.deleteSelection().scrollIntoView().setMeta("uiEvent", "cut"));
 };
-function l4(n) {
+function l2(n) {
   return n.openStart == 0 && n.openEnd == 0 && n.content.childCount == 1 ? n.content.firstChild : null;
 }
-function c4(n, e) {
+function c2(n, e) {
   if (!n.dom.parentNode)
     return;
   let t = n.input.shiftKey || n.state.selection.$from.parent.type.spec.code, r = n.dom.parentNode.appendChild(document.createElement(t ? "textarea" : "div"));
@@ -7586,7 +7586,7 @@ function js(n, e, t, r, i) {
     return !0;
   if (!s)
     return !1;
-  let a = l4(s), o = a ? n.state.tr.replaceSelectionWith(a, r) : n.state.tr.replaceSelection(s);
+  let a = l2(s), o = a ? n.state.tr.replaceSelectionWith(a, r) : n.state.tr.replaceSelection(s);
   return n.dispatch(o.scrollIntoView().setMeta("paste", !0).setMeta("uiEvent", "paste")), !0;
 }
 function jp(n) {
@@ -7601,19 +7601,19 @@ fn.paste = (n, e) => {
   if (n.composing && !wr)
     return;
   let r = Zs ? null : t.clipboardData, i = n.input.shiftKey && n.input.lastKeyCode != 45;
-  r && js(n, jp(r), r.getData("text/html"), i, t) ? t.preventDefault() : c4(n, t);
+  r && js(n, jp(r), r.getData("text/html"), i, t) ? t.preventDefault() : c2(n, t);
 };
 class Yp {
   constructor(e, t, r) {
     this.slice = e, this.move = t, this.node = r;
   }
 }
-const u4 = Bn ? "altKey" : "ctrlKey";
+const u2 = Bn ? "altKey" : "ctrlKey";
 function Xp(n, e) {
   let t;
   return n.someProp("dragCopies", (r) => {
     t = t || r(e);
-  }), t != null ? !t : !e[u4];
+  }), t != null ? !t : !e[u2];
 }
 hn.dragstart = (n, e) => {
   let t = e, r = n.input.mouseDown;
@@ -7640,12 +7640,12 @@ hn.dragend = (n) => {
 fn.dragover = fn.dragenter = (n, e) => e.preventDefault();
 fn.drop = (n, e) => {
   try {
-    d4(n, e, n.dragging);
+    d2(n, e, n.dragging);
   } finally {
     n.dragging = null;
   }
 };
-function d4(n, e, t) {
+function d2(n, e, t) {
   if (!e.dataTransfer)
     return;
   let r = n.posAtCoords(ca(e));
@@ -7901,7 +7901,7 @@ class Qe {
       let l = this.local[o].map(e, r, i);
       l && l.type.valid(t, l) ? (a || (a = [])).push(l) : s.onRemove && s.onRemove(this.local[o].spec);
     }
-    return this.children.length ? h4(this.children, a || [], e, t, r, i, s) : a ? new Qe(a.sort(Ci), Gi) : Xt;
+    return this.children.length ? h2(this.children, a || [], e, t, r, i, s) : a ? new Qe(a.sort(Ci), Gi) : Xt;
   }
   /**
   Add the given array of decorations to the ones in the set,
@@ -8079,7 +8079,7 @@ class Hr {
       this.members[t].forEachSet(e);
   }
 }
-function h4(n, e, t, r, i, s, a) {
+function h2(n, e, t, r, i, s, a) {
   let o = n.slice();
   for (let c = 0, u = s; c < t.maps.length; c++) {
     let d = 0;
@@ -8115,7 +8115,7 @@ function h4(n, e, t, r, i, s, a) {
         l = !0;
     }
   if (l) {
-    let c = f4(o, n, e, t, i, s, a), u = ho(c, r, 0, a);
+    let c = f2(o, n, e, t, i, s, a), u = ho(c, r, 0, a);
     e = u.local;
     for (let d = 0; d < o.length; d += 3)
       o[d + 1] < 0 && (o.splice(d, 3), d -= 3);
@@ -8138,7 +8138,7 @@ function Jp(n, e) {
   }
   return t;
 }
-function f4(n, e, t, r, i, s, a) {
+function f2(n, e, t, r, i, s, a) {
   function o(l, c) {
     for (let u = 0; u < l.local.length; u++) {
       let d = l.local[u].map(r, i, c);
@@ -8213,15 +8213,15 @@ function Wl(n) {
     r && r != Xt && e.push(r);
   }), n.cursorWrapper && e.push(Qe.create(n.state.doc, [n.cursorWrapper.deco])), Hr.from(e);
 }
-const p4 = {
+const p2 = {
   childList: !0,
   characterData: !0,
   characterDataOldValue: !0,
   attributes: !0,
   attributeOldValue: !0,
   subtree: !0
-}, m4 = bn && jr <= 11;
-class g4 {
+}, m2 = bn && jr <= 11;
+class g2 {
   constructor() {
     this.anchorNode = null, this.anchorOffset = 0, this.focusNode = null, this.focusOffset = 0;
   }
@@ -8235,13 +8235,13 @@ class g4 {
     return e.anchorNode == this.anchorNode && e.anchorOffset == this.anchorOffset && e.focusNode == this.focusNode && e.focusOffset == this.focusOffset;
   }
 }
-class b4 {
+class b2 {
   constructor(e, t) {
-    this.view = e, this.handleDOMChange = t, this.queue = [], this.flushingSoon = -1, this.observer = null, this.currentSelection = new g4(), this.onCharData = null, this.suppressingSelectionUpdates = !1, this.lastChangedTextNode = null, this.observer = window.MutationObserver && new window.MutationObserver((r) => {
+    this.view = e, this.handleDOMChange = t, this.queue = [], this.flushingSoon = -1, this.observer = null, this.currentSelection = new g2(), this.onCharData = null, this.suppressingSelectionUpdates = !1, this.lastChangedTextNode = null, this.observer = window.MutationObserver && new window.MutationObserver((r) => {
       for (let i = 0; i < r.length; i++)
         this.queue.push(r[i]);
       bn && jr <= 11 && r.some((i) => i.type == "childList" && i.removedNodes.length || i.type == "characterData" && i.oldValue.length > i.target.nodeValue.length) ? this.flushSoon() : Qt && e.composing && r.some((i) => i.type == "childList" && i.target.nodeName == "TR") ? (e.input.badSafariComposition = !0, this.flushSoon()) : this.flush();
-    }), m4 && (this.onCharData = (r) => {
+    }), m2 && (this.onCharData = (r) => {
       this.queue.push({ target: r.target, type: "characterData", oldValue: r.prevValue }), this.flushSoon();
     }), this.onSelectionChange = this.onSelectionChange.bind(this);
   }
@@ -8254,7 +8254,7 @@ class b4 {
     this.flushingSoon > -1 && (window.clearTimeout(this.flushingSoon), this.flushingSoon = -1, this.flush());
   }
   start() {
-    this.observer && (this.observer.takeRecords(), this.observer.observe(this.view.dom, p4)), this.onCharData && this.view.dom.addEventListener("DOMCharacterDataModified", this.onCharData), this.connectSelection();
+    this.observer && (this.observer.takeRecords(), this.observer.observe(this.view.dom, p2)), this.onCharData && this.view.dom.addEventListener("DOMCharacterDataModified", this.onCharData), this.connectSelection();
   }
   stop() {
     if (this.observer) {
@@ -8349,12 +8349,12 @@ class b4 {
         let { focusNode: d } = this.currentSelection;
         for (let h of u) {
           let f = h.parentNode;
-          f && f.nodeName == "LI" && (!d || x4(e, d) != f) && h.remove();
+          f && f.nodeName == "LI" && (!d || x2(e, d) != f) && h.remove();
         }
       }
     }
     let c = null;
-    s < 0 && i && e.input.lastFocus > Date.now() - 200 && Math.max(e.input.lastTouch, e.input.lastClick.time) < Date.now() - 300 && il(r) && (c = Vu(e)) && c.eq(be.near(e.state.doc.resolve(0), 1)) ? (e.input.lastFocus = 0, Sr(e), this.currentSelection.set(r), e.scrollToSelection()) : (s > -1 || i) && (s > -1 && (e.docView.markDirty(s, a), v4(e)), e.input.badSafariComposition && (e.input.badSafariComposition = !1, w4(e, l)), this.handleDOMChange(s, a, o, l), e.docView && e.docView.dirty ? e.updateState(e.state) : this.currentSelection.eq(r) || Sr(e), this.currentSelection.set(r));
+    s < 0 && i && e.input.lastFocus > Date.now() - 200 && Math.max(e.input.lastTouch, e.input.lastClick.time) < Date.now() - 300 && il(r) && (c = Vu(e)) && c.eq(be.near(e.state.doc.resolve(0), 1)) ? (e.input.lastFocus = 0, Sr(e), this.currentSelection.set(r), e.scrollToSelection()) : (s > -1 || i) && (s > -1 && (e.docView.markDirty(s, a), v2(e)), e.input.badSafariComposition && (e.input.badSafariComposition = !1, w2(e, l)), this.handleDOMChange(s, a, o, l), e.docView && e.docView.dirty ? e.updateState(e.state) : this.currentSelection.eq(r) || Sr(e), this.currentSelection.set(r));
   }
   registerMutation(e, t) {
     if (t.indexOf(e.target) > -1)
@@ -8390,7 +8390,7 @@ class b4 {
   }
 }
 let P0 = /* @__PURE__ */ new WeakMap(), H0 = !1;
-function v4(n) {
+function v2(n) {
   if (!P0.has(n) && (P0.set(n, null), ["normal", "nowrap", "pre-line"].indexOf(getComputedStyle(n.dom).whiteSpace) !== -1)) {
     if (n.requiresGeckoHackNode = Hn, H0)
       return;
@@ -8401,7 +8401,7 @@ function F0(n, e) {
   let t = e.startContainer, r = e.startOffset, i = e.endContainer, s = e.endOffset, a = n.domAtPos(n.state.selection.anchor);
   return Oi(a.node, a.offset, i, s) && ([t, r, i, s] = [i, s, t, r]), { anchorNode: t, anchorOffset: r, focusNode: i, focusOffset: s };
 }
-function y4(n, e) {
+function y2(n, e) {
   if (e.getComposedRanges) {
     let i = e.getComposedRanges(n.root)[0];
     if (i)
@@ -8413,7 +8413,7 @@ function y4(n, e) {
   }
   return n.dom.addEventListener("beforeinput", r, !0), document.execCommand("indent"), n.dom.removeEventListener("beforeinput", r, !0), t ? F0(n, t) : null;
 }
-function x4(n, e) {
+function x2(n, e) {
   for (let t = e.parentNode; t && t != n.dom; t = t.parentNode) {
     let r = n.docView.nearestDesc(t, !0);
     if (r && r.node.isBlock)
@@ -8421,7 +8421,7 @@ function x4(n, e) {
   }
   return null;
 }
-function w4(n, e) {
+function w2(n, e) {
   var t;
   let { focusNode: r, focusOffset: i } = n.domSelectionRange();
   for (let s of e)
@@ -8442,7 +8442,7 @@ function w4(n, e) {
         s.parentNode.removeChild(s);
     }
 }
-function E4(n, e, t, r) {
+function E2(n, e, t, r) {
   let { node: i, fromOffset: s, toOffset: a, from: o, to: l } = n.docView.parseRange(e, t), c = n.domSelectionRange(), u, d = c.anchorNode;
   if (d && n.dom.contains(d.nodeType == 1 ? d : d.parentNode) && (u = [{ node: d, offset: c.anchorOffset }], il(c) || u.push({ node: c.focusNode, offset: c.focusOffset })), Gt && n.input.lastKeyCode === 8)
     for (let x = a; x > s; x--) {
@@ -8462,7 +8462,7 @@ function E4(n, e, t, r) {
     to: a,
     preserveWhitespace: m.parent.type.whitespace == "pre" ? "full" : !0,
     findPositions: u,
-    ruleFromNode: k4(r),
+    ruleFromNode: k2(r),
     context: m
   });
   if (u && u[0].pos != null) {
@@ -8471,7 +8471,7 @@ function E4(n, e, t, r) {
   }
   return { doc: y, sel: b, from: o, to: l };
 }
-const k4 = (n) => (e) => {
+const k2 = (n) => (e) => {
   let t = e.pmViewDesc;
   if (t)
     return t.parseRule(n);
@@ -8484,8 +8484,8 @@ const k4 = (n) => (e) => {
   } else if (e.nodeName == "IMG" && e.getAttribute("mark-placeholder"))
     return { ignore: !0 };
   return null;
-}, S4 = /^(a|abbr|acronym|b|bd[io]|big|br|button|cite|code|data(list)?|del|dfn|em|i|img|ins|kbd|label|map|mark|meter|output|q|ruby|s|samp|small|span|strong|su[bp]|time|u|tt|var)$/i;
-function T4(n, e, t, r, i) {
+}, S2 = /^(a|abbr|acronym|b|bd[io]|big|br|button|cite|code|data(list)?|del|dfn|em|i|img|ins|kbd|label|map|mark|meter|output|q|ruby|s|samp|small|span|strong|su[bp]|time|u|tt|var)$/i;
+function T2(n, e, t, r, i) {
   let s = n.input.compositionPendingChanges || (n.composing ? n.input.compositionID : 0);
   if (n.input.compositionPendingChanges = 0, e < 0) {
     let R = n.input.lastSelectionTime > Date.now() - 50 ? n.input.lastSelectionOrigin : null, z = Vu(n, R);
@@ -8499,10 +8499,10 @@ function T4(n, e, t, r, i) {
   }
   let a = n.state.doc.resolve(e), o = a.sharedDepth(t);
   e = a.before(o + 1), t = n.state.doc.resolve(t).after(o + 1);
-  let l = n.state.selection, c = E4(n, e, t, i), u = n.state.doc, d = u.slice(c.from, c.to), h, f;
+  let l = n.state.selection, c = E2(n, e, t, i), u = n.state.doc, d = u.slice(c.from, c.to), h, f;
   n.input.lastKeyCode === 8 && Date.now() - 100 < n.input.lastKeyCodeTime ? (h = n.state.selection.to, f = "end") : (h = n.state.selection.from, f = "start"), n.input.lastKeyCode = null;
-  let m = A4(d.content, c.doc.content, c.from, h, f);
-  if (m && n.input.domChangeCount++, (ns && n.input.lastIOSEnter > Date.now() - 225 || wr) && i.some((R) => R.nodeType == 1 && !S4.test(R.nodeName)) && (!m || m.endA >= m.endB) && n.someProp("handleKeyDown", (R) => R(n, mi(13, "Enter")))) {
+  let m = A2(d.content, c.doc.content, c.from, h, f);
+  if (m && n.input.domChangeCount++, (ns && n.input.lastIOSEnter > Date.now() - 225 || wr) && i.some((R) => R.nodeType == 1 && !S2.test(R.nodeName)) && (!m || m.endA >= m.endB) && n.someProp("handleKeyDown", (R) => R(n, mi(13, "Enter")))) {
     n.input.lastIOSEnter = 0;
     return;
   }
@@ -8525,7 +8525,7 @@ function T4(n, e, t, r, i) {
     n.input.lastIOSEnter = 0;
     return;
   }
-  if (n.state.selection.anchor > m.start && M4(u, m.start, m.endA, b, y) && n.someProp("handleKeyDown", (R) => R(n, mi(8, "Backspace")))) {
+  if (n.state.selection.anchor > m.start && M2(u, m.start, m.endA, b, y) && n.someProp("handleKeyDown", (R) => R(n, mi(8, "Backspace")))) {
     wr && Gt && n.domObserver.suppressSelectionUpdates();
     return;
   }
@@ -8549,7 +8549,7 @@ function T4(n, e, t, r, i) {
       z && R.ensureMarks(z), n.dispatch(R);
     } else if (
       // Adding or removing a mark
-      m.endA == m.endB && (I = C4(b.parent.content.cut(b.parentOffset, y.parentOffset), x.parent.content.cut(x.parentOffset, m.endA - x.start())))
+      m.endA == m.endB && (I = C2(b.parent.content.cut(b.parentOffset, y.parentOffset), x.parent.content.cut(x.parentOffset, m.endA - x.start())))
     ) {
       let R = O(n.state.tr);
       I.type == "add" ? R.addMark(M, C, I.mark) : R.removeMark(M, C, I.mark), n.dispatch(R);
@@ -8564,7 +8564,7 @@ function T4(n, e, t, r, i) {
 function $0(n, e, t) {
   return Math.max(t.anchor, t.head) > e.content.size ? null : Wu(n, e.resolve(t.anchor), e.resolve(t.head));
 }
-function C4(n, e) {
+function C2(n, e) {
   let t = n.firstChild.marks, r = e.firstChild.marks, i = t, s = r, a, o, l;
   for (let u = 0; u < r.length; u++)
     i = r[u].removeFromSet(i);
@@ -8582,7 +8582,7 @@ function C4(n, e) {
   if (D.from(c).eq(n))
     return { mark: o, type: a };
 }
-function M4(n, e, t, r, i) {
+function M2(n, e, t, r, i) {
   if (
     // The content must have shrunk
     t - e <= i.pos - r.pos || // newEnd must point directly at or after the end of the block that newStart points into
@@ -8610,7 +8610,7 @@ function Gl(n, e, t) {
   }
   return i;
 }
-function A4(n, e, t, r, i) {
+function A2(n, e, t, r, i) {
   let s = n.findDiffStart(e, t), a = t + n.size, o = t + e.size;
   if (s == null)
     return null;
@@ -8637,7 +8637,7 @@ class tm {
   added to the document.
   */
   constructor(e, t) {
-    this._root = null, this.focused = !1, this.trackWrites = null, this.mounted = !1, this.markCursor = null, this.cursorWrapper = null, this.lastSelectedViewDesc = void 0, this.input = new Vv(), this.prevDirectPlugins = [], this.pluginViews = [], this.requiresGeckoHackNode = !1, this.dragging = null, this._props = t, this.state = t.state, this.directPlugins = t.plugins || [], this.directPlugins.forEach(G0), this.dispatch = this.dispatch.bind(this), this.dom = e && e.mount || document.createElement("div"), e && (e.appendChild ? e.appendChild(this.dom) : typeof e == "function" ? e(this.dom) : e.mount && (this.mounted = !0)), this.editable = V0(this), U0(this), this.nodeViews = W0(this), this.docView = S0(this.state.doc, q0(this), Wl(this), this.dom, this), this.domObserver = new b4(this, (r, i, s, a) => T4(this, r, i, s, a)), this.domObserver.start(), Wv(this), this.updatePluginViews();
+    this._root = null, this.focused = !1, this.trackWrites = null, this.mounted = !1, this.markCursor = null, this.cursorWrapper = null, this.lastSelectedViewDesc = void 0, this.input = new Vv(), this.prevDirectPlugins = [], this.pluginViews = [], this.requiresGeckoHackNode = !1, this.dragging = null, this._props = t, this.state = t.state, this.directPlugins = t.plugins || [], this.directPlugins.forEach(G0), this.dispatch = this.dispatch.bind(this), this.dom = e && e.mount || document.createElement("div"), e && (e.appendChild ? e.appendChild(this.dom) : typeof e == "function" ? e(this.dom) : e.mount && (this.mounted = !0)), this.editable = V0(this), U0(this), this.nodeViews = W0(this), this.docView = S0(this.state.doc, q0(this), Wl(this), this.dom, this), this.domObserver = new b2(this, (r, i, s, a) => T2(this, r, i, s, a)), this.domObserver.start(), Wv(this), this.updatePluginViews();
   }
   /**
   Holds `true` when a
@@ -8697,7 +8697,7 @@ class tm {
     let o = i.plugins != e.plugins || this._props.plugins != t.plugins;
     if (o || this._props.plugins != t.plugins || this._props.nodeViews != t.nodeViews) {
       let f = W0(this);
-      _4(f, this.nodeViews) && (this.nodeViews = f, s = !0);
+      _2(f, this.nodeViews) && (this.nodeViews = f, s = !0);
     }
     (o || t.handleDOMEvents != this._props.handleDOMEvents) && Yc(this), this.editable = V0(this), U0(this);
     let l = Wl(this), c = q0(this), u = i.plugins != e.plugins && !i.doc.eq(e.doc) ? "reset" : e.scrollToSelection > i.scrollToSelection ? "to selection" : "preserve", d = s || !this.docView.matchesNode(e.doc, c, l);
@@ -8705,10 +8705,10 @@ class tm {
     let h = u == "preserve" && a && this.dom.style.overflowAnchor == null && sv(this);
     if (a) {
       this.domObserver.stop();
-      let f = d && (bn || Gt) && !this.composing && !i.selection.empty && !e.selection.empty && N4(i.selection, e.selection);
+      let f = d && (bn || Gt) && !this.composing && !i.selection.empty && !e.selection.empty && N2(i.selection, e.selection);
       if (d) {
         let b = Gt ? this.trackWrites = this.domSelectionRange().focusNode : null;
-        this.composing && (this.input.compositionNode = a4(this)), (s || !this.docView.update(e.doc, c, l, this)) && (this.docView.updateOuterDeco(c), this.docView.destroy(), this.docView = S0(e.doc, c, l, this.dom, this)), b && (!this.trackWrites || !this.dom.contains(this.trackWrites)) && (f = !0);
+        this.composing && (this.input.compositionNode = a2(this)), (s || !this.docView.update(e.doc, c, l, this)) && (this.docView.updateOuterDeco(c), this.docView.destroy(), this.docView = S0(e.doc, c, l, this.dom, this)), b && (!this.trackWrites || !this.dom.contains(this.trackWrites)) && (f = !0);
       }
       let m = this.input.mouseDown;
       f || !(m && this.domObserver.currentSelection.eq(this.domSelectionRange()) && Nv(this) && m.delaySelUpdate()) ? Sr(this, f) : (Lp(this, e.selection), this.domObserver.setCurSelection()), this.domObserver.start();
@@ -8952,7 +8952,7 @@ class tm {
   */
   domSelectionRange() {
     let e = this.domSelection();
-    return e ? Qt && this.root.nodeType === 11 && ev(this.dom.ownerDocument) == this.dom && y4(this, e) || e : { focusNode: null, focusOffset: 0, anchorNode: null, anchorOffset: 0 };
+    return e ? Qt && this.root.nodeType === 11 && ev(this.dom.ownerDocument) == this.dom && y2(this, e) || e : { focusNode: null, focusOffset: 0, anchorNode: null, anchorOffset: 0 };
   }
   /**
   @internal
@@ -8983,7 +8983,7 @@ function U0(n) {
 function V0(n) {
   return !n.someProp("editable", (e) => e(n.state) === !1);
 }
-function N4(n, e) {
+function N2(n, e) {
   let t = Math.min(n.$anchor.sharedDepth(n.head), e.$anchor.sharedDepth(e.head));
   return n.$anchor.start(t) != e.$anchor.start(t);
 }
@@ -8995,7 +8995,7 @@ function W0(n) {
   }
   return n.someProp("nodeViews", t), n.someProp("markViews", t), e;
 }
-function _4(n, e) {
+function _2(n, e) {
   let t = 0, r = 0;
   for (let i in n) {
     if (n[i] != e[i])
@@ -9088,18 +9088,18 @@ var Qr = {
   220: "|",
   221: "}",
   222: '"'
-}, O4 = typeof navigator < "u" && /Mac/.test(navigator.platform), R4 = typeof navigator < "u" && /MSIE \d|Trident\/(?:[7-9]|\d{2,})\..*rv:(\d+)/.exec(navigator.userAgent);
+}, O2 = typeof navigator < "u" && /Mac/.test(navigator.platform), R2 = typeof navigator < "u" && /MSIE \d|Trident\/(?:[7-9]|\d{2,})\..*rv:(\d+)/.exec(navigator.userAgent);
 for (var Wt = 0; Wt < 10; Wt++) Qr[48 + Wt] = Qr[96 + Wt] = String(Wt);
 for (var Wt = 1; Wt <= 24; Wt++) Qr[Wt + 111] = "F" + Wt;
 for (var Wt = 65; Wt <= 90; Wt++)
   Qr[Wt] = String.fromCharCode(Wt + 32), fo[Wt] = String.fromCharCode(Wt);
 for (var Kl in Qr) fo.hasOwnProperty(Kl) || (fo[Kl] = Qr[Kl]);
-function I4(n) {
-  var e = O4 && n.metaKey && n.shiftKey && !n.ctrlKey && !n.altKey || R4 && n.shiftKey && n.key && n.key.length == 1 || n.key == "Unidentified", t = !e && n.key || (n.shiftKey ? fo : Qr)[n.keyCode] || n.key || "Unidentified";
+function I2(n) {
+  var e = O2 && n.metaKey && n.shiftKey && !n.ctrlKey && !n.altKey || R2 && n.shiftKey && n.key && n.key.length == 1 || n.key == "Unidentified", t = !e && n.key || (n.shiftKey ? fo : Qr)[n.keyCode] || n.key || "Unidentified";
   return t == "Esc" && (t = "Escape"), t == "Del" && (t = "Delete"), t == "Left" && (t = "ArrowLeft"), t == "Up" && (t = "ArrowUp"), t == "Right" && (t = "ArrowRight"), t == "Down" && (t = "ArrowDown"), t;
 }
-const L4 = typeof navigator < "u" && /Mac|iP(hone|[oa]d)/.test(navigator.platform), D4 = typeof navigator < "u" && /Win/.test(navigator.platform);
-function B4(n) {
+const L2 = typeof navigator < "u" && /Mac|iP(hone|[oa]d)/.test(navigator.platform), D2 = typeof navigator < "u" && /Win/.test(navigator.platform);
+function B2(n) {
   let e = n.split(/-(?!$)/), t = e[e.length - 1];
   t == "Space" && (t = " ");
   let r, i, s, a;
@@ -9114,28 +9114,28 @@ function B4(n) {
     else if (/^s(hift)?$/i.test(l))
       s = !0;
     else if (/^mod$/i.test(l))
-      L4 ? a = !0 : i = !0;
+      L2 ? a = !0 : i = !0;
     else
       throw new Error("Unrecognized modifier name: " + l);
   }
   return r && (t = "Alt-" + t), i && (t = "Ctrl-" + t), a && (t = "Meta-" + t), s && (t = "Shift-" + t), t;
 }
-function z4(n) {
+function z2(n) {
   let e = /* @__PURE__ */ Object.create(null);
   for (let t in n)
-    e[B4(t)] = n[t];
+    e[B2(t)] = n[t];
   return e;
 }
 function Zl(n, e, t = !0) {
   return e.altKey && (n = "Alt-" + n), e.ctrlKey && (n = "Ctrl-" + n), e.metaKey && (n = "Meta-" + n), t && e.shiftKey && (n = "Shift-" + n), n;
 }
-function P4(n) {
+function P2(n) {
   return new st({ props: { handleKeyDown: Ju(n) } });
 }
 function Ju(n) {
-  let e = z4(n);
+  let e = z2(n);
   return function(t, r) {
-    let i = I4(r), s, a = e[Zl(i, r)];
+    let i = I2(r), s, a = e[Zl(i, r)];
     if (a && a(t.state, t.dispatch, t))
       return !0;
     if (i.length == 1 && i != " ") {
@@ -9145,7 +9145,7 @@ function Ju(n) {
           return !0;
       }
       if ((r.altKey || r.metaKey || r.ctrlKey) && // Ctrl-Alt may be used for AltGr on Windows
-      !(D4 && r.ctrlKey && r.altKey) && (s = Qr[r.keyCode]) && s != i) {
+      !(D2 && r.ctrlKey && r.altKey) && (s = Qr[r.keyCode]) && s != i) {
         let o = e[Zl(s, r)];
         if (o && o(t.state, t.dispatch, t))
           return !0;
@@ -9185,13 +9185,13 @@ const rm = (n, e, t) => {
         break;
     }
   return s.isAtom && i.depth == r.depth - 1 ? (e && e(n.tr.delete(i.pos - s.nodeSize, i.pos).scrollIntoView()), !0) : !1;
-}, H4 = (n, e, t) => {
+}, H2 = (n, e, t) => {
   let r = nm(n, t);
   if (!r)
     return !1;
   let i = ed(r);
   return i ? im(n, i, e) : !1;
-}, F4 = (n, e, t) => {
+}, F2 = (n, e, t) => {
   let r = am(n, t);
   if (!r)
     return !1;
@@ -9305,7 +9305,7 @@ function td(n) {
     }
   return null;
 }
-const $4 = (n, e) => {
+const $2 = (n, e) => {
   let t = n.selection, r = t instanceof de, i;
   if (r) {
     if (t.node.isTextblock || !si(n.doc, t.from))
@@ -9318,7 +9318,7 @@ const $4 = (n, e) => {
     r && s.setSelection(de.create(s.doc, i - n.doc.resolve(i).nodeBefore.nodeSize)), e(s.scrollIntoView());
   }
   return !0;
-}, q4 = (n, e) => {
+}, q2 = (n, e) => {
   let t = n.selection, r;
   if (t instanceof de) {
     if (t.node.isTextblock || !si(n.doc, t.to))
@@ -9327,7 +9327,7 @@ const $4 = (n, e) => {
   } else if (r = tl(n.doc, t.to, 1), r == null)
     return !1;
   return e && e(n.tr.join(r).scrollIntoView()), !0;
-}, U4 = (n, e) => {
+}, U2 = (n, e) => {
   let { $from: t, $to: r } = n.selection, i = t.blockRange(r), s = i && ds(i);
   return s == null ? !1 : (e && e(n.tr.lift(i, s).scrollIntoView()), !0);
 }, cm = (n, e) => {
@@ -9343,7 +9343,7 @@ function nd(n) {
   }
   return null;
 }
-const V4 = (n, e) => {
+const V2 = (n, e) => {
   let { $head: t, $anchor: r } = n.selection;
   if (!t.parent.type.spec.code || !t.sameParent(r))
     return !1;
@@ -9379,7 +9379,7 @@ const V4 = (n, e) => {
   let r = t.blockRange(), i = r && ds(r);
   return i == null ? !1 : (e && e(n.tr.lift(r, i).scrollIntoView()), !0);
 };
-function W4(n) {
+function W2(n) {
   return (e, t) => {
     if (e.selection instanceof de && e.selection.node.isBlock) {
       let { $from: f } = e.selection;
@@ -9409,17 +9409,17 @@ function W4(n) {
     return t && t(r.scrollIntoView()), !0;
   };
 }
-const G4 = W4(), K4 = (n, e) => {
+const G2 = W2(), K2 = (n, e) => {
   let { $from: t, to: r } = n.selection, i, s = t.sharedDepth(r);
   return s == 0 ? !1 : (i = t.before(s), e && e(n.tr.setSelection(de.create(n.doc, i))), !0);
 };
-function Z4(n, e, t) {
+function Z2(n, e, t) {
   let r = e.nodeBefore, i = e.nodeAfter, s = e.index();
   return !r || !i || !r.type.compatibleContent(i.type) ? !1 : !r.content.size && e.parent.canReplace(s - 1, s) ? (t && t(n.tr.delete(e.pos - r.nodeSize, e.pos).scrollIntoView()), !0) : !e.parent.canReplace(s, s + 1) || !(i.isTextblock || si(n.doc, e.pos)) ? !1 : (t && t(n.tr.join(e.pos).scrollIntoView()), !0);
 }
 function hm(n, e, t, r) {
   let i = e.nodeBefore, s = e.nodeAfter, a, o, l = i.type.spec.isolating || s.type.spec.isolating;
-  if (!l && Z4(n, e, t))
+  if (!l && Z2(n, e, t))
     return !0;
   let c = !l && e.parent.canReplace(e.index(), e.index() + 1);
   if (c && (a = (o = i.contentMatchAt(i.childCount)).findWrapping(s.type)) && o.matchType(a[0] || s.type).validEnd) {
@@ -9467,8 +9467,8 @@ function fm(n) {
     return i.node(s).isTextblock ? (t && t(e.tr.setSelection(ue.create(e.doc, n < 0 ? i.start(s) : i.end(s)))), !0) : !1;
   };
 }
-const j4 = fm(-1), Y4 = fm(1);
-function X4(n, e = null) {
+const j2 = fm(-1), Y2 = fm(1);
+function X2(n, e = null) {
   return function(t, r) {
     let { $from: i, $to: s } = t.selection, a = i.blockRange(s), o = a && Fu(a, n, e);
     return o ? (r && r(t.tr.wrap(a, o).scrollIntoView()), !0) : !1;
@@ -9514,18 +9514,18 @@ function rd(...n) {
 }
 rd(Qu, rm, sm);
 rd(Qu, om, lm);
-rd(cm, um, dm, G4);
+rd(cm, um, dm, G2);
 typeof navigator < "u" ? /Mac|iP(hone|[oa]d)/.test(navigator.platform) : typeof os < "u" && os.platform && os.platform() == "darwin";
-function J4(n, e = null) {
+function J2(n, e = null) {
   return function(t, r) {
     let { $from: i, $to: s } = t.selection, a = i.blockRange(s);
     if (!a)
       return !1;
     let o = r ? t.tr : null;
-    return Q4(o, a, n, e) ? (r && r(o.scrollIntoView()), !0) : !1;
+    return Q2(o, a, n, e) ? (r && r(o.scrollIntoView()), !0) : !1;
   };
 }
-function Q4(n, e, t, r = null) {
+function Q2(n, e, t, r = null) {
   let i = !1, s = e, a = e.$from.doc;
   if (e.depth >= 2 && e.$from.node(e.depth - 1).type.compatibleContent(t) && e.startIndex == 0) {
     if (e.$from.index(e.depth - 1) == 0)
@@ -9534,9 +9534,9 @@ function Q4(n, e, t, r = null) {
     s = new ao(l, l, e.depth), e.endIndex < e.parent.childCount && (e = new ao(e.$from, a.resolve(e.$to.end(e.depth)), e.depth)), i = !0;
   }
   let o = Fu(s, t, r, e);
-  return o ? (n && e2(n, e, o, i, t), !0) : !1;
+  return o ? (n && e4(n, e, o, i, t), !0) : !1;
 }
-function e2(n, e, t, r, i) {
+function e4(n, e, t, r, i) {
   let s = D.empty;
   for (let u = t.length - 1; u >= 0; u--)
     s = D.from(t[u].type.create(t[u].attrs, s));
@@ -9549,13 +9549,13 @@ function e2(n, e, t, r, i) {
     !h && kr(n.doc, l, o) && (n.split(l, o), l += 2 * o), l += c.child(u).nodeSize;
   return n;
 }
-function t2(n) {
+function t4(n) {
   return function(e, t) {
     let { $from: r, $to: i } = e.selection, s = r.blockRange(i, (a) => a.childCount > 0 && a.firstChild.type == n);
-    return s ? t ? r.node(s.depth - 1).type == n ? n2(e, t, n, s) : r2(e, t, s) : !0 : !1;
+    return s ? t ? r.node(s.depth - 1).type == n ? n4(e, t, n, s) : r4(e, t, s) : !0 : !1;
   };
 }
-function n2(n, e, t, r) {
+function n4(n, e, t, r) {
   let i = n.tr, s = r.end, a = r.$to.end(r.depth);
   s < a && (i.step(new Bt(s - 1, a, s, a, new Y(D.from(t.create(null, r.parent.copy())), 1, 0), 1, !0)), r = new ao(i.doc.resolve(r.$from.pos), i.doc.resolve(a), r.depth));
   const o = ds(r);
@@ -9565,7 +9565,7 @@ function n2(n, e, t, r) {
   let l = i.doc.resolve(i.mapping.map(s, -1) - 1);
   return si(i.doc, l.pos) && l.nodeBefore.type == l.nodeAfter.type && i.join(l.pos), e(i.scrollIntoView()), !0;
 }
-function r2(n, e, t) {
+function r4(n, e, t) {
   let r = n.tr, i = t.parent;
   for (let f = t.end, m = t.endIndex - 1, b = t.startIndex; m > b; m--)
     f -= i.child(m).nodeSize, r.delete(f - 1, f + 1);
@@ -9578,7 +9578,7 @@ function r2(n, e, t) {
   let d = s.pos, h = d + a.nodeSize;
   return r.step(new Bt(d - (o ? 1 : 0), h + (l ? 1 : 0), d + 1, h - 1, new Y((o ? D.empty : D.from(i.copy(D.empty))).append(l ? D.empty : D.from(i.copy(D.empty))), o ? 0 : 1, l ? 0 : 1), o ? 0 : 1)), e(r.scrollIntoView()), !0;
 }
-function i2(n) {
+function i4(n) {
   return function(e, t) {
     let { $from: r, $to: i } = e.selection, s = r.blockRange(i, (c) => c.childCount > 0 && c.firstChild.type == n);
     if (!s)
@@ -9681,7 +9681,7 @@ class ol {
     return o;
   }
 }
-class s2 {
+class s4 {
   constructor() {
     this.callbacks = {};
   }
@@ -9818,10 +9818,10 @@ function mm(n) {
 function Ne(n, e = void 0, ...t) {
   return mm(n) ? e ? n.bind(e)(...t) : n(...t) : n;
 }
-function a2(n = {}) {
+function a4(n = {}) {
   return Object.keys(n).length === 0 && n.constructor === Object;
 }
-function o2(n) {
+function o4(n) {
   return typeof n != "string" ? n : n.match(/^[+-]?(?:\d*\.)?\d+$/) ? Number(n) : n === "true" ? !0 : n === "false" ? !1 : n;
 }
 function Z0(n, e) {
@@ -9832,7 +9832,7 @@ function Z0(n, e) {
       if (r === !1)
         return !1;
       const i = e.reduce((s, a) => {
-        const o = a.attribute.parseHTML ? a.attribute.parseHTML(t) : o2(t.getAttribute(a.name));
+        const o = a.attribute.parseHTML ? a.attribute.parseHTML(t) : o4(t.getAttribute(a.name));
         return o == null ? s : {
           ...s,
           [a.name]: o
@@ -9845,10 +9845,10 @@ function Z0(n, e) {
 function j0(n) {
   return Object.fromEntries(
     // @ts-ignore
-    Object.entries(n).filter(([e, t]) => e === "attrs" && a2(t) ? !1 : t != null)
+    Object.entries(n).filter(([e, t]) => e === "attrs" && a4(t) ? !1 : t != null)
   );
 }
-function l2(n, e) {
+function l4(n, e) {
   var t;
   const r = pm(n), { nodeExtensions: i, markExtensions: s } = ll(n), a = (t = i.find((c) => ie(c, "topNode"))) === null || t === void 0 ? void 0 : t.name, o = Object.fromEntries(i.map((c) => {
     const u = r.filter((x) => x.type === c.name), d = {
@@ -9936,7 +9936,7 @@ function id(n, e) {
   const t = Di.fromSchema(e).serializeFragment(n), i = document.implementation.createHTMLDocument().createElement("div");
   return i.appendChild(t), i.innerHTML;
 }
-const c2 = (n, e = 500) => {
+const c4 = (n, e = 500) => {
   let t = "";
   const r = n.parentOffset;
   return n.parent.nodesBetween(Math.max(0, r - e), r, (i, s, a, o) => {
@@ -9958,7 +9958,7 @@ class da {
     this.find = e.find, this.handler = e.handler;
   }
 }
-const u2 = (n, e) => {
+const u4 = (n, e) => {
   if (sd(e))
     return e.exec(n);
   const t = e(n);
@@ -9979,11 +9979,11 @@ function wa(n) {
   )
     return !1;
   let u = !1;
-  const d = c2(c) + s;
+  const d = c4(c) + s;
   return a.forEach((h) => {
     if (u)
       return;
-    const f = u2(d, h.find);
+    const f = u4(d, h.find);
     if (!f)
       return;
     const m = l.state.tr, b = al({
@@ -10011,7 +10011,7 @@ function wa(n) {
     }), l.dispatch(m), u = !0);
   }), u;
 }
-function d2(n) {
+function d4(n) {
   const { editor: e, rules: t } = n, r = new st({
     state: {
       init() {
@@ -10083,11 +10083,11 @@ function d2(n) {
   });
   return r;
 }
-function h2(n) {
+function h4(n) {
   return Object.prototype.toString.call(n).slice(8, -1);
 }
 function Ea(n) {
-  return h2(n) !== "Object" ? !1 : n.constructor === Object && Object.getPrototypeOf(n) === Object.prototype;
+  return h4(n) !== "Object" ? !1 : n.constructor === Object && Object.getPrototypeOf(n) === Object.prototype;
 }
 function cl(n, e) {
   const t = { ...n };
@@ -10141,15 +10141,15 @@ class vn {
     return !1;
   }
 }
-function f2(n) {
+function f4(n) {
   return typeof n == "number";
 }
-class p2 {
+class p4 {
   constructor(e) {
     this.find = e.find, this.handler = e.handler;
   }
 }
-const m2 = (n, e, t) => {
+const m4 = (n, e, t) => {
   if (sd(e))
     return [...n.matchAll(e)];
   const r = e(n, t);
@@ -10158,7 +10158,7 @@ const m2 = (n, e, t) => {
     return s.index = i.index, s.input = n, s.data = i.data, i.replaceWith && (i.text.includes(i.replaceWith) || console.warn('[tiptap warn]: "pasteRuleMatch.replaceWith" must be part of "pasteRuleMatch.text".'), s.push(i.replaceWith)), s;
   }) : [];
 };
-function g2(n) {
+function g4(n) {
   const { editor: e, state: t, from: r, to: i, rule: s, pasteEvent: a, dropEvent: o } = n, { commands: l, chain: c, can: u } = new ol({
     editor: e,
     state: t
@@ -10167,7 +10167,7 @@ function g2(n) {
     if (!f.isTextblock || f.type.spec.code)
       return;
     const b = Math.max(r, m), y = Math.min(i, m + f.content.size), x = f.textBetween(b - m, y - m, void 0, "￼");
-    m2(x, s.find, a).forEach((M) => {
+    m4(x, s.find, a).forEach((M) => {
       if (M.index === void 0)
         return;
       const C = b + M.index + 1, O = C + M[0].length, I = {
@@ -10188,14 +10188,14 @@ function g2(n) {
   }), d.every((f) => f !== null);
 }
 let ka = null;
-const b2 = (n) => {
+const b4 = (n) => {
   var e;
   const t = new ClipboardEvent("paste", {
     clipboardData: new DataTransfer()
   });
   return (e = t.clipboardData) === null || e === void 0 || e.setData("text/html", n), t;
 };
-function v2(n) {
+function v4(n) {
   const { editor: e, rules: t } = n;
   let r = null, i = !1, s = !1, a = typeof ClipboardEvent < "u" ? new ClipboardEvent("paste") : null, o;
   try {
@@ -10208,7 +10208,7 @@ function v2(n) {
       state: u,
       transaction: b
     });
-    if (!(!g2({
+    if (!(!g4({
       editor: e,
       state: y,
       from: Math.max(d - 1, 0),
@@ -10266,7 +10266,7 @@ function v2(n) {
       if (A) {
         let { text: O } = x;
         typeof O == "string" ? O = O : O = id(D.from(O), f.schema);
-        const { from: I } = x, R = I + O.length, z = b2(O);
+        const { from: I } = x, R = I + O.length, z = b4(O);
         return l({
           rule: u,
           state: f,
@@ -10276,7 +10276,7 @@ function v2(n) {
         });
       }
       const M = h.doc.content.findDiffStart(f.doc.content), C = h.doc.content.findDiffEnd(f.doc.content);
-      if (!(!f2(M) || !C || M === C.b))
+      if (!(!f4(M) || !C || M === C.b))
         return l({
           rule: u,
           state: f,
@@ -10287,13 +10287,13 @@ function v2(n) {
     }
   }));
 }
-function y2(n) {
+function y4(n) {
   const e = n.filter((t, r) => n.indexOf(t) !== r);
   return Array.from(new Set(e));
 }
 class Xi {
   constructor(e, t) {
-    this.splittableMarks = [], this.editor = t, this.extensions = Xi.resolve(e), this.schema = l2(this.extensions, t), this.setupExtensions();
+    this.splittableMarks = [], this.editor = t, this.extensions = Xi.resolve(e), this.schema = l4(this.extensions, t), this.setupExtensions();
   }
   /**
    * Returns a flattened and sorted extension list while
@@ -10302,7 +10302,7 @@ class Xi {
    * @returns An flattened and sorted array of Tiptap extensions
    */
   static resolve(e) {
-    const t = Xi.sort(Xi.flatten(e)), r = y2(t.map((i) => i.name));
+    const t = Xi.sort(Xi.flatten(e)), r = y4(t.map((i) => i.name));
     return r.length && console.warn(`[tiptap warn]: Duplicate extension names found: [${r.map((i) => `'${i}'`).join(", ")}]. This can lead to issues.`), t;
   }
   /**
@@ -10368,7 +10368,7 @@ class Xi {
         const b = Object.fromEntries(Object.entries(c()).map(([y, x]) => [y, () => x({ editor: e })]));
         u = { ...u, ...b };
       }
-      const d = P4(u);
+      const d = P2(u);
       l.push(d);
       const h = ie(a, "addInputRules", o);
       Y0(a, e.options.enableInputRules) && h && r.push(...h());
@@ -10382,11 +10382,11 @@ class Xi {
       return l;
     }).flat();
     return [
-      d2({
+      d4({
         editor: e,
         rules: r
       }),
-      ...v2({
+      ...v4({
         editor: e,
         rules: i
       }),
@@ -10513,7 +10513,7 @@ function gm(n, e, t) {
 function bm(n) {
   return Object.fromEntries(Object.entries(n.nodes).filter(([, e]) => e.spec.toText).map(([e, t]) => [e, t.spec.toText]));
 }
-const x2 = nt.create({
+const x4 = nt.create({
   name: "clipboardTextSerializer",
   addOptions() {
     return {
@@ -10536,10 +10536,10 @@ const x2 = nt.create({
       })
     ];
   }
-}), w2 = () => ({ editor: n, view: e }) => (requestAnimationFrame(() => {
+}), w4 = () => ({ editor: n, view: e }) => (requestAnimationFrame(() => {
   var t;
   n.isDestroyed || (e.dom.blur(), (t = window == null ? void 0 : window.getSelection()) === null || t === void 0 || t.removeAllRanges());
-}), !0), E2 = (n = !1) => ({ commands: e }) => e.setContent("", n), k2 = () => ({ state: n, tr: e, dispatch: t }) => {
+}), !0), E4 = (n = !1) => ({ commands: e }) => e.setContent("", n), k4 = () => ({ state: n, tr: e, dispatch: t }) => {
   const { selection: r } = e, { ranges: i } = r;
   return t && i.forEach(({ $from: s, $to: a }) => {
     n.doc.nodesBetween(s.pos, a.pos, (o, l) => {
@@ -10556,12 +10556,12 @@ const x2 = nt.create({
       (m || m === 0) && e.lift(f, m);
     });
   }), !0;
-}, S2 = (n) => (e) => n(e), T2 = () => ({ state: n, dispatch: e }) => um(n, e), C2 = (n, e) => ({ editor: t, tr: r }) => {
+}, S4 = (n) => (e) => n(e), T4 = () => ({ state: n, dispatch: e }) => um(n, e), C4 = (n, e) => ({ editor: t, tr: r }) => {
   const { state: i } = t, s = i.doc.slice(n.from, n.to);
   r.deleteRange(n.from, n.to);
   const a = r.mapping.map(e);
   return r.insert(a, s.content), r.setSelection(new ue(r.doc.resolve(Math.max(a - 1, 0)))), !0;
-}, M2 = () => ({ tr: n, dispatch: e }) => {
+}, M4 = () => ({ tr: n, dispatch: e }) => {
   const { selection: t } = n, r = t.$anchor.node();
   if (r.content.size > 0)
     return !1;
@@ -10575,7 +10575,7 @@ const x2 = nt.create({
       return !0;
     }
   return !1;
-}, A2 = (n) => ({ tr: e, state: t, dispatch: r }) => {
+}, A4 = (n) => ({ tr: e, state: t, dispatch: r }) => {
   const i = Pt(n, t.schema), s = e.selection.$anchor;
   for (let a = s.depth; a > 0; a -= 1)
     if (s.node(a).type === i) {
@@ -10586,10 +10586,10 @@ const x2 = nt.create({
       return !0;
     }
   return !1;
-}, N2 = (n) => ({ tr: e, dispatch: t }) => {
+}, N4 = (n) => ({ tr: e, dispatch: t }) => {
   const { from: r, to: i } = n;
   return t && e.delete(r, i), !0;
-}, _2 = () => ({ state: n, dispatch: e }) => Qu(n, e), O2 = () => ({ commands: n }) => n.keyboardShortcut("Enter"), R2 = () => ({ state: n, dispatch: e }) => V4(n, e);
+}, _4 = () => ({ state: n, dispatch: e }) => Qu(n, e), O4 = () => ({ commands: n }) => n.keyboardShortcut("Enter"), R4 = () => ({ state: n, dispatch: e }) => V2(n, e);
 function po(n, e, t = { strict: !0 }) {
   const r = Object.keys(e);
   return r.length ? r.every((i) => t.strict ? e[i] === n[i] : sd(e[i]) ? e[i].test(n[i]) : e[i] === n[i]) : !0;
@@ -10629,7 +10629,7 @@ function oi(n, e) {
   }
   return n;
 }
-const I2 = (n, e = {}) => ({ tr: t, state: r, dispatch: i }) => {
+const I4 = (n, e = {}) => ({ tr: t, state: r, dispatch: i }) => {
   const s = oi(n, r.schema), { doc: a, selection: o } = t, { $from: l, from: c, to: u } = o;
   if (i) {
     const d = ad(l, s, e);
@@ -10639,7 +10639,7 @@ const I2 = (n, e = {}) => ({ tr: t, state: r, dispatch: i }) => {
     }
   }
   return !0;
-}, L2 = (n) => (e) => {
+}, L4 = (n) => (e) => {
   const t = typeof n == "function" ? n(e) : n;
   for (let r = 0; r < t.length; r += 1)
     if (t[r](e))
@@ -10676,17 +10676,17 @@ function mo() {
     "iPod"
   ].includes(navigator.platform) || navigator.userAgent.includes("Mac") && "ontouchend" in document;
 }
-function D2() {
+function D4() {
   return typeof navigator < "u" ? /^((?!chrome|android).)*safari/i.test(navigator.userAgent) : !1;
 }
-const B2 = (n = null, e = {}) => ({ editor: t, view: r, tr: i, dispatch: s }) => {
+const B4 = (n = null, e = {}) => ({ editor: t, view: r, tr: i, dispatch: s }) => {
   e = {
     scrollIntoView: !0,
     ...e
   };
   const a = () => {
     (mo() || J0()) && r.dom.focus(), requestAnimationFrame(() => {
-      t.isDestroyed || (r.focus(), D2() && !mo() && !J0() && r.dom.focus({ preventScroll: !0 }));
+      t.isDestroyed || (r.focus(), D4() && !mo() && !J0() && r.dom.focus({ preventScroll: !0 }));
     });
   };
   if (r.hasFocus() && n === null || n === !1)
@@ -10695,7 +10695,7 @@ const B2 = (n = null, e = {}) => ({ editor: t, view: r, tr: i, dispatch: s }) =>
     return a(), !0;
   const o = xm(i.doc, n) || t.state.selection, l = t.state.selection.eq(o);
   return s && (l || i.setSelection(o), l && i.storedMarks && i.setStoredMarks(i.storedMarks), a()), !0;
-}, z2 = (n, e) => (t) => n.every((r, i) => e(r, { ...t, index: i })), P2 = (n, e) => ({ tr: t, commands: r }) => r.insertContentAt({ from: t.selection.from, to: t.selection.to }, n, e), wm = (n) => {
+}, z4 = (n, e) => (t) => n.every((r, i) => e(r, { ...t, index: i })), P4 = (n, e) => ({ tr: t, commands: r }) => r.insertContentAt({ from: t.selection.from, to: t.selection.to }, n, e), wm = (n) => {
   const e = n.childNodes;
   for (let t = e.length - 1; t >= 0; t -= 1) {
     const r = e[t];
@@ -10756,7 +10756,7 @@ function Xs(n, e, t) {
   }
   return Xs("", e, t);
 }
-function H2(n, e, t) {
+function H4(n, e, t) {
   const r = n.steps.length - 1;
   if (r < e)
     return;
@@ -10769,7 +10769,7 @@ function H2(n, e, t) {
     a === 0 && (a = u);
   }), n.setSelection(be.near(n.doc.resolve(a), t));
 }
-const F2 = (n) => !("type" in n), $2 = (n, e, t) => ({ tr: r, dispatch: i, editor: s }) => {
+const F4 = (n) => !("type" in n), $4 = (n, e, t) => ({ tr: r, dispatch: i, editor: s }) => {
   var a;
   if (i) {
     t = {
@@ -10810,7 +10810,7 @@ const F2 = (n) => !("type" in n), $2 = (n, e, t) => ({ tr: r, dispatch: i, edito
       return l(y), !1;
     }
     let { from: u, to: d } = typeof n == "number" ? { from: n, to: n } : { from: n.from, to: n.to }, h = !0, f = !0;
-    if ((F2(o) ? o : [o]).forEach((y) => {
+    if ((F4(o) ? o : [o]).forEach((y) => {
       y.check(), h = h ? y.isText && y.marks.length === 0 : !1, f = f ? y.isBlock : !1;
     }), u === d && f) {
       const { parent: y } = r.doc.resolve(u);
@@ -10829,28 +10829,28 @@ const F2 = (n) => !("type" in n), $2 = (n, e, t) => ({ tr: r, dispatch: i, edito
       r.insertText(b, u, d);
     } else
       b = o, r.replaceWith(u, d, b);
-    t.updateSelection && H2(r, r.steps.length - 1, -1), t.applyInputRules && r.setMeta("applyInputRules", { from: u, text: b }), t.applyPasteRules && r.setMeta("applyPasteRules", { from: u, text: b });
+    t.updateSelection && H4(r, r.steps.length - 1, -1), t.applyInputRules && r.setMeta("applyInputRules", { from: u, text: b }), t.applyPasteRules && r.setMeta("applyPasteRules", { from: u, text: b });
   }
   return !0;
-}, q2 = () => ({ state: n, dispatch: e }) => $4(n, e), U2 = () => ({ state: n, dispatch: e }) => q4(n, e), V2 = () => ({ state: n, dispatch: e }) => rm(n, e), W2 = () => ({ state: n, dispatch: e }) => om(n, e), G2 = () => ({ state: n, dispatch: e, tr: t }) => {
+}, q4 = () => ({ state: n, dispatch: e }) => $2(n, e), U4 = () => ({ state: n, dispatch: e }) => q2(n, e), V4 = () => ({ state: n, dispatch: e }) => rm(n, e), W4 = () => ({ state: n, dispatch: e }) => om(n, e), G4 = () => ({ state: n, dispatch: e, tr: t }) => {
   try {
     const r = tl(n.doc, n.selection.$from.pos, -1);
     return r == null ? !1 : (t.join(r, 2), e && e(t), !0);
   } catch {
     return !1;
   }
-}, K2 = () => ({ state: n, dispatch: e, tr: t }) => {
+}, K4 = () => ({ state: n, dispatch: e, tr: t }) => {
   try {
     const r = tl(n.doc, n.selection.$from.pos, 1);
     return r == null ? !1 : (t.join(r, 2), e && e(t), !0);
   } catch {
     return !1;
   }
-}, Z2 = () => ({ state: n, dispatch: e }) => H4(n, e), j2 = () => ({ state: n, dispatch: e }) => F4(n, e);
+}, Z4 = () => ({ state: n, dispatch: e }) => H2(n, e), j4 = () => ({ state: n, dispatch: e }) => F2(n, e);
 function Em() {
   return typeof navigator < "u" ? /Mac/.test(navigator.platform) : !1;
 }
-function Y2(n) {
+function Y4(n) {
   const e = n.split(/-(?!$)/);
   let t = e[e.length - 1];
   t === "Space" && (t = " ");
@@ -10872,8 +10872,8 @@ function Y2(n) {
   }
   return r && (t = `Alt-${t}`), i && (t = `Ctrl-${t}`), a && (t = `Meta-${t}`), s && (t = `Shift-${t}`), t;
 }
-const X2 = (n) => ({ editor: e, view: t, tr: r, dispatch: i }) => {
-  const s = Y2(n).split(/-(?!$)/), a = s.find((c) => !["Alt", "Ctrl", "Meta", "Shift"].includes(c)), o = new KeyboardEvent("keydown", {
+const X4 = (n) => ({ editor: e, view: t, tr: r, dispatch: i }) => {
+  const s = Y4(n).split(/-(?!$)/), a = s.find((c) => !["Alt", "Ctrl", "Meta", "Shift"].includes(c)), o = new KeyboardEvent("keydown", {
     key: a === "Space" ? " " : a,
     altKey: s.includes("Alt"),
     ctrlKey: s.includes("Ctrl"),
@@ -10904,12 +10904,12 @@ function Js(n, e, t = {}) {
   const l = i - r, c = o.filter((d) => a ? a.name === d.node.type.name : !0).filter((d) => po(d.node.attrs, t, { strict: !1 }));
   return s ? !!c.length : c.reduce((d, h) => d + h.to - h.from, 0) >= l;
 }
-const J2 = (n, e = {}) => ({ state: t, dispatch: r }) => {
+const J4 = (n, e = {}) => ({ state: t, dispatch: r }) => {
   const i = Pt(n, t.schema);
-  return Js(t, i, e) ? U4(t, r) : !1;
-}, Q2 = () => ({ state: n, dispatch: e }) => dm(n, e), ey = (n) => ({ state: e, dispatch: t }) => {
+  return Js(t, i, e) ? U2(t, r) : !1;
+}, Q4 = () => ({ state: n, dispatch: e }) => dm(n, e), ey = (n) => ({ state: e, dispatch: t }) => {
   const r = Pt(n, e.schema);
-  return t2(r)(e, t);
+  return t4(r)(e, t);
 }, ty = () => ({ state: n, dispatch: e }) => cm(n, e);
 function ul(n, e) {
   return e.nodes[n] ? "node" : e.marks[n] ? "mark" : null;
@@ -10934,7 +10934,7 @@ const ny = (n, e) => ({ tr: t, state: r, dispatch: i }) => {
     n.setSelection(t);
   }
   return !0;
-}, sy = () => ({ state: n, dispatch: e }) => sm(n, e), ay = () => ({ state: n, dispatch: e }) => lm(n, e), oy = () => ({ state: n, dispatch: e }) => K4(n, e), ly = () => ({ state: n, dispatch: e }) => Y4(n, e), cy = () => ({ state: n, dispatch: e }) => j4(n, e);
+}, sy = () => ({ state: n, dispatch: e }) => sm(n, e), ay = () => ({ state: n, dispatch: e }) => lm(n, e), oy = () => ({ state: n, dispatch: e }) => K2(n, e), ly = () => ({ state: n, dispatch: e }) => Y2(n, e), cy = () => ({ state: n, dispatch: e }) => j2(n, e);
 function Jc(n, e, t = {}, r = {}) {
   return Xs(n, e, {
     slice: !1,
@@ -11222,7 +11222,7 @@ const Ey = (n, e = {}) => ({ tr: t, state: r, dispatch: i }) => {
   return !0;
 }, My = (n) => ({ state: e, dispatch: t }) => {
   const r = Pt(n, e.schema);
-  return i2(r)(e, t);
+  return i4(r)(e, t);
 };
 function th(n, e) {
   const t = n.storedMarks || n.selection.$to.parentOffset && n.selection.$from.marks();
@@ -11427,42 +11427,42 @@ const Ay = ({ keepMarks: n = !0 } = {}) => ({ tr: e, state: t, dispatch: r, edit
   }), !0) : !1;
 }, Py = (n, e = {}) => ({ state: t, dispatch: r }) => {
   const i = Pt(n, t.schema);
-  return X4(i, e)(t, r);
+  return X2(i, e)(t, r);
 }, Hy = (n, e = {}) => ({ state: t, dispatch: r }) => {
   const i = Pt(n, t.schema);
-  return J4(i, e)(t, r);
+  return J2(i, e)(t, r);
 };
 var Fy = /* @__PURE__ */ Object.freeze({
   __proto__: null,
-  blur: w2,
-  clearContent: E2,
-  clearNodes: k2,
-  command: S2,
-  createParagraphNear: T2,
-  cut: C2,
-  deleteCurrentNode: M2,
-  deleteNode: A2,
-  deleteRange: N2,
-  deleteSelection: _2,
-  enter: O2,
-  exitCode: R2,
-  extendMarkRange: I2,
-  first: L2,
-  focus: B2,
-  forEach: z2,
-  insertContent: P2,
-  insertContentAt: $2,
-  joinBackward: V2,
-  joinDown: U2,
-  joinForward: W2,
-  joinItemBackward: G2,
-  joinItemForward: K2,
-  joinTextblockBackward: Z2,
-  joinTextblockForward: j2,
-  joinUp: q2,
-  keyboardShortcut: X2,
-  lift: J2,
-  liftEmptyBlock: Q2,
+  blur: w4,
+  clearContent: E4,
+  clearNodes: k4,
+  command: S4,
+  createParagraphNear: T4,
+  cut: C4,
+  deleteCurrentNode: M4,
+  deleteNode: A4,
+  deleteRange: N4,
+  deleteSelection: _4,
+  enter: O4,
+  exitCode: R4,
+  extendMarkRange: I4,
+  first: L4,
+  focus: B4,
+  forEach: z4,
+  insertContent: P4,
+  insertContentAt: $4,
+  joinBackward: V4,
+  joinDown: U4,
+  joinForward: W4,
+  joinItemBackward: G4,
+  joinItemForward: K4,
+  joinTextblockBackward: Z4,
+  joinTextblockForward: j4,
+  joinUp: q4,
+  keyboardShortcut: X4,
+  lift: J4,
+  liftEmptyBlock: Q4,
   liftListItem: ey,
   newlineInCode: ty,
   resetAttributes: ny,
@@ -11872,7 +11872,7 @@ function Yy(n, e, t) {
   const i = document.createElement("style");
   return e && i.setAttribute("nonce", e), i.setAttribute("data-tiptap-style", ""), i.innerHTML = n, document.getElementsByTagName("head")[0].appendChild(i), i;
 }
-class Xy extends s2 {
+class Xy extends s4 {
   constructor(e = {}) {
     super(), this.isFocused = !1, this.isInitialized = !1, this.extensionStorage = {}, this.options = {
       element: document.createElement("div"),
@@ -12005,7 +12005,7 @@ class Xy extends s2 {
     var e, t;
     const i = [...this.options.enableCoreExtensions ? [
       Uy,
-      x2.configure({
+      x4.configure({
         blockSeparator: (t = (e = this.options.coreExtensionOptions) === null || e === void 0 ? void 0 : e.clipboardTextSerializer) === null || t === void 0 ? void 0 : t.blockSeparator
       }),
       $y,
@@ -12345,7 +12345,7 @@ let _t = class nu {
   }
 };
 function ei(n) {
-  return new p2({
+  return new p4({
     find: n.find,
     handler: ({ state: e, range: t, match: r, pasteEvent: i }) => {
       const s = Ne(n.getAttributes, void 0, r, i);
@@ -45250,9 +45250,9 @@ class Ag {
   }
 }
 const Mc = [
-  // ==========================================
+  // =========================================================================
   // 1. BASIC STRUCTURES & ARITHMETIC
-  // ==========================================
+  // =========================================================================
   { id: "frac", name: "Fraction", category: "structures", latex: "\\frac{a}{b}", display: "\\frac{a}{b}", desc: "Standard fraction" },
   { id: "frac-dx", name: "Differential Fraction", category: "structures", latex: "\\frac{dy}{dx}", display: "\\frac{dy}{dx}", desc: "Derivative ratio" },
   { id: "sqrt", name: "Square Root", category: "structures", latex: "\\sqrt{x}", display: "\\sqrt{x}", desc: "Square root of x" },
@@ -45274,497 +45274,136 @@ const Mc = [
   { id: "hat", name: "Unit Vector (Hat)", category: "structures", latex: "\\hat{u}", display: "\\hat{u}", desc: "Unit vector / estimator" },
   { id: "dot", name: "Time Derivative (Dot)", category: "structures", latex: "\\dot{x}", display: "\\dot{x}", desc: "First time derivative" },
   { id: "ddot", name: "Second Time Derivative (Ddot)", category: "structures", latex: "\\ddot{x}", display: "\\ddot{x}", desc: "Second time derivative" },
-  // ==========================================
-  // 2. CALCULUS & ANALYSIS
-  // ==========================================
-  { id: "int-indef", name: "Indefinite Integral", category: "calculus", latex: "\\int f(x) \\, dx", display: "\\int f(x) dx", desc: "Indefinite integration" },
-  { id: "int-def", name: "Definite Integral", category: "calculus", latex: "\\int_{a}^{b} f(x) \\, dx", display: "\\int_{a}^{b}", desc: "Integral from a to b" },
-  { id: "int-double", name: "Double Integral", category: "calculus", latex: "\\iint_{D} f(x,y) \\, dx\\,dy", display: "\\iint_{D}", desc: "Surface double integral" },
-  { id: "int-triple", name: "Triple Integral", category: "calculus", latex: "\\iiint_{V} f(x,y,z) \\, dV", display: "\\iiint_{V}", desc: "Volume triple integral" },
-  { id: "int-contour", name: "Contour / Closed Integral", category: "calculus", latex: "\\oint_{C} f(z) \\, dz", display: "\\oint_{C}", desc: "Closed line integral" },
-  { id: "diff-1", name: "First Derivative", category: "calculus", latex: "\\frac{df}{dx}", display: "\\frac{df}{dx}", desc: "First order derivative" },
-  { id: "diff-2", name: "Second Derivative", category: "calculus", latex: "\\frac{d^2 f}{dx^2}", display: "\\frac{d^2 f}{dx^2}", desc: "Second order derivative" },
-  { id: "diff-part", name: "Partial Derivative", category: "calculus", latex: "\\frac{\\partial f}{\\partial x}", display: "\\frac{\\partial f}{\\partial x}", desc: "Partial derivative wrt x" },
-  { id: "diff-part2", name: "Second Partial Derivative", category: "calculus", latex: "\\frac{\\partial^2 f}{\\partial x^2}", display: "\\frac{\\partial^2 f}{\\partial x^2}", desc: "Second partial derivative" },
-  { id: "diff-mixed", name: "Mixed Partial Derivative", category: "calculus", latex: "\\frac{\\partial^2 f}{\\partial x \\partial y}", display: "\\frac{\\partial^2 f}{\\partial x \\partial y}", desc: "Mixed second partial" },
-  { id: "lim", name: "Limit", category: "calculus", latex: "\\lim_{x \\to a} f(x)", display: "\\lim_{x \\to a}", desc: "Limit as x approaches a" },
-  { id: "lim-inf", name: "Limit to Infinity", category: "calculus", latex: "\\lim_{x \\to \\infty} f(x)", display: "\\lim_{x \\to \\infty}", desc: "Limit as x approaches infinity" },
-  { id: "sum", name: "Summation with Bounds", category: "calculus", latex: "\\sum_{i=1}^{n} x_{i}", display: "\\sum_{i=1}^{n}", desc: "Finite summation series" },
-  { id: "sum-inf", name: "Infinite Series", category: "calculus", latex: "\\sum_{n=0}^{\\infty} a_{n} x^n", display: "\\sum_{n=0}^{\\infty}", desc: "Power series summation" },
-  { id: "prod", name: "Product Operator", category: "calculus", latex: "\\prod_{i=1}^{n} x_{i}", display: "\\prod_{i=1}^{n}", desc: "Product across terms" },
-  { id: "grad", name: "Gradient (Del)", category: "calculus", latex: "\\nabla f", display: "\\nabla f", desc: "Spatial gradient vector" },
-  { id: "div", name: "Divergence", category: "calculus", latex: "\\nabla \\cdot \\vec{F}", display: "\\nabla \\cdot \\vec{F}", desc: "Vector field divergence" },
-  { id: "curl", name: "Curl / Rotation", category: "calculus", latex: "\\nabla \\times \\vec{F}", display: "\\nabla \\times \\vec{F}", desc: "Vector field curl" },
-  { id: "laplacian", name: "Laplacian", category: "calculus", latex: "\\nabla^2 f = \\Delta f", display: "\\nabla^2 f", desc: "Laplace differential operator" },
-  // ==========================================
-  // 3. LINEAR ALGEBRA & MATRICES
-  // ==========================================
+  // =========================================================================
+  // 2. ALGEBRA & GEOMETRY (BASE TO CORE)
+  // =========================================================================
+  { id: "alg-linear", name: "Slope-Intercept Form", category: "algebra", latex: "y = m x + b", display: "y = mx + b", desc: "Equation of straight line" },
+  { id: "alg-point-slope", name: "Point-Slope Equation", category: "algebra", latex: "y - y_1 = m (x - x_1)", display: "y - y_1 = m(x-x_1)", desc: "Line passing through (x1, y1)" },
+  { id: "alg-quad", name: "Quadratic Formula", category: "algebra", latex: "x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}", display: "x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}", desc: "Roots of ax² + bx + c = 0", isPreset: !0 },
+  { id: "alg-vertex", name: "Parabola Vertex Form", category: "algebra", latex: "y = a (x - h)^2 + k", display: "y = a(x-h)^2 + k", desc: "Parabola with vertex at (h, k)" },
+  { id: "alg-dist", name: "2D Distance Formula", category: "algebra", latex: "d = \\sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}", display: "d = \\sqrt{\\Delta x^2 + \\Delta y^2}", desc: "Euclidean distance between points" },
+  { id: "alg-midpoint", name: "Midpoint Formula", category: "algebra", latex: "M = \\left( \\frac{x_1 + x_2}{2}, \\frac{y_1 + y_2}{2} \\right)", display: "M = \\left(\\frac{x_1+x_2}{2}, \\frac{y_1+y_2}{2}\\right)", desc: "Coordinates of line segment midpoint" },
+  { id: "alg-circle-eq", name: "Equation of Circle", category: "algebra", latex: "(x - h)^2 + (y - k)^2 = r^2", display: "(x-h)^2 + (y-k)^2 = r^2", desc: "Circle with center (h, k) and radius r" },
+  { id: "alg-ellipse", name: "Equation of Ellipse", category: "algebra", latex: "\\frac{(x - h)^2}{a^2} + \\frac{(y - k)^2}{b^2} = 1", display: "\\frac{(x-h)^2}{a^2} + \\frac{(y-k)^2}{b^2} = 1", desc: "Standard conic section ellipse" },
+  { id: "alg-hyperbola", name: "Equation of Hyperbola", category: "algebra", latex: "\\frac{(x - h)^2}{a^2} - \\frac{(y - k)^2}{b^2} = 1", display: "\\frac{(x-h)^2}{a^2} - \\frac{(y-k)^2}{b^2} = 1", desc: "Standard conic section hyperbola" },
+  { id: "alg-pyth", name: "Pythagorean Theorem", category: "algebra", latex: "a^2 + b^2 = c^2", display: "a^2 + b^2 = c^2", desc: "Right triangle hypotenuse relation", isPreset: !0 },
+  { id: "alg-area-tri", name: "Triangle Area", category: "algebra", latex: "A = \\frac{1}{2} b h", display: "A = \\frac{1}{2}bh", desc: "Base times height area" },
+  { id: "alg-heron", name: "Heron's Formula", category: "algebra", latex: "A = \\sqrt{s(s - a)(s - b)(s - c)}, \\quad s = \\frac{a + b + c}{2}", display: "A = \\sqrt{s(s-a)(s-b)(s-c)}", desc: "Triangle area from all three sides" },
+  { id: "alg-circle-area", name: "Area & Circumference of Circle", category: "algebra", latex: "A = \\pi r^2, \\quad C = 2 \\pi r", display: "A = \\pi r^2, \\, C = 2\\pi r", desc: "Circular geometry formulas", isPreset: !0 },
+  { id: "alg-sphere-vol", name: "Sphere Volume & Surface Area", category: "algebra", latex: "V = \\frac{4}{3}\\pi r^3, \\quad A = 4\\pi r^2", display: "V = \\frac{4}{3}\\pi r^3, \\, A = 4\\pi r^2", desc: "3D sphere spatial formulas", isPreset: !0 },
+  { id: "alg-cylinder", name: "Cylinder Volume", category: "algebra", latex: "V = \\pi r^2 h", display: "V = \\pi r^2 h", desc: "Right circular cylinder volume" },
+  { id: "alg-cone", name: "Cone Volume", category: "algebra", latex: "V = \\frac{1}{3}\\pi r^2 h", display: "V = \\frac{1}{3}\\pi r^2 h", desc: "Right circular cone volume" },
+  { id: "alg-binom", name: "Binomial Theorem", category: "algebra", latex: "(x + y)^n = \\sum_{k=0}^{n} \\binom{n}{k} x^{n-k} y^k", display: "(x+y)^n = \\sum \\binom{n}{k}x^{n-k}y^k", desc: "Polynomial power expansion", isPreset: !0 },
+  { id: "alg-arith-seq", name: "Arithmetic Sequence", category: "algebra", latex: "a_n = a_1 + (n - 1)d, \\quad S_n = \\frac{n}{2}(a_1 + a_n)", display: "a_n = a_1 + (n-1)d", desc: "N-th term and sum of arithmetic series" },
+  { id: "alg-geom-seq", name: "Geometric Sequence & Series", category: "algebra", latex: "a_n = a_1 r^{n-1}, \\quad S_n = a_1 \\frac{1 - r^n}{1 - r}, \\quad S_\\infty = \\frac{a_1}{1 - r}", display: "S_\\infty = \\frac{a_1}{1-r}", desc: "Finite and infinite geometric series sum" },
+  { id: "alg-euler-form", name: "Euler's Identity & Formula", category: "algebra", latex: "e^{i \\pi} + 1 = 0 \\iff e^{i \\theta} = \\cos\\theta + i \\sin\\theta", display: "e^{i\\pi} + 1 = 0", desc: "Fundamental mathematical identity", isPreset: !0 },
+  { id: "alg-demoivre", name: "De Moivre's Formula", category: "algebra", latex: "(\\cos\\theta + i \\sin\\theta)^n = \\cos(n\\theta) + i \\sin(n\\theta)", display: "(\\cos\\theta + i\\sin\\theta)^n = \\dots", desc: "Powers of complex numbers" },
+  // =========================================================================
+  // 3. CALCULUS & DIFFERENTIAL EQUATIONS
+  // =========================================================================
+  { id: "calc-deriv-def", name: "Derivative Definition (Limit)", category: "calculus", latex: "f'(x) = \\lim_{h \\to 0} \\frac{f(x + h) - f(x)}{h}", display: "f'(x) = \\lim_{h \\to 0}\\frac{f(x+h)-f(x)}{h}", desc: "Formal Newton-Leibniz difference quotient" },
+  { id: "calc-prod-rule", name: "Product Rule", category: "calculus", latex: "\\frac{d}{dx}[u \\cdot v] = u' v + u v'", display: "(uv)' = u'v + uv'", desc: "Derivative of product of functions" },
+  { id: "calc-quot-rule", name: "Quotient Rule", category: "calculus", latex: "\\frac{d}{dx}\\left[\\frac{u}{v}\\right] = \\frac{u' v - u v'}{v^2}", display: "\\left(\\frac{u}{v}\\right)' = \\frac{u'v - uv'}{v^2}", desc: "Derivative of fraction of functions" },
+  { id: "calc-chain-rule", name: "Chain Rule", category: "calculus", latex: "\\frac{d}{dx}f(g(x)) = f'(g(x)) \\cdot g'(x)", display: "\\frac{df}{dx} = \\frac{df}{dg}\\frac{dg}{dx}", desc: "Composite function differentiation" },
+  { id: "calc-int-parts", name: "Integration by Parts", category: "calculus", latex: "\\int u \\, dv = u v - \\int v \\, du", display: "\\int u\\,dv = uv - \\int v\\,du", desc: "Integral of product of functions" },
+  { id: "calc-ftc", name: "Fundamental Theorem of Calculus", category: "calculus", latex: "\\int_{a}^{b} f(x) \\, dx = F(b) - F(a), \\quad F'(x) = f(x)", display: "\\int_a^b f(x) dx = F(b)-F(a)", desc: "Connection between integral and antiderivative" },
+  { id: "calc-taylor", name: "Taylor Series Expansion", category: "calculus", latex: "f(x) = \\sum_{n=0}^{\\infty} \\frac{f^{(n)}(a)}{n!} (x - a)^n", display: "f(x) = \\sum_{n=0}^\\infty \\frac{f^{(n)}(a)}{n!}(x-a)^n", desc: "Infinite polynomial approximation", isPreset: !0 },
+  { id: "calc-fourier", name: "Fourier Transform", category: "calculus", latex: "\\hat{f}(\\xi) = \\int_{-\\infty}^{\\infty} f(x) e^{-2\\pi i x \\xi} \\, dx", display: "\\hat{f}(\\xi) = \\int_{-\\infty}^\\infty f(x) e^{-2\\pi i x \\xi} dx", desc: "Time to frequency domain transform", isPreset: !0 },
+  { id: "calc-laplace", name: "Laplace Transform", category: "calculus", latex: "\\mathcal{L}\\{f(t)\\}(s) = \\int_{0}^{\\infty} f(t) e^{-s t} \\, dt", display: "\\mathcal{L}\\{f\\}(s) = \\int_0^\\infty f(t) e^{-st} dt", desc: "Time to complex frequency domain transform" },
+  { id: "calc-ode1", name: "First-Order Linear ODE", category: "calculus", latex: "\\frac{dy}{dx} + P(x) y = Q(x) \\implies y = e^{-\\int P dx} \\left( \\int Q e^{\\int P dx} dx + C \\right)", display: "y' + P(x)y = Q(x)", desc: "Integrating factor general solution" },
+  { id: "calc-wave-eq", name: "Wave Equation (1D/3D)", category: "calculus", latex: "\\frac{\\partial^2 u}{\\partial t^2} = c^2 \\nabla^2 u = c^2 \\frac{\\partial^2 u}{\\partial x^2}", display: "\\frac{\\partial^2 u}{\\partial t^2} = c^2 \\nabla^2 u", desc: "Hyperbolic PDE governing propagation of waves" },
+  { id: "calc-heat-eq", name: "Heat / Diffusion Equation", category: "calculus", latex: "\\frac{\\partial u}{\\partial t} = \\alpha \\nabla^2 u = \\alpha \\frac{\\partial^2 u}{\\partial x^2}", display: "\\frac{\\partial u}{\\partial t} = \\alpha \\nabla^2 u", desc: "Parabolic PDE governing thermal diffusion" },
+  { id: "calc-stokes", name: "Stokes' Theorem", category: "calculus", latex: "\\oint_{\\partial S} \\vec{F} \\cdot d\\vec{r} = \\iint_{S} (\\nabla \\times \\vec{F}) \\cdot d\\vec{S}", display: "\\oint_{\\partial S} \\vec{F} \\cdot d\\vec{r} = \\iint_S (\\nabla \\times \\vec{F}) \\cdot d\\vec{S}", desc: "Surface curl to boundary circulation integral" },
+  { id: "calc-div-thm", name: "Divergence (Gauss) Theorem", category: "calculus", latex: "\\iint_{\\partial V} \\vec{F} \\cdot d\\vec{S} = \\iiint_{V} (\\nabla \\cdot \\vec{F}) \\, dV", display: "\\iint_{\\partial V} \\vec{F} \\cdot d\\vec{S} = \\iiint_V (\\nabla \\cdot \\vec{F}) dV", desc: "Volume divergence to surface flux integral" },
+  // =========================================================================
+  // 4. LINEAR ALGEBRA & MATRICES
+  // =========================================================================
   { id: "mat-2x2", name: "2×2 Parentheses Matrix", category: "matrices", latex: "\\begin{pmatrix} a & b \\\\ c & d \\end{pmatrix}", display: "\\begin{pmatrix} a & b \\\\ c & d \\end{pmatrix}", desc: "2x2 round matrix" },
-  { id: "mat-3x3", name: "3×3 Parentheses Matrix", category: "matrices", latex: "\\begin{pmatrix} a & b & c \\\\ d & e & f \\\\ g & h & i \\end{pmatrix}", display: "\\begin{pmatrix} \\dots \\end{pmatrix}", desc: "3x3 round matrix" },
+  { id: "mat-3x3", name: "3×3 Parentheses Matrix", category: "matrices", latex: "\\begin{pmatrix} a & b & c \\\\ d & e & f \\\\ g & h & i \\end{pmatrix}", display: "\\begin{pmatrix} a & b & c \\\\ d & e & f \\\\ g & h & i \\end{pmatrix}", desc: "3x3 round matrix" },
   { id: "mat-b2x2", name: "2×2 Square Bracket Matrix", category: "matrices", latex: "\\begin{bmatrix} a & b \\\\ c & d \\end{bmatrix}", display: "\\begin{bmatrix} a & b \\\\ c & d \\end{bmatrix}", desc: "2x2 square matrix" },
-  { id: "mat-b3x3", name: "3×3 Square Bracket Matrix", category: "matrices", latex: "\\begin{bmatrix} a & b & c \\\\ d & e & f \\\\ g & h & i \\end{bmatrix}", display: "\\begin{bmatrix} \\dots \\end{bmatrix}", desc: "3x3 square matrix" },
-  { id: "det-2x2", name: "2×2 Determinant", category: "matrices", latex: "\\begin{vmatrix} a & b \\\\ c & d \\end{vmatrix}", display: "\\begin{vmatrix} a & b \\\\ c & d \\end{vmatrix}", desc: "2x2 determinant" },
-  { id: "det-3x3", name: "3×3 Determinant", category: "matrices", latex: "\\begin{vmatrix} a & b & c \\\\ d & e & f \\\\ g & h & i \\end{vmatrix}", display: "\\begin{vmatrix} \\dots \\end{vmatrix}", desc: "3x3 determinant" },
-  { id: "col-vec", name: "Column Vector (3D)", category: "matrices", latex: "\\begin{pmatrix} x \\\\ y \\\\ z \\end{pmatrix}", display: "\\begin{pmatrix} x \\\\ y \\\\ z \\end{pmatrix}", desc: "3D coordinate column vector" },
+  { id: "mat-b3x3", name: "3×3 Square Bracket Matrix", category: "matrices", latex: "\\begin{bmatrix} a & b & c \\\\ d & e & f \\\\ g & h & i \\end{bmatrix}", display: "\\begin{bmatrix} a & b & c \\\\ d & e & f \\\\ g & h & i \\end{bmatrix}", desc: "3x3 square matrix" },
+  { id: "det-2x2", name: "2×2 Determinant", category: "matrices", latex: "\\begin{vmatrix} a & b \\\\ c & d \\end{vmatrix} = a d - b c", display: "\\begin{vmatrix} a & b \\\\ c & d \\end{vmatrix}", desc: "2x2 matrix determinant" },
+  { id: "det-3x3", name: "3×3 Determinant", category: "matrices", latex: "\\begin{vmatrix} a & b & c \\\\ d & e & f \\\\ g & h & i \\end{vmatrix}", display: "\\begin{vmatrix} a & b & c \\\\ d & e & f \\\\ g & h & i \\end{vmatrix}", desc: "3x3 matrix determinant" },
+  { id: "col-vec", name: "Column Vector (3D)", category: "matrices", latex: "\\begin{pmatrix} x \\\\ y \\\\ z \\end{pmatrix}", display: "\\begin{pmatrix} x \\\\ y \\\\ z \\end{pmatrix}", desc: "3D column vector" },
   { id: "row-vec", name: "Row Vector (3D)", category: "matrices", latex: "\\begin{pmatrix} x & y & z \\end{pmatrix}", display: "\\begin{pmatrix} x & y & z \\end{pmatrix}", desc: "1x3 row vector" },
-  { id: "dot-prod", name: "Dot Product", category: "matrices", latex: "\\vec{u} \\cdot \\vec{v} = |\\vec{u}| |\\vec{v}| \\cos\\theta", display: "\\vec{u} \\cdot \\vec{v}", desc: "Vector scalar product" },
-  { id: "cross-prod", name: "Cross Product", category: "matrices", latex: "\\vec{u} \\times \\vec{v}", display: "\\vec{u} \\times \\vec{v}", desc: "Vector cross product" },
-  { id: "trans", name: "Matrix Transpose", category: "matrices", latex: "A^{T}", display: "A^{T}", desc: "Transpose of matrix A" },
-  { id: "inv", name: "Matrix Inverse", category: "matrices", latex: "A^{-1}", display: "A^{-1}", desc: "Inverse of matrix A" },
-  // ==========================================
-  // 4. TRIGONOMETRY & FUNCTIONS
-  // ==========================================
-  { id: "sin", name: "Sine", category: "trig", latex: "\\sin(x)", display: "\\sin(x)", desc: "Sine function" },
-  { id: "cos", name: "Cosine", category: "trig", latex: "\\cos(x)", display: "\\cos(x)", desc: "Cosine function" },
-  { id: "tan", name: "Tangent", category: "trig", latex: "\\tan(x)", display: "\\tan(x)", desc: "Tangent function" },
-  { id: "csc", name: "Cosecant", category: "trig", latex: "\\csc(x)", display: "\\csc(x)", desc: "Cosecant" },
-  { id: "sec", name: "Secant", category: "trig", latex: "\\sec(x)", display: "\\sec(x)", desc: "Secant" },
-  { id: "cot", name: "Cotangent", category: "trig", latex: "\\cot(x)", display: "\\cot(x)", desc: "Cotangent" },
-  { id: "arcsin", name: "Inverse Sine (Arcsine)", category: "trig", latex: "\\arcsin(x)", display: "\\arcsin(x)", desc: "Arc-sine" },
-  { id: "arccos", name: "Inverse Cosine (Arccosine)", category: "trig", latex: "\\arccos(x)", display: "\\arccos(x)", desc: "Arc-cosine" },
-  { id: "arctan", name: "Inverse Tangent (Arctangent)", category: "trig", latex: "\\arctan(x)", display: "\\arctan(x)", desc: "Arc-tangent" },
-  { id: "sinh", name: "Hyperbolic Sine", category: "trig", latex: "\\sinh(x)", display: "\\sinh(x)", desc: "Hyperbolic sine" },
-  { id: "cosh", name: "Hyperbolic Cosine", category: "trig", latex: "\\cosh(x)", display: "\\cosh(x)", desc: "Hyperbolic cosine" },
-  { id: "tanh", name: "Hyperbolic Tangent", category: "trig", latex: "\\tanh(x)", display: "\\tanh(x)", desc: "Hyperbolic tangent" },
-  { id: "ln", name: "Natural Logarithm", category: "trig", latex: "\\ln(x)", display: "\\ln(x)", desc: "Natural log base e" },
-  { id: "log10", name: "Base-10 Logarithm", category: "trig", latex: "\\log_{10}(x)", display: "\\log_{10}(x)", desc: "Common logarithm" },
-  { id: "logb", name: "Base-b Logarithm", category: "trig", latex: "\\log_{b}(x)", display: "\\log_{b}(x)", desc: "Arbitrary base logarithm" },
-  { id: "exp", name: "Exponential", category: "trig", latex: "e^{x} = \\exp(x)", display: "e^{x}", desc: "Exponential function" },
-  // ==========================================
-  // 5. PHYSICS & ENGINEERING FORMULAS
-  // ==========================================
-  {
-    id: "phys-newton2",
-    name: "Newton's Second Law",
-    category: "physics",
-    latex: "\\vec{F} = m \\vec{a} = \\frac{d\\vec{p}}{dt}",
-    display: "\\vec{F} = m\\vec{a}",
-    desc: "Force equals mass times acceleration",
-    isPreset: !0
-  },
-  {
-    id: "phys-gravity",
-    name: "Universal Gravitation",
-    category: "physics",
-    latex: "F = G \\frac{m_1 m_2}{r^2}",
-    display: "F = G\\frac{m_1 m_2}{r^2}",
-    desc: "Newton's universal law of gravitation",
-    isPreset: !0
-  },
-  {
-    id: "phys-kinetic",
-    name: "Kinetic Energy",
-    category: "physics",
-    latex: "E_k = \\frac{1}{2} m v^2 = \\frac{p^2}{2m}",
-    display: "E_k = \\frac{1}{2}mv^2",
-    desc: "Translational kinetic energy of motion",
-    isPreset: !0
-  },
-  {
-    id: "phys-potential",
-    name: "Gravitational Potential Energy",
-    category: "physics",
-    latex: "U = m g h",
-    display: "U = mgh",
-    desc: "Gravitational potential energy near Earth",
-    isPreset: !0
-  },
-  {
-    id: "phys-relativity",
-    name: "Mass-Energy Equivalence",
-    category: "physics",
-    latex: "E = m c^2 = \\sqrt{(p c)^2 + (m_0 c^2)^2}",
-    display: "E = mc^2",
-    desc: "Einstein's mass-energy formula",
-    isPreset: !0
-  },
-  {
-    id: "phys-coulomb",
-    name: "Coulomb's Law",
-    category: "physics",
-    latex: "F = k_e \\frac{|q_1 q_2|}{r^2} = \\frac{1}{4\\pi\\varepsilon_0} \\frac{|q_1 q_2|}{r^2}",
-    display: "F = k_e \\frac{|q_1 q_2|}{r^2}",
-    desc: "Electrostatic force between two point charges",
-    isPreset: !0
-  },
-  {
-    id: "phys-ohm",
-    name: "Ohm's Law & Electric Power",
-    category: "physics",
-    latex: "V = I R \\implies P = I V = I^2 R = \\frac{V^2}{R}",
-    display: "V = IR, \\, P = IV",
-    desc: "Voltage, current, resistance, and electrical power",
-    isPreset: !0
-  },
-  {
-    id: "phys-lorentz",
-    name: "Lorentz Force Law",
-    category: "physics",
-    latex: "\\vec{F} = q \\left( \\vec{E} + \\vec{v} \\times \\vec{B} \\right)",
-    display: "\\vec{F} = q(\\vec{E} + \\vec{v}\\times\\vec{B})",
-    desc: "Force on a charged particle in electromagnetic fields",
-    isPreset: !0
-  },
-  {
-    id: "phys-schrodinger",
-    name: "Schrödinger Wave Equation",
-    category: "physics",
-    latex: "i\\hbar \\frac{\\partial}{\\partial t}\\Psi(\\vec{r}, t) = \\hat{H}\\Psi(\\vec{r}, t)",
-    display: "i\\hbar \\frac{\\partial}{\\partial t}\\Psi = \\hat{H}\\Psi",
-    desc: "Fundamental equation of quantum mechanics",
-    isPreset: !0
-  },
-  {
-    id: "phys-heisenberg",
-    name: "Heisenberg Uncertainty Principle",
-    category: "physics",
-    latex: "\\Delta x \\, \\Delta p \\ge \\frac{\\hbar}{2}",
-    display: "\\Delta x \\Delta p \\ge \\frac{\\hbar}{2}",
-    desc: "Quantum position and momentum uncertainty",
-    isPreset: !0
-  },
-  {
-    id: "phys-planck",
-    name: "Planck-Einstein Relation",
-    category: "physics",
-    latex: "E = h \\nu = \\hbar \\omega = \\frac{h c}{\\lambda}",
-    display: "E = h\\nu = \\hbar\\omega",
-    desc: "Energy of photon as function of frequency",
-    isPreset: !0
-  },
-  {
-    id: "phys-debroglie",
-    name: "de Broglie Wavelength",
-    category: "physics",
-    latex: "\\lambda = \\frac{h}{p} = \\frac{h}{m v}",
-    display: "\\lambda = \\frac{h}{p}",
-    desc: "Wave-particle duality wavelength",
-    isPreset: !0
-  },
-  {
-    id: "phys-timedil",
-    name: "Relativistic Time Dilation",
-    category: "physics",
-    latex: "\\Delta t' = \\frac{\\Delta t}{\\sqrt{1 - \\frac{v^2}{c^2}}} = \\gamma \\Delta t",
-    display: "\\Delta t' = \\gamma \\Delta t",
-    desc: "Time dilation at relativistic velocity",
-    isPreset: !0
-  },
-  {
-    id: "phys-snell",
-    name: "Snell's Law of Refraction",
-    category: "physics",
-    latex: "n_1 \\sin(\\theta_1) = n_2 \\sin(\\theta_2)",
-    display: "n_1 \\sin\\theta_1 = n_2 \\sin\\theta_2",
-    desc: "Optics law of light refraction at interface",
-    isPreset: !0
-  },
-  {
-    id: "phys-thermo1",
-    name: "First Law of Thermodynamics",
-    category: "physics",
-    latex: "\\Delta U = Q - W",
-    display: "\\Delta U = Q - W",
-    desc: "Conservation of internal energy, heat, and work",
-    isPreset: !0
-  },
-  {
-    id: "phys-entropy",
-    name: "Boltzmann's Entropy Formula",
-    category: "physics",
-    latex: "S = k_B \\ln(\\Omega)",
-    display: "S = k_B \\ln\\Omega",
-    desc: "Statistical definition of entropy",
-    isPreset: !0
-  },
-  {
-    id: "phys-maxwell4",
-    name: "Maxwell's Equations (Differential)",
-    category: "physics",
-    latex: "\\nabla \\cdot \\vec{E} = \\frac{\\rho}{\\varepsilon_0}, \\quad \\nabla \\cdot \\vec{B} = 0, \\quad \\nabla \\times \\vec{E} = -\\frac{\\partial\\vec{B}}{\\partial t}, \\quad \\nabla \\times \\vec{B} = \\mu_0\\vec{J} + \\mu_0\\varepsilon_0\\frac{\\partial\\vec{E}}{\\partial t}",
-    display: "\\nabla \\cdot \\vec{E}=\\frac{\\rho}{\\varepsilon_0}, \\; \\nabla \\times \\vec{B}=\\mu_0\\vec{J}+\\dots",
-    desc: "Complete classical electromagnetism set",
-    isPreset: !0
-  },
-  // ==========================================
-  // 6. CHEMISTRY & CHEMICAL EQUATIONS
-  // ==========================================
-  {
-    id: "chem-ideal-gas",
-    name: "Ideal Gas Law",
-    category: "chemistry",
-    latex: "P V = n R T = N k_B T",
-    display: "P V = n R T",
-    desc: "Equation of state of a hypothetical ideal gas",
-    isPreset: !0
-  },
-  {
-    id: "chem-gibbs",
-    name: "Gibbs Free Energy",
-    category: "chemistry",
-    latex: "\\Delta G = \\Delta H - T \\Delta S = -R T \\ln(K)",
-    display: "\\Delta G = \\Delta H - T\\Delta S",
-    desc: "Spontaneity criterion for chemical reactions",
-    isPreset: !0
-  },
-  {
-    id: "chem-arrhenius",
-    name: "Arrhenius Rate Equation",
-    category: "chemistry",
-    latex: "k = A e^{-\\frac{E_a}{R T}}",
-    display: "k = A e^{-\\frac{E_a}{RT}}",
-    desc: "Reaction rate constant dependence on temperature",
-    isPreset: !0
-  },
-  {
-    id: "chem-nernst",
-    name: "Nernst Equation (Electrochemistry)",
-    category: "chemistry",
-    latex: "E = E^\\circ - \\frac{R T}{n F} \\ln(Q) = E^\\circ - \\frac{0.0592}{n} \\log_{10}(Q)",
-    display: "E = E^\\circ - \\frac{RT}{nF}\\ln Q",
-    desc: "Cell potential under non-standard conditions",
-    isPreset: !0
-  },
-  {
-    id: "chem-henderson",
-    name: "Henderson-Hasselbalch Equation",
-    category: "chemistry",
-    latex: "\\text{pH} = \\text{p}K_a + \\log_{10}\\left( \\frac{[\\text{A}^-]}{[\\text{HA}]} \\right)",
-    display: "\\text{pH} = \\text{p}K_a + \\log\\frac{[\\text{A}^-]}{[\\text{HA}]}",
-    desc: "Buffer solution pH calculation",
-    isPreset: !0
-  },
-  {
-    id: "chem-beer",
-    name: "Beer-Lambert Law",
-    category: "chemistry",
-    latex: "A = \\varepsilon \\cdot c \\cdot l = -\\log_{10}\\left( \\frac{I}{I_0} \\right)",
-    display: "A = \\varepsilon c l",
-    desc: "Spectrophotometric light absorption law",
-    isPreset: !0
-  },
-  {
-    id: "chem-photosynth",
-    name: "Photosynthesis Reaction",
-    category: "chemistry",
-    latex: "6\\text{CO}_2 + 6\\text{H}_2\\text{O} \\xrightarrow{\\text{light}} \\text{C}_6\\text{H}_{12}\\text{O}_6 + 6\\text{O}_2",
-    display: "6\\text{CO}_2 + 6\\text{H}_2\\text{O} \\to \\text{C}_6\\text{H}_{12}\\text{O}_6 + 6\\text{O}_2",
-    desc: "Biological light-driven carbon fixation",
-    isPreset: !0
-  },
-  {
-    id: "chem-respiration",
-    name: "Cellular Respiration Reaction",
-    category: "chemistry",
-    latex: "\\text{C}_6\\text{H}_{12}\\text{O}_6 + 6\\text{O}_2 \\longrightarrow 6\\text{CO}_2 + 6\\text{H}_2\\text{O} + 36\\text{ATP}",
-    display: "\\text{C}_6\\text{H}_{12}\\text{O}_6 + 6\\text{O}_2 \\to 6\\text{CO}_2 + 6\\text{H}_2\\text{O} + 36\\text{ATP}",
-    desc: "Aerobic metabolism ATP generation",
-    isPreset: !0
-  },
-  {
-    id: "chem-equilibrium",
-    name: "Equilibrium Constant (Keq)",
-    category: "chemistry",
-    latex: "K_{eq} = \\frac{[\\text{C}]^c [\\text{D}]^d}{[\\text{A}]^a [\\text{B}]^b}",
-    display: "K_{eq} = \\frac{[\\text{C}]^c [\\text{D}]^d}{[\\text{A}]^a [\\text{B}]^b}",
-    desc: "Law of mass action equilibrium ratio",
-    isPreset: !0
-  },
-  {
-    id: "chem-rate-law",
-    name: "Chemical Rate Law",
-    category: "chemistry",
-    latex: "r = k [\\text{A}]^m [\\text{B}]^n",
-    display: "r = k [\\text{A}]^m [\\text{B}]^n",
-    desc: "Reaction rate order dependence",
-    isPreset: !0
-  },
-  // ==========================================
-  // 7. BIOLOGY, GENETICS & BIOCHEMISTRY
-  // ==========================================
-  {
-    id: "bio-hardy",
-    name: "Hardy-Weinberg Equilibrium",
-    category: "biology",
-    latex: "p^2 + 2pq + q^2 = 1 \\quad \\text{and} \\quad p + q = 1",
-    display: "p^2 + 2pq + q^2 = 1",
-    desc: "Population genetics allele frequency distribution",
-    isPreset: !0
-  },
-  {
-    id: "bio-michaelis",
-    name: "Michaelis-Menten Kinetics",
-    category: "biology",
-    latex: "v = \\frac{V_{\\max} [S]}{K_m + [S]}",
-    display: "v = \\frac{V_{\\max}[S]}{K_m + [S]}",
-    desc: "Enzyme catalysis velocity reaction model",
-    isPreset: !0
-  },
-  {
-    id: "bio-lineweaver",
-    name: "Lineweaver-Burk Double Reciprocal",
-    category: "biology",
-    latex: "\\frac{1}{v} = \\frac{K_m}{V_{\\max}} \\frac{1}{[S]} + \\frac{1}{V_{\\max}}",
-    display: "\\frac{1}{v} = \\frac{K_m}{V_{\\max}}\\frac{1}{[S]} + \\frac{1}{V_{\\max}}",
-    desc: "Linearized enzyme kinetics transformation",
-    isPreset: !0
-  },
-  {
-    id: "bio-exp-growth",
-    name: "Exponential Population Growth",
-    category: "biology",
-    latex: "\\frac{dN}{dt} = r N \\implies N(t) = N_0 e^{r t}",
-    display: "N(t) = N_0 e^{rt}",
-    desc: "Malthusian unconstrained population growth",
-    isPreset: !0
-  },
-  {
-    id: "bio-logistic",
-    name: "Logistic Population Growth",
-    category: "biology",
-    latex: "\\frac{dN}{dt} = r N \\left( 1 - \\frac{N}{K} \\right) \\implies N(t) = \\frac{K}{1 + \\left(\\frac{K - N_0}{N_0}\\right)e^{-rt}}",
-    display: "\\frac{dN}{dt} = rN\\left(1 - \\frac{N}{K}\\right)",
-    desc: "Carrying capacity K constrained growth model",
-    isPreset: !0
-  },
-  {
-    id: "bio-shannon",
-    name: "Shannon-Wiener Diversity Index",
-    category: "biology",
-    latex: "H' = -\\sum_{i=1}^{S} p_i \\ln(p_i)",
-    display: "H' = -\\sum_{i=1}^{S} p_i \\ln(p_i)",
-    desc: "Ecological community biodiversity measurement",
-    isPreset: !0
-  },
-  {
-    id: "bio-ghk",
-    name: "Goldman-Hodgkin-Katz (GHK) Voltage",
-    category: "biology",
-    latex: "V_m = \\frac{R T}{F} \\ln\\left( \\frac{P_{\\text{K}}[\\text{K}^+]_o + P_{\\text{Na}}[\\text{Na}^+]_o + P_{\\text{Cl}}[\\text{Cl}^-]_i}{P_{\\text{K}}[\\text{K}^+]_i + P_{\\text{Na}}[\\text{Na}^+]_i + P_{\\text{Cl}}[\\text{Cl}^-]_o} \\right)",
-    display: "V_m = \\frac{RT}{F}\\ln\\left(\\frac{P_{\\text{K}}[\\text{K}^+]_o + \\dots}{P_{\\text{K}}[\\text{K}^+]_i + \\dots}\\right)",
-    desc: "Cell membrane resting potential across ion permeabilities",
-    isPreset: !0
-  },
-  {
-    id: "bio-lotka",
-    name: "Lotka-Volterra Predator-Prey",
-    category: "biology",
-    latex: "\\frac{dx}{dt} = \\alpha x - \\beta x y, \\quad \\frac{dy}{dt} = \\delta x y - \\gamma y",
-    display: "\\frac{dx}{dt} = \\alpha x - \\beta xy, \\; \\frac{dy}{dt} = \\delta xy - \\gamma y",
-    desc: "Nonlinear biological predator-prey dynamics",
-    isPreset: !0
-  },
-  {
-    id: "bio-kleiber",
-    name: "Kleiber's Law (Metabolic Scaling)",
-    category: "biology",
-    latex: "B = B_0 \\, M^{\\frac{3}{4}}",
-    display: "B \\propto M^{3/4}",
-    desc: "Allometric scaling law of basal metabolic rate to animal mass",
-    isPreset: !0
-  },
-  // ==========================================
-  // 8. STATISTICS & DATA SCIENCE
-  // ==========================================
-  {
-    id: "stat-bayes",
-    name: "Bayes' Theorem",
-    category: "stats",
-    latex: "P(A|B) = \\frac{P(B|A) \\, P(A)}{P(B)} = \\frac{P(B|A) \\, P(A)}{\\sum_{i} P(B|A_i) P(A_i)}",
-    display: "P(A|B) = \\frac{P(B|A) P(A)}{P(B)}",
-    desc: "Fundamental posterior probability inversion",
-    isPreset: !0
-  },
-  {
-    id: "stat-norm-pdf",
-    name: "Gaussian Normal Distribution",
-    category: "stats",
-    latex: "f(x) = \\frac{1}{\\sigma \\sqrt{2\\pi}} e^{-\\frac{1}{2}\\left(\\frac{x-\\mu}{\\sigma}\\right)^2}",
-    display: "f(x) = \\frac{1}{\\sigma \\sqrt{2\\pi}} e^{-\\frac{1}{2}\\left(\\frac{x-\\mu}{\\sigma}\\right)^2}",
-    desc: "Continuous probability density function",
-    isPreset: !0
-  },
-  {
-    id: "stat-var",
-    name: "Sample Variance & Std Deviation",
-    category: "stats",
-    latex: "s^2 = \\frac{1}{n - 1} \\sum_{i=1}^{n} (x_i - \\bar{x})^2, \\quad s = \\sqrt{s^2}",
-    display: "s^2 = \\frac{1}{n-1}\\sum (x_i - \\bar{x})^2",
-    desc: "Unbiased estimator of variance",
-    isPreset: !0
-  },
-  {
-    id: "stat-pearson",
-    name: "Pearson Correlation (r)",
-    category: "stats",
-    latex: "r = \\frac{\\sum (x_i - \\bar{x})(y_i - \\bar{y})}{\\sqrt{\\sum (x_i - \\bar{x})^2 \\sum (y_i - \\bar{y})^2}}",
-    display: "r = \\frac{\\sum (x-\\bar{x})(y-\\bar{y})}{\\sqrt{\\sum(x-\\bar{x})^2 \\sum(y-\\bar{y})^2}}",
-    desc: "Linear bivariate correlation coefficient",
-    isPreset: !0
-  },
-  {
-    id: "stat-binom",
-    name: "Binomial Probability Mass (PMF)",
-    category: "stats",
-    latex: "P(X = k) = \\binom{n}{k} p^k (1 - p)^{n - k}",
-    display: "P(X=k) = \\binom{n}{k} p^k (1-p)^{n-k}",
-    desc: "Probability of k successes in n trials",
-    isPreset: !0
-  },
-  {
-    id: "stat-poisson",
-    name: "Poisson Distribution PMF",
-    category: "stats",
-    latex: "P(X = k) = \\frac{\\lambda^k e^{-\\lambda}}{k!}",
-    display: "P(X=k) = \\frac{\\lambda^k e^{-\\lambda}}{k!}",
-    desc: "Probability of count occurrences per interval",
-    isPreset: !0
-  },
-  {
-    id: "stat-sigmoid",
-    name: "Sigmoid / Logistic Activation",
-    category: "stats",
-    latex: "\\sigma(z) = \\frac{1}{1 + e^{-z}} = \\frac{e^z}{e^z + 1}",
-    display: "\\sigma(z) = \\frac{1}{1 + e^{-z}}",
-    desc: "Machine learning logistic activation function",
-    isPreset: !0
-  },
-  {
-    id: "stat-softmax",
-    name: "Softmax Probability Function",
-    category: "stats",
-    latex: "\\text{Softmax}(z_i) = \\frac{e^{z_i}}{\\sum_{j=1}^{K} e^{z_j}}",
-    display: "\\text{Softmax}(z_i) = \\frac{e^{z_i}}{\\sum_j e^{z_j}}",
-    desc: "Multi-class probability distribution normalization",
-    isPreset: !0
-  },
-  {
-    id: "stat-cross-entropy",
-    name: "Cross-Entropy Loss",
-    category: "stats",
-    latex: "\\mathcal{L} = -\\frac{1}{N} \\sum_{i=1}^{N} \\sum_{k=1}^{K} y_{i,k} \\log(\\hat{y}_{i,k})",
-    display: "\\mathcal{L} = -\\sum y \\log(\\hat{y})",
-    desc: "Deep learning classification loss function",
-    isPreset: !0
-  },
-  {
-    id: "stat-mse",
-    name: "Mean Squared Error (MSE)",
-    category: "stats",
-    latex: "\\text{MSE} = \\frac{1}{n} \\sum_{i=1}^{n} (y_i - \\hat{y}_i)^2",
-    display: "\\text{MSE} = \\frac{1}{n} \\sum (y - \\hat{y})^2",
-    desc: "Regression mean squared deviation loss",
-    isPreset: !0
-  },
-  {
-    id: "stat-chisq",
-    name: "Chi-Square Test Statistic",
-    category: "stats",
-    latex: "\\chi^2 = \\sum_{i=1}^{k} \\frac{(O_i - E_i)^2}{E_i}",
-    display: "\\chi^2 = \\sum \\frac{(O_i - E_i)^2}{E_i}",
-    desc: "Goodness of fit statistical test",
-    isPreset: !0
-  }
+  { id: "dot-prod", name: "Dot Product", category: "matrices", latex: "\\vec{u} \\cdot \\vec{v} = |\\vec{u}| |\\vec{v}| \\cos\\theta = u_x v_x + u_y v_y + u_z v_z", display: "\\vec{u} \\cdot \\vec{v}", desc: "Scalar dot product" },
+  { id: "cross-prod", name: "Cross Product", category: "matrices", latex: "\\vec{u} \\times \\vec{v} = \\begin{vmatrix} \\hat{i} & \\hat{j} & \\hat{k} \\\\ u_x & u_y & u_z \\\\ v_x & v_y & v_z \\end{vmatrix}", display: "\\vec{u} \\times \\vec{v}", desc: "Vector 3D cross product" },
+  { id: "mat-inv-2x2", name: "2×2 Matrix Inverse", category: "matrices", latex: "A^{-1} = \\frac{1}{ad - bc} \\begin{pmatrix} d & -b \\\\ -c & a \\end{pmatrix}", display: "A^{-1} = \\frac{1}{\\det A}\\begin{pmatrix} d & -b \\\\ -c & a \\end{pmatrix}", desc: "Closed formula for 2x2 matrix inversion" },
+  { id: "mat-eigen", name: "Eigenvalue & Eigenvector Equation", category: "matrices", latex: "A \\vec{v} = \\lambda \\vec{v} \\iff \\det(A - \\lambda I) = 0", display: "A\\vec{v} = \\lambda\\vec{v}", desc: "Characteristic matrix spectrum equation" },
+  { id: "mat-svd", name: "Singular Value Decomposition (SVD)", category: "matrices", latex: "A = U \\Sigma V^{T}", display: "A = U \\Sigma V^T", desc: "Matrix factorization into singular components" },
+  // =========================================================================
+  // 5. TRIGONOMETRY & IDENTITIES
+  // =========================================================================
+  { id: "trig-pyth", name: "Pythagorean Trig Identity", category: "trig", latex: "\\sin^2(\\theta) + \\cos^2(\\theta) = 1", display: "\\sin^2\\theta + \\cos^2\\theta = 1", desc: "Core trigonometric identity" },
+  { id: "trig-tan-sec", name: "Tangent-Secant Identity", category: "trig", latex: "1 + \\tan^2(\\theta) = \\sec^2(\\theta), \\quad 1 + \\cot^2(\\theta) = \\csc^2(\\theta)", display: "1 + \\tan^2\\theta = \\sec^2\\theta", desc: "Derived Pythagorean identities" },
+  { id: "trig-sin-add", name: "Sine Angle Sum & Difference", category: "trig", latex: "\\sin(\\alpha \\pm \\beta) = \\sin\\alpha\\cos\\beta \\pm \\cos\\alpha\\sin\\beta", display: "\\sin(\\alpha \\pm \\beta)", desc: "Sine addition theorem" },
+  { id: "trig-cos-add", name: "Cosine Angle Sum & Difference", category: "trig", latex: "\\cos(\\alpha \\pm \\beta) = \\cos\\alpha\\cos\\beta \\mp \\sin\\alpha\\sin\\beta", display: "\\cos(\\alpha \\pm \\beta)", desc: "Cosine addition theorem" },
+  { id: "trig-double-sin", name: "Double Angle Sine", category: "trig", latex: "\\sin(2\\theta) = 2 \\sin\\theta \\cos\\theta", display: "\\sin(2\\theta) = 2\\sin\\theta\\cos\\theta", desc: "Double angle expansion" },
+  { id: "trig-double-cos", name: "Double Angle Cosine", category: "trig", latex: "\\cos(2\\theta) = \\cos^2\\theta - \\sin^2\\theta = 2\\cos^2\\theta - 1 = 1 - 2\\sin^2\\theta", display: "\\cos(2\\theta) = \\cos^2\\theta - \\sin^2\\theta", desc: "Double angle cosine expansions" },
+  { id: "trig-law-sines", name: "Law of Sines", category: "trig", latex: "\\frac{a}{\\sin A} = \\frac{b}{\\sin B} = \\frac{c}{\\sin C} = 2 R", display: "\\frac{a}{\\sin A} = \\frac{b}{\\sin B} = \\frac{c}{\\sin C}", desc: "Triangular ratio of sides to opposite sines" },
+  { id: "trig-law-cos", name: "Law of Cosines", category: "trig", latex: "c^2 = a^2 + b^2 - 2 a b \\cos C", display: "c^2 = a^2 + b^2 - 2ab\\cos C", desc: "Generalization of Pythagorean theorem" },
+  // =========================================================================
+  // 6. PHYSICS & ENGINEERING
+  // =========================================================================
+  { id: "phys-newton2", name: "Newton's Second Law", category: "physics", latex: "\\vec{F} = m \\vec{a} = \\frac{d\\vec{p}}{dt}", display: "\\vec{F} = m\\vec{a}", desc: "Force equals mass times acceleration", isPreset: !0 },
+  { id: "phys-gravity", name: "Universal Gravitation", category: "physics", latex: "F = G \\frac{m_1 m_2}{r^2}", display: "F = G\\frac{m_1 m_2}{r^2}", desc: "Newton's universal law of gravitation", isPreset: !0 },
+  { id: "phys-kinematics", name: "Kinematic Motion Equations", category: "physics", latex: "v = v_0 + a t, \\quad x = x_0 + v_0 t + \\frac{1}{2}a t^2, \\quad v^2 = v_0^2 + 2a(x - x_0)", display: "x = x_0 + v_0 t + \\frac{1}{2}at^2", desc: "Constant acceleration equations of motion", isPreset: !0 },
+  { id: "phys-kinetic", name: "Kinetic Energy & Work", category: "physics", latex: "E_k = \\frac{1}{2} m v^2, \\quad W = \\int \\vec{F} \\cdot d\\vec{r} = \\Delta E_k", display: "E_k = \\frac{1}{2}mv^2, \\, W = \\Delta E_k", desc: "Work-energy theorem", isPreset: !0 },
+  { id: "phys-potential", name: "Gravitational Potential Energy", category: "physics", latex: "U = m g h", display: "U = mgh", desc: "Potential energy near surface of Earth" },
+  { id: "phys-relativity", name: "Mass-Energy Equivalence", category: "physics", latex: "E = m c^2 = \\sqrt{(p c)^2 + (m_0 c^2)^2}", display: "E = mc^2", desc: "Einstein's theory of special relativity", isPreset: !0 },
+  { id: "phys-coulomb", name: "Coulomb's Law", category: "physics", latex: "F = k_e \\frac{|q_1 q_2|}{r^2} = \\frac{1}{4\\pi\\varepsilon_0} \\frac{|q_1 q_2|}{r^2}", display: "F = k_e \\frac{|q_1 q_2|}{r^2}", desc: "Electrostatic force between point charges", isPreset: !0 },
+  { id: "phys-ohm", name: "Ohm's Law & Electric Power", category: "physics", latex: "V = I R, \\quad P = I V = I^2 R = \\frac{V^2}{R}", display: "V = IR, \\, P = IV", desc: "Voltage, current, resistance, and electrical power", isPreset: !0 },
+  { id: "phys-lorentz", name: "Lorentz Force Law", category: "physics", latex: "\\vec{F} = q \\left( \\vec{E} + \\vec{v} \\times \\vec{B} \\right)", display: "\\vec{F} = q(\\vec{E} + \\vec{v}\\times\\vec{B})", desc: "Force on charged particle in electromagnetic fields", isPreset: !0 },
+  { id: "phys-faraday", name: "Faraday's Induction Law", category: "physics", latex: "\\mathcal{E} = -\\frac{d\\Phi_B}{dt} = -\\frac{d}{dt}\\iint \\vec{B} \\cdot d\\vec{A}", display: "\\mathcal{E} = -\\frac{d\\Phi_B}{dt}", desc: "Electromotive force induced by changing magnetic flux" },
+  { id: "phys-schrodinger", name: "Schrödinger Wave Equation", category: "physics", latex: "i\\hbar \\frac{\\partial}{\\partial t}\\Psi(\\vec{r}, t) = \\hat{H}\\Psi(\\vec{r}, t)", display: "i\\hbar \\frac{\\partial}{\\partial t}\\Psi = \\hat{H}\\Psi", desc: "Fundamental quantum state time evolution equation", isPreset: !0 },
+  { id: "phys-heisenberg", name: "Heisenberg Uncertainty Principle", category: "physics", latex: "\\Delta x \\, \\Delta p \\ge \\frac{\\hbar}{2}", display: "\\Delta x \\Delta p \\ge \\frac{\\hbar}{2}", desc: "Quantum position and momentum uncertainty", isPreset: !0 },
+  { id: "phys-planck", name: "Planck-Einstein Relation", category: "physics", latex: "E = h \\nu = \\hbar \\omega = \\frac{h c}{\\lambda}", display: "E = h\\nu = \\hbar\\omega", desc: "Photon energy as function of frequency", isPreset: !0 },
+  { id: "phys-debroglie", name: "de Broglie Wavelength", category: "physics", latex: "\\lambda = \\frac{h}{p} = \\frac{h}{m v}", display: "\\lambda = \\frac{h}{p}", desc: "Wave-particle duality matter wavelength", isPreset: !0 },
+  { id: "phys-timedil", name: "Relativistic Time Dilation", category: "physics", latex: "\\Delta t' = \\frac{\\Delta t}{\\sqrt{1 - \\frac{v^2}{c^2}}} = \\gamma \\Delta t", display: "\\Delta t' = \\gamma \\Delta t", desc: "Time dilation at relativistic velocity", isPreset: !0 },
+  { id: "phys-snell", name: "Snell's Law of Refraction", category: "physics", latex: "n_1 \\sin(\\theta_1) = n_2 \\sin(\\theta_2)", display: "n_1 \\sin\\theta_1 = n_2 \\sin\\theta_2", desc: "Optics light refraction at refractive interface", isPreset: !0 },
+  { id: "phys-lens", name: "Thin Lens / Lensmaker Equation", category: "physics", latex: "\\frac{1}{f} = \\frac{1}{d_o} + \\frac{1}{d_i}, \\quad M = -\\frac{d_i}{d_o}", display: "\\frac{1}{f} = \\frac{1}{d_o} + \\frac{1}{d_i}", desc: "Focal length and magnification" },
+  { id: "phys-thermo1", name: "First Law of Thermodynamics", category: "physics", latex: "\\Delta U = Q - W", display: "\\Delta U = Q - W", desc: "Conservation of internal energy, heat, and work", isPreset: !0 },
+  { id: "phys-entropy", name: "Boltzmann's Entropy Formula", category: "physics", latex: "S = k_B \\ln(\\Omega)", display: "S = k_B \\ln\\Omega", desc: "Statistical definition of entropy", isPreset: !0 },
+  { id: "phys-maxwell4", name: "Maxwell's Equations (Full Set)", category: "physics", latex: "\\nabla \\cdot \\vec{E} = \\frac{\\rho}{\\varepsilon_0}, \\quad \\nabla \\cdot \\vec{B} = 0, \\quad \\nabla \\times \\vec{E} = -\\frac{\\partial\\vec{B}}{\\partial t}, \\quad \\nabla \\times \\vec{B} = \\mu_0\\vec{J} + \\mu_0\\varepsilon_0\\frac{\\partial\\vec{E}}{\\partial t}", display: "\\nabla \\cdot \\vec{E}=\\frac{\\rho}{\\varepsilon_0}, \\; \\nabla \\times \\vec{B}=\\mu_0\\vec{J}+\\dots", desc: "Complete classical electromagnetism system", isPreset: !0 },
+  // =========================================================================
+  // 7. CHEMISTRY & BIOCHEMISTRY
+  // =========================================================================
+  { id: "chem-ideal-gas", name: "Ideal Gas Law", category: "chemistry", latex: "P V = n R T = N k_B T", display: "P V = n R T", desc: "Equation of state of ideal gas", isPreset: !0 },
+  { id: "chem-gibbs", name: "Gibbs Free Energy", category: "chemistry", latex: "\\Delta G = \\Delta H - T \\Delta S = -R T \\ln(K)", display: "\\Delta G = \\Delta H - T\\Delta S", desc: "Spontaneity criterion for chemical reactions", isPreset: !0 },
+  { id: "chem-arrhenius", name: "Arrhenius Rate Equation", category: "chemistry", latex: "k = A e^{-\\frac{E_a}{R T}}", display: "k = A e^{-\\frac{E_a}{RT}}", desc: "Reaction rate constant temperature dependence", isPreset: !0 },
+  { id: "chem-nernst", name: "Nernst Equation (Electrochemistry)", category: "chemistry", latex: "E = E^\\circ - \\frac{R T}{n F} \\ln(Q) = E^\\circ - \\frac{0.0592}{n} \\log_{10}(Q)", display: "E = E^\\circ - \\frac{RT}{nF}\\ln Q", desc: "Cell potential under non-standard conditions", isPreset: !0 },
+  { id: "chem-henderson", name: "Henderson-Hasselbalch Equation", category: "chemistry", latex: "\\text{pH} = \\text{p}K_a + \\log_{10}\\left( \\frac{[\\text{A}^-]}{[\\text{HA}]} \\right)", display: "\\text{pH} = \\text{p}K_a + \\log\\frac{[\\text{A}^-]}{[\\text{HA}]}", desc: "Buffer solution pH calculation", isPreset: !0 },
+  { id: "chem-beer", name: "Beer-Lambert Law", category: "chemistry", latex: "A = \\varepsilon \\cdot c \\cdot l = -\\log_{10}\\left( \\frac{I}{I_0} \\right)", display: "A = \\varepsilon c l", desc: "Spectrophotometric light absorption law", isPreset: !0 },
+  { id: "chem-equilibrium", name: "Equilibrium Constant (Keq)", category: "chemistry", latex: "K_{eq} = \\frac{[\\text{C}]^c [\\text{D}]^d}{[\\text{A}]^a [\\text{B}]^b}", display: "K_{eq} = \\frac{[\\text{C}]^c [\\text{D}]^d}{[\\text{A}]^a [\\text{B}]^b}", desc: "Law of mass action equilibrium ratio", isPreset: !0 },
+  { id: "chem-rate-law", name: "Chemical Rate Law", category: "chemistry", latex: "r = k [\\text{A}]^m [\\text{B}]^n", display: "r = k [\\text{A}]^m [\\text{B}]^n", desc: "Reaction rate order dependence", isPreset: !0 },
+  { id: "chem-photosynth", name: "Photosynthesis Reaction", category: "chemistry", latex: "6\\text{CO}_2 + 6\\text{H}_2\\text{O} \\xrightarrow{\\text{light}} \\text{C}_6\\text{H}_{12}\\text{O}_6 + 6\\text{O}_2", display: "6\\text{CO}_2 + 6\\text{H}_2\\text{O} \\to \\text{C}_6\\text{H}_{12}\\text{O}_6 + 6\\text{O}_2", desc: "Biological light-driven carbon fixation", isPreset: !0 },
+  { id: "chem-respiration", name: "Cellular Respiration Reaction", category: "chemistry", latex: "\\text{C}_6\\text{H}_{12}\\text{O}_6 + 6\\text{O}_2 \\longrightarrow 6\\text{CO}_2 + 6\\text{H}_2\\text{O} + 36\\text{ATP}", display: "\\text{C}_6\\text{H}_{12}\\text{O}_6 + 6\\text{O}_2 \\to 6\\text{CO}_2 + 6\\text{H}_2\\text{O} + 36\\text{ATP}", desc: "Aerobic metabolism ATP generation", isPreset: !0 },
+  // =========================================================================
+  // 8. BIOLOGY, GENETICS & ECOLOGY
+  // =========================================================================
+  { id: "bio-hardy", name: "Hardy-Weinberg Equilibrium", category: "biology", latex: "p^2 + 2pq + q^2 = 1 \\quad \\text{and} \\quad p + q = 1", display: "p^2 + 2pq + q^2 = 1", desc: "Population genetics allele frequency distribution", isPreset: !0 },
+  { id: "bio-michaelis", name: "Michaelis-Menten Kinetics", category: "biology", latex: "v = \\frac{V_{\\max} [S]}{K_m + [S]}", display: "v = \\frac{V_{\\max}[S]}{K_m + [S]}", desc: "Enzyme catalysis velocity reaction model", isPreset: !0 },
+  { id: "bio-lineweaver", name: "Lineweaver-Burk Double Reciprocal", category: "biology", latex: "\\frac{1}{v} = \\frac{K_m}{V_{\\max}} \\frac{1}{[S]} + \\frac{1}{V_{\\max}}", display: "\\frac{1}{v} = \\frac{K_m}{V_{\\max}}\\frac{1}{[S]} + \\frac{1}{V_{\\max}}", desc: "Linearized enzyme kinetics transformation", isPreset: !0 },
+  { id: "bio-exp-growth", name: "Exponential Population Growth", category: "biology", latex: "\\frac{dN}{dt} = r N \\implies N(t) = N_0 e^{r t}", display: "N(t) = N_0 e^{rt}", desc: "Malthusian unconstrained population growth", isPreset: !0 },
+  { id: "bio-logistic", name: "Logistic Population Growth", category: "biology", latex: "\\frac{dN}{dt} = r N \\left( 1 - \\frac{N}{K} \\right)", display: "\\frac{dN}{dt} = rN\\left(1 - \\frac{N}{K}\\right)", desc: "Carrying capacity K constrained growth model", isPreset: !0 },
+  { id: "bio-shannon", name: "Shannon-Wiener Diversity Index", category: "biology", latex: "H' = -\\sum_{i=1}^{S} p_i \\ln(p_i)", display: "H' = -\\sum_{i=1}^{S} p_i \\ln(p_i)", desc: "Ecological community biodiversity measurement", isPreset: !0 },
+  { id: "bio-ghk", name: "Goldman-Hodgkin-Katz (GHK) Voltage", category: "biology", latex: "V_m = \\frac{R T}{F} \\ln\\left( \\frac{P_{\\text{K}}[\\text{K}^+]_o + P_{\\text{Na}}[\\text{Na}^+]_o + P_{\\text{Cl}}[\\text{Cl}^-]_i}{P_{\\text{K}}[\\text{K}^+]_i + P_{\\text{Na}}[\\text{Na}^+]_i + P_{\\text{Cl}}[\\text{Cl}^-]_o} \\right)", display: "V_m = \\frac{RT}{F}\\ln\\left(\\frac{P_K[K^+]_o + \\dots}{P_K[K^+]_i + \\dots}\\right)", desc: "Cell membrane resting potential across ion permeabilities", isPreset: !0 },
+  { id: "bio-lotka", name: "Lotka-Volterra Predator-Prey", category: "biology", latex: "\\frac{dx}{dt} = \\alpha x - \\beta x y, \\quad \\frac{dy}{dt} = \\delta x y - \\gamma y", display: "\\frac{dx}{dt} = \\alpha x - \\beta xy, \\; \\frac{dy}{dt} = \\delta xy - \\gamma y", desc: "Nonlinear biological predator-prey dynamics", isPreset: !0 },
+  { id: "bio-kleiber", name: "Kleiber's Law (Metabolic Scaling)", category: "biology", latex: "B = B_0 \\, M^{\\frac{3}{4}}", display: "B \\propto M^{3/4}", desc: "Allometric scaling law of basal metabolic rate to mass", isPreset: !0 },
+  // =========================================================================
+  // 9. STATISTICS, PROBABILITY & MACHINE LEARNING
+  // =========================================================================
+  { id: "stat-bayes", name: "Bayes' Theorem", category: "stats", latex: "P(A|B) = \\frac{P(B|A) \\, P(A)}{P(B)} = \\frac{P(B|A) \\, P(A)}{\\sum_{i} P(B|A_i) P(A_i)}", display: "P(A|B) = \\frac{P(B|A) P(A)}{P(B)}", desc: "Fundamental posterior probability inversion", isPreset: !0 },
+  { id: "stat-norm-pdf", name: "Gaussian Normal Distribution", category: "stats", latex: "f(x) = \\frac{1}{\\sigma \\sqrt{2\\pi}} e^{-\\frac{1}{2}\\left(\\frac{x-\\mu}{\\sigma}\\right)^2}", display: "f(x) = \\frac{1}{\\sigma \\sqrt{2\\pi}} e^{-\\frac{1}{2}\\left(\\frac{x-\\mu}{\\sigma}\\right)^2}", desc: "Continuous probability density function", isPreset: !0 },
+  { id: "stat-var", name: "Sample Variance & Std Deviation", category: "stats", latex: "s^2 = \\frac{1}{n - 1} \\sum_{i=1}^{n} (x_i - \\bar{x})^2, \\quad s = \\sqrt{s^2}", display: "s^2 = \\frac{1}{n-1}\\sum (x_i - \\bar{x})^2", desc: "Unbiased estimator of variance", isPreset: !0 },
+  { id: "stat-pearson", name: "Pearson Correlation (r)", category: "stats", latex: "r = \\frac{\\sum (x_i - \\bar{x})(y_i - \\bar{y})}{\\sqrt{\\sum (x_i - \\bar{x})^2 \\sum (y_i - \\bar{y})^2}}", display: "r = \\frac{\\sum (x-\\bar{x})(y-\\bar{y})}{\\sqrt{\\sum(x-\\bar{x})^2 \\sum(y-\\bar{y})^2}}", desc: "Linear bivariate correlation coefficient", isPreset: !0 },
+  { id: "stat-binom", name: "Binomial Probability Mass (PMF)", category: "stats", latex: "P(X = k) = \\binom{n}{k} p^k (1 - p)^{n - k}", display: "P(X=k) = \\binom{n}{k} p^k (1-p)^{n-k}", desc: "Probability of k successes in n trials", isPreset: !0 },
+  { id: "stat-poisson", name: "Poisson Distribution PMF", category: "stats", latex: "P(X = k) = \\frac{\\lambda^k e^{-\\lambda}}{k!}", display: "P(X=k) = \\frac{\\lambda^k e^{-\\lambda}}{k!}", desc: "Probability of count occurrences per interval", isPreset: !0 },
+  { id: "stat-sigmoid", name: "Sigmoid / Logistic Activation", category: "stats", latex: "\\sigma(z) = \\frac{1}{1 + e^{-z}} = \\frac{e^z}{e^z + 1}", display: "\\sigma(z) = \\frac{1}{1 + e^{-z}}", desc: "Machine learning logistic activation function", isPreset: !0 },
+  { id: "stat-softmax", name: "Softmax Probability Function", category: "stats", latex: "\\text{Softmax}(z_i) = \\frac{e^{z_i}}{\\sum_{j=1}^{K} e^{z_j}}", display: "\\text{Softmax}(z_i) = \\frac{e^{z_i}}{\\sum_j e^{z_j}}", desc: "Multi-class probability distribution normalization", isPreset: !0 },
+  { id: "stat-cross-entropy", name: "Cross-Entropy Loss", category: "stats", latex: "\\mathcal{L} = -\\frac{1}{N} \\sum_{i=1}^{N} \\sum_{k=1}^{K} y_{i,k} \\log(\\hat{y}_{i,k})", display: "\\mathcal{L} = -\\sum y \\log(\\hat{y})", desc: "Deep learning classification loss function", isPreset: !0 },
+  { id: "stat-mse", name: "Mean Squared Error (MSE)", category: "stats", latex: "\\text{MSE} = \\frac{1}{n} \\sum_{i=1}^{n} (y_i - \\hat{y}_i)^2", display: "\\text{MSE} = \\frac{1}{n} \\sum (y - \\hat{y})^2", desc: "Regression mean squared deviation loss", isPreset: !0 },
+  { id: "stat-chisq", name: "Chi-Square Test Statistic", category: "stats", latex: "\\chi^2 = \\sum_{i=1}^{k} \\frac{(O_i - E_i)^2}{E_i}", display: "\\chi^2 = \\sum \\frac{(O_i - E_i)^2}{E_i}", desc: "Goodness of fit statistical test", isPreset: !0 }
 ], Nf = [
   // Operators
   { label: "±", latex: "\\pm ", category: "operators", desc: "Plus-minus" },
@@ -45900,12 +45539,12 @@ class Ng {
       " "
     ).trim() || "x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}";
     this.backdrop.innerHTML = `
-      <div class="nova-modal nova-math-modal" style="max-width: 820px; width: 96vw;">
+      <div class="nova-modal nova-math-modal" style="max-width: 860px; width: 96vw;">
         <!-- Header -->
         <div class="nova-modal-header">
           <div style="display: flex; align-items: center; gap: 8px;">
             <span style="font-size: 20px; color: var(--ne-accent); font-weight: bold; line-height: 1;">∑</span>
-            <h3 class="nova-modal-title">Math & Scientific Equation Studio</h3>
+            <h3 class="nova-modal-title">Complete Math & Scientific Formula Studio</h3>
           </div>
           <button type="button" class="nova-modal-close-btn" data-action="close">${_.close}</button>
         </div>
@@ -45914,19 +45553,20 @@ class Ng {
         <div class="nova-modal-body" style="gap: 10px; padding: 14px 20px;">
           <!-- Search & Filter Bar -->
           <div style="display: flex; gap: 8px; align-items: center;">
-            <input type="text" id="ne-math-search" class="nova-form-input" placeholder="🔍 Search formulas across Math, Physics, Chemistry, Biology, Stats & Greek (e.g. newton, enzyme, hardy, gibbs, bayes, integral, matrix)..." style="font-size: 12.5px; padding: 7px 10px; flex: 1;" />
+            <input type="text" id="ne-math-search" class="nova-form-input" placeholder="🔍 Search any formula (e.g. newton, quadratic, hardy, enzyme, gibbs, bayes, integral, matrix, fourier, stokes)..." style="font-size: 12.5px; padding: 7px 10px; flex: 1;" />
           </div>
 
           <!-- Category Tabs -->
           <div class="nova-math-tabs" id="ne-math-tab-bar">
             <button type="button" class="nova-math-tab-btn is-active" data-tab="structures">📐 Structures</button>
+            <button type="button" class="nova-math-tab-btn" data-tab="algebra">📐 Algebra & Geo</button>
             <button type="button" class="nova-math-tab-btn" data-tab="calculus">📈 Calculus</button>
             <button type="button" class="nova-math-tab-btn" data-tab="matrices">🔢 Matrices</button>
             <button type="button" class="nova-math-tab-btn" data-tab="trig">📐 Trig & Logs</button>
             <button type="button" class="nova-math-tab-btn" data-tab="physics">⚡ Physics</button>
             <button type="button" class="nova-math-tab-btn" data-tab="chemistry">🧪 Chemistry</button>
             <button type="button" class="nova-math-tab-btn" data-tab="biology">🧬 Biology</button>
-            <button type="button" class="nova-math-tab-btn" data-tab="stats">📊 Statistics</button>
+            <button type="button" class="nova-math-tab-btn" data-tab="stats">📊 Statistics & AI</button>
             <button type="button" class="nova-math-tab-btn" data-tab="symbols">🔣 Symbols</button>
             <button type="button" class="nova-math-tab-btn" data-tab="greek">🏛️ Greek</button>
           </div>
@@ -46084,14 +45724,14 @@ class Ng {
         `, f();
         return;
       }
-      if (["physics", "chemistry", "biology", "stats"].includes(this.currentTab)) {
+      if (["physics", "chemistry", "biology", "stats", "algebra"].includes(this.currentTab)) {
         const M = Mc.filter((C) => C.category === this.currentTab);
         a.innerHTML = `
           <div class="nova-math-panel">
             <div class="nova-math-grid-presets">
               ${M.map(
           (C, O) => `
-                <button type="button" class="nova-math-preset-card" data-act="replace" data-latex="${encodeURIComponent(C.latex)}" title="${C.name}">
+                <button type="button" class="nova-math-preset-card" data-act="${C.isPreset ? "replace" : "insert"}" data-latex="${encodeURIComponent(C.latex)}" title="${C.name}">
                   <div class="nova-math-preset-header">
                     <span class="nova-math-preset-title">${C.name}</span>
                     <span class="nova-math-preset-desc">${C.desc || ""}</span>

@@ -13,9 +13,9 @@ export interface MathItem {
 }
 
 export const ALL_MATH_ITEMS: MathItem[] = [
-  // ==========================================
+  // =========================================================================
   // 1. BASIC STRUCTURES & ARITHMETIC
-  // ==========================================
+  // =========================================================================
   { id: 'frac', name: 'Fraction', category: 'structures', latex: '\\frac{a}{b}', display: '\\frac{a}{b}', desc: 'Standard fraction' },
   { id: 'frac-dx', name: 'Differential Fraction', category: 'structures', latex: '\\frac{dy}{dx}', display: '\\frac{dy}{dx}', desc: 'Derivative ratio' },
   { id: 'sqrt', name: 'Square Root', category: 'structures', latex: '\\sqrt{x}', display: '\\sqrt{x}', desc: 'Square root of x' },
@@ -38,503 +38,143 @@ export const ALL_MATH_ITEMS: MathItem[] = [
   { id: 'dot', name: 'Time Derivative (Dot)', category: 'structures', latex: '\\dot{x}', display: '\\dot{x}', desc: 'First time derivative' },
   { id: 'ddot', name: 'Second Time Derivative (Ddot)', category: 'structures', latex: '\\ddot{x}', display: '\\ddot{x}', desc: 'Second time derivative' },
 
-  // ==========================================
-  // 2. CALCULUS & ANALYSIS
-  // ==========================================
-  { id: 'int-indef', name: 'Indefinite Integral', category: 'calculus', latex: '\\int f(x) \\, dx', display: '\\int f(x) dx', desc: 'Indefinite integration' },
-  { id: 'int-def', name: 'Definite Integral', category: 'calculus', latex: '\\int_{a}^{b} f(x) \\, dx', display: '\\int_{a}^{b}', desc: 'Integral from a to b' },
-  { id: 'int-double', name: 'Double Integral', category: 'calculus', latex: '\\iint_{D} f(x,y) \\, dx\\,dy', display: '\\iint_{D}', desc: 'Surface double integral' },
-  { id: 'int-triple', name: 'Triple Integral', category: 'calculus', latex: '\\iiint_{V} f(x,y,z) \\, dV', display: '\\iiint_{V}', desc: 'Volume triple integral' },
-  { id: 'int-contour', name: 'Contour / Closed Integral', category: 'calculus', latex: '\\oint_{C} f(z) \\, dz', display: '\\oint_{C}', desc: 'Closed line integral' },
-  { id: 'diff-1', name: 'First Derivative', category: 'calculus', latex: '\\frac{df}{dx}', display: '\\frac{df}{dx}', desc: 'First order derivative' },
-  { id: 'diff-2', name: 'Second Derivative', category: 'calculus', latex: '\\frac{d^2 f}{dx^2}', display: '\\frac{d^2 f}{dx^2}', desc: 'Second order derivative' },
-  { id: 'diff-part', name: 'Partial Derivative', category: 'calculus', latex: '\\frac{\\partial f}{\\partial x}', display: '\\frac{\\partial f}{\\partial x}', desc: 'Partial derivative wrt x' },
-  { id: 'diff-part2', name: 'Second Partial Derivative', category: 'calculus', latex: '\\frac{\\partial^2 f}{\\partial x^2}', display: '\\frac{\\partial^2 f}{\\partial x^2}', desc: 'Second partial derivative' },
-  { id: 'diff-mixed', name: 'Mixed Partial Derivative', category: 'calculus', latex: '\\frac{\\partial^2 f}{\\partial x \\partial y}', display: '\\frac{\\partial^2 f}{\\partial x \\partial y}', desc: 'Mixed second partial' },
-  { id: 'lim', name: 'Limit', category: 'calculus', latex: '\\lim_{x \\to a} f(x)', display: '\\lim_{x \\to a}', desc: 'Limit as x approaches a' },
-  { id: 'lim-inf', name: 'Limit to Infinity', category: 'calculus', latex: '\\lim_{x \\to \\infty} f(x)', display: '\\lim_{x \\to \\infty}', desc: 'Limit as x approaches infinity' },
-  { id: 'sum', name: 'Summation with Bounds', category: 'calculus', latex: '\\sum_{i=1}^{n} x_{i}', display: '\\sum_{i=1}^{n}', desc: 'Finite summation series' },
-  { id: 'sum-inf', name: 'Infinite Series', category: 'calculus', latex: '\\sum_{n=0}^{\\infty} a_{n} x^n', display: '\\sum_{n=0}^{\\infty}', desc: 'Power series summation' },
-  { id: 'prod', name: 'Product Operator', category: 'calculus', latex: '\\prod_{i=1}^{n} x_{i}', display: '\\prod_{i=1}^{n}', desc: 'Product across terms' },
-  { id: 'grad', name: 'Gradient (Del)', category: 'calculus', latex: '\\nabla f', display: '\\nabla f', desc: 'Spatial gradient vector' },
-  { id: 'div', name: 'Divergence', category: 'calculus', latex: '\\nabla \\cdot \\vec{F}', display: '\\nabla \\cdot \\vec{F}', desc: 'Vector field divergence' },
-  { id: 'curl', name: 'Curl / Rotation', category: 'calculus', latex: '\\nabla \\times \\vec{F}', display: '\\nabla \\times \\vec{F}', desc: 'Vector field curl' },
-  { id: 'laplacian', name: 'Laplacian', category: 'calculus', latex: '\\nabla^2 f = \\Delta f', display: '\\nabla^2 f', desc: 'Laplace differential operator' },
+  // =========================================================================
+  // 2. ALGEBRA & GEOMETRY (BASE TO CORE)
+  // =========================================================================
+  { id: 'alg-linear', name: 'Slope-Intercept Form', category: 'algebra', latex: 'y = m x + b', display: 'y = mx + b', desc: 'Equation of straight line' },
+  { id: 'alg-point-slope', name: 'Point-Slope Equation', category: 'algebra', latex: 'y - y_1 = m (x - x_1)', display: 'y - y_1 = m(x-x_1)', desc: 'Line passing through (x1, y1)' },
+  { id: 'alg-quad', name: 'Quadratic Formula', category: 'algebra', latex: 'x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}', display: 'x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}', desc: 'Roots of ax² + bx + c = 0', isPreset: true },
+  { id: 'alg-vertex', name: 'Parabola Vertex Form', category: 'algebra', latex: 'y = a (x - h)^2 + k', display: 'y = a(x-h)^2 + k', desc: 'Parabola with vertex at (h, k)' },
+  { id: 'alg-dist', name: '2D Distance Formula', category: 'algebra', latex: 'd = \\sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}', display: 'd = \\sqrt{\\Delta x^2 + \\Delta y^2}', desc: 'Euclidean distance between points' },
+  { id: 'alg-midpoint', name: 'Midpoint Formula', category: 'algebra', latex: 'M = \\left( \\frac{x_1 + x_2}{2}, \\frac{y_1 + y_2}{2} \\right)', display: 'M = \\left(\\frac{x_1+x_2}{2}, \\frac{y_1+y_2}{2}\\right)', desc: 'Coordinates of line segment midpoint' },
+  { id: 'alg-circle-eq', name: 'Equation of Circle', category: 'algebra', latex: '(x - h)^2 + (y - k)^2 = r^2', display: '(x-h)^2 + (y-k)^2 = r^2', desc: 'Circle with center (h, k) and radius r' },
+  { id: 'alg-ellipse', name: 'Equation of Ellipse', category: 'algebra', latex: '\\frac{(x - h)^2}{a^2} + \\frac{(y - k)^2}{b^2} = 1', display: '\\frac{(x-h)^2}{a^2} + \\frac{(y-k)^2}{b^2} = 1', desc: 'Standard conic section ellipse' },
+  { id: 'alg-hyperbola', name: 'Equation of Hyperbola', category: 'algebra', latex: '\\frac{(x - h)^2}{a^2} - \\frac{(y - k)^2}{b^2} = 1', display: '\\frac{(x-h)^2}{a^2} - \\frac{(y-k)^2}{b^2} = 1', desc: 'Standard conic section hyperbola' },
+  { id: 'alg-pyth', name: 'Pythagorean Theorem', category: 'algebra', latex: 'a^2 + b^2 = c^2', display: 'a^2 + b^2 = c^2', desc: 'Right triangle hypotenuse relation', isPreset: true },
+  { id: 'alg-area-tri', name: 'Triangle Area', category: 'algebra', latex: 'A = \\frac{1}{2} b h', display: 'A = \\frac{1}{2}bh', desc: 'Base times height area' },
+  { id: 'alg-heron', name: "Heron's Formula", category: 'algebra', latex: 'A = \\sqrt{s(s - a)(s - b)(s - c)}, \\quad s = \\frac{a + b + c}{2}', display: 'A = \\sqrt{s(s-a)(s-b)(s-c)}', desc: 'Triangle area from all three sides' },
+  { id: 'alg-circle-area', name: 'Area & Circumference of Circle', category: 'algebra', latex: 'A = \\pi r^2, \\quad C = 2 \\pi r', display: 'A = \\pi r^2, \\, C = 2\\pi r', desc: 'Circular geometry formulas', isPreset: true },
+  { id: 'alg-sphere-vol', name: 'Sphere Volume & Surface Area', category: 'algebra', latex: 'V = \\frac{4}{3}\\pi r^3, \\quad A = 4\\pi r^2', display: 'V = \\frac{4}{3}\\pi r^3, \\, A = 4\\pi r^2', desc: '3D sphere spatial formulas', isPreset: true },
+  { id: 'alg-cylinder', name: 'Cylinder Volume', category: 'algebra', latex: 'V = \\pi r^2 h', display: 'V = \\pi r^2 h', desc: 'Right circular cylinder volume' },
+  { id: 'alg-cone', name: 'Cone Volume', category: 'algebra', latex: 'V = \\frac{1}{3}\\pi r^2 h', display: 'V = \\frac{1}{3}\\pi r^2 h', desc: 'Right circular cone volume' },
+  { id: 'alg-binom', name: 'Binomial Theorem', category: 'algebra', latex: '(x + y)^n = \\sum_{k=0}^{n} \\binom{n}{k} x^{n-k} y^k', display: '(x+y)^n = \\sum \\binom{n}{k}x^{n-k}y^k', desc: 'Polynomial power expansion', isPreset: true },
+  { id: 'alg-arith-seq', name: 'Arithmetic Sequence', category: 'algebra', latex: 'a_n = a_1 + (n - 1)d, \\quad S_n = \\frac{n}{2}(a_1 + a_n)', display: 'a_n = a_1 + (n-1)d', desc: 'N-th term and sum of arithmetic series' },
+  { id: 'alg-geom-seq', name: 'Geometric Sequence & Series', category: 'algebra', latex: 'a_n = a_1 r^{n-1}, \\quad S_n = a_1 \\frac{1 - r^n}{1 - r}, \\quad S_\\infty = \\frac{a_1}{1 - r}', display: 'S_\\infty = \\frac{a_1}{1-r}', desc: 'Finite and infinite geometric series sum' },
+  { id: 'alg-euler-form', name: "Euler's Identity & Formula", category: 'algebra', latex: 'e^{i \\pi} + 1 = 0 \\iff e^{i \\theta} = \\cos\\theta + i \\sin\\theta', display: 'e^{i\\pi} + 1 = 0', desc: 'Fundamental mathematical identity', isPreset: true },
+  { id: 'alg-demoivre', name: "De Moivre's Formula", category: 'algebra', latex: '(\\cos\\theta + i \\sin\\theta)^n = \\cos(n\\theta) + i \\sin(n\\theta)', display: '(\\cos\\theta + i\\sin\\theta)^n = \\dots', desc: 'Powers of complex numbers' },
 
-  // ==========================================
-  // 3. LINEAR ALGEBRA & MATRICES
-  // ==========================================
+  // =========================================================================
+  // 3. CALCULUS & DIFFERENTIAL EQUATIONS
+  // =========================================================================
+  { id: 'calc-deriv-def', name: 'Derivative Definition (Limit)', category: 'calculus', latex: 'f\'(x) = \\lim_{h \\to 0} \\frac{f(x + h) - f(x)}{h}', display: 'f\'(x) = \\lim_{h \\to 0}\\frac{f(x+h)-f(x)}{h}', desc: 'Formal Newton-Leibniz difference quotient' },
+  { id: 'calc-prod-rule', name: 'Product Rule', category: 'calculus', latex: '\\frac{d}{dx}[u \\cdot v] = u\' v + u v\'', display: '(uv)\' = u\'v + uv\'', desc: 'Derivative of product of functions' },
+  { id: 'calc-quot-rule', name: 'Quotient Rule', category: 'calculus', latex: '\\frac{d}{dx}\\left[\\frac{u}{v}\\right] = \\frac{u\' v - u v\'}{v^2}', display: '\\left(\\frac{u}{v}\\right)\' = \\frac{u\'v - uv\'}{v^2}', desc: 'Derivative of fraction of functions' },
+  { id: 'calc-chain-rule', name: 'Chain Rule', category: 'calculus', latex: '\\frac{d}{dx}f(g(x)) = f\'(g(x)) \\cdot g\'(x)', display: '\\frac{df}{dx} = \\frac{df}{dg}\\frac{dg}{dx}', desc: 'Composite function differentiation' },
+  { id: 'calc-int-parts', name: 'Integration by Parts', category: 'calculus', latex: '\\int u \\, dv = u v - \\int v \\, du', display: '\\int u\\,dv = uv - \\int v\\,du', desc: 'Integral of product of functions' },
+  { id: 'calc-ftc', name: 'Fundamental Theorem of Calculus', category: 'calculus', latex: '\\int_{a}^{b} f(x) \\, dx = F(b) - F(a), \\quad F\'(x) = f(x)', display: '\\int_a^b f(x) dx = F(b)-F(a)', desc: 'Connection between integral and antiderivative' },
+  { id: 'calc-taylor', name: 'Taylor Series Expansion', category: 'calculus', latex: 'f(x) = \\sum_{n=0}^{\\infty} \\frac{f^{(n)}(a)}{n!} (x - a)^n', display: 'f(x) = \\sum_{n=0}^\\infty \\frac{f^{(n)}(a)}{n!}(x-a)^n', desc: 'Infinite polynomial approximation', isPreset: true },
+  { id: 'calc-fourier', name: 'Fourier Transform', category: 'calculus', latex: '\\hat{f}(\\xi) = \\int_{-\\infty}^{\\infty} f(x) e^{-2\\pi i x \\xi} \\, dx', display: '\\hat{f}(\\xi) = \\int_{-\\infty}^\\infty f(x) e^{-2\\pi i x \\xi} dx', desc: 'Time to frequency domain transform', isPreset: true },
+  { id: 'calc-laplace', name: 'Laplace Transform', category: 'calculus', latex: '\\mathcal{L}\\{f(t)\\}(s) = \\int_{0}^{\\infty} f(t) e^{-s t} \\, dt', display: '\\mathcal{L}\\{f\\}(s) = \\int_0^\\infty f(t) e^{-st} dt', desc: 'Time to complex frequency domain transform' },
+  { id: 'calc-ode1', name: 'First-Order Linear ODE', category: 'calculus', latex: '\\frac{dy}{dx} + P(x) y = Q(x) \\implies y = e^{-\\int P dx} \\left( \\int Q e^{\\int P dx} dx + C \\right)', display: 'y\' + P(x)y = Q(x)', desc: 'Integrating factor general solution' },
+  { id: 'calc-wave-eq', name: 'Wave Equation (1D/3D)', category: 'calculus', latex: '\\frac{\\partial^2 u}{\\partial t^2} = c^2 \\nabla^2 u = c^2 \\frac{\\partial^2 u}{\\partial x^2}', display: '\\frac{\\partial^2 u}{\\partial t^2} = c^2 \\nabla^2 u', desc: 'Hyperbolic PDE governing propagation of waves' },
+  { id: 'calc-heat-eq', name: 'Heat / Diffusion Equation', category: 'calculus', latex: '\\frac{\\partial u}{\\partial t} = \\alpha \\nabla^2 u = \\alpha \\frac{\\partial^2 u}{\\partial x^2}', display: '\\frac{\\partial u}{\\partial t} = \\alpha \\nabla^2 u', desc: 'Parabolic PDE governing thermal diffusion' },
+  { id: 'calc-stokes', name: "Stokes' Theorem", category: 'calculus', latex: '\\oint_{\\partial S} \\vec{F} \\cdot d\\vec{r} = \\iint_{S} (\\nabla \\times \\vec{F}) \\cdot d\\vec{S}', display: '\\oint_{\\partial S} \\vec{F} \\cdot d\\vec{r} = \\iint_S (\\nabla \\times \\vec{F}) \\cdot d\\vec{S}', desc: 'Surface curl to boundary circulation integral' },
+  { id: 'calc-div-thm', name: 'Divergence (Gauss) Theorem', category: 'calculus', latex: '\\iint_{\\partial V} \\vec{F} \\cdot d\\vec{S} = \\iiint_{V} (\\nabla \\cdot \\vec{F}) \\, dV', display: '\\iint_{\\partial V} \\vec{F} \\cdot d\\vec{S} = \\iiint_V (\\nabla \\cdot \\vec{F}) dV', desc: 'Volume divergence to surface flux integral' },
+
+  // =========================================================================
+  // 4. LINEAR ALGEBRA & MATRICES
+  // =========================================================================
   { id: 'mat-2x2', name: '2×2 Parentheses Matrix', category: 'matrices', latex: '\\begin{pmatrix} a & b \\\\ c & d \\end{pmatrix}', display: '\\begin{pmatrix} a & b \\\\ c & d \\end{pmatrix}', desc: '2x2 round matrix' },
-  { id: 'mat-3x3', name: '3×3 Parentheses Matrix', category: 'matrices', latex: '\\begin{pmatrix} a & b & c \\\\ d & e & f \\\\ g & h & i \\end{pmatrix}', display: '\\begin{pmatrix} \\dots \\end{pmatrix}', desc: '3x3 round matrix' },
+  { id: 'mat-3x3', name: '3×3 Parentheses Matrix', category: 'matrices', latex: '\\begin{pmatrix} a & b & c \\\\ d & e & f \\\\ g & h & i \\end{pmatrix}', display: '\\begin{pmatrix} a & b & c \\\\ d & e & f \\\\ g & h & i \\end{pmatrix}', desc: '3x3 round matrix' },
   { id: 'mat-b2x2', name: '2×2 Square Bracket Matrix', category: 'matrices', latex: '\\begin{bmatrix} a & b \\\\ c & d \\end{bmatrix}', display: '\\begin{bmatrix} a & b \\\\ c & d \\end{bmatrix}', desc: '2x2 square matrix' },
-  { id: 'mat-b3x3', name: '3×3 Square Bracket Matrix', category: 'matrices', latex: '\\begin{bmatrix} a & b & c \\\\ d & e & f \\\\ g & h & i \\end{bmatrix}', display: '\\begin{bmatrix} \\dots \\end{bmatrix}', desc: '3x3 square matrix' },
-  { id: 'det-2x2', name: '2×2 Determinant', category: 'matrices', latex: '\\begin{vmatrix} a & b \\\\ c & d \\end{vmatrix}', display: '\\begin{vmatrix} a & b \\\\ c & d \\end{vmatrix}', desc: '2x2 determinant' },
-  { id: 'det-3x3', name: '3×3 Determinant', category: 'matrices', latex: '\\begin{vmatrix} a & b & c \\\\ d & e & f \\\\ g & h & i \\end{vmatrix}', display: '\\begin{vmatrix} \\dots \\end{vmatrix}', desc: '3x3 determinant' },
-  { id: 'col-vec', name: 'Column Vector (3D)', category: 'matrices', latex: '\\begin{pmatrix} x \\\\ y \\\\ z \\end{pmatrix}', display: '\\begin{pmatrix} x \\\\ y \\\\ z \\end{pmatrix}', desc: '3D coordinate column vector' },
+  { id: 'mat-b3x3', name: '3×3 Square Bracket Matrix', category: 'matrices', latex: '\\begin{bmatrix} a & b & c \\\\ d & e & f \\\\ g & h & i \\end{bmatrix}', display: '\\begin{bmatrix} a & b & c \\\\ d & e & f \\\\ g & h & i \\end{bmatrix}', desc: '3x3 square matrix' },
+  { id: 'det-2x2', name: '2×2 Determinant', category: 'matrices', latex: '\\begin{vmatrix} a & b \\\\ c & d \\end{vmatrix} = a d - b c', display: '\\begin{vmatrix} a & b \\\\ c & d \\end{vmatrix}', desc: '2x2 matrix determinant' },
+  { id: 'det-3x3', name: '3×3 Determinant', category: 'matrices', latex: '\\begin{vmatrix} a & b & c \\\\ d & e & f \\\\ g & h & i \\end{vmatrix}', display: '\\begin{vmatrix} a & b & c \\\\ d & e & f \\\\ g & h & i \\end{vmatrix}', desc: '3x3 matrix determinant' },
+  { id: 'col-vec', name: 'Column Vector (3D)', category: 'matrices', latex: '\\begin{pmatrix} x \\\\ y \\\\ z \\end{pmatrix}', display: '\\begin{pmatrix} x \\\\ y \\\\ z \\end{pmatrix}', desc: '3D column vector' },
   { id: 'row-vec', name: 'Row Vector (3D)', category: 'matrices', latex: '\\begin{pmatrix} x & y & z \\end{pmatrix}', display: '\\begin{pmatrix} x & y & z \\end{pmatrix}', desc: '1x3 row vector' },
-  { id: 'dot-prod', name: 'Dot Product', category: 'matrices', latex: '\\vec{u} \\cdot \\vec{v} = |\\vec{u}| |\\vec{v}| \\cos\\theta', display: '\\vec{u} \\cdot \\vec{v}', desc: 'Vector scalar product' },
-  { id: 'cross-prod', name: 'Cross Product', category: 'matrices', latex: '\\vec{u} \\times \\vec{v}', display: '\\vec{u} \\times \\vec{v}', desc: 'Vector cross product' },
-  { id: 'trans', name: 'Matrix Transpose', category: 'matrices', latex: 'A^{T}', display: 'A^{T}', desc: 'Transpose of matrix A' },
-  { id: 'inv', name: 'Matrix Inverse', category: 'matrices', latex: 'A^{-1}', display: 'A^{-1}', desc: 'Inverse of matrix A' },
+  { id: 'dot-prod', name: 'Dot Product', category: 'matrices', latex: '\\vec{u} \\cdot \\vec{v} = |\\vec{u}| |\\vec{v}| \\cos\\theta = u_x v_x + u_y v_y + u_z v_z', display: '\\vec{u} \\cdot \\vec{v}', desc: 'Scalar dot product' },
+  { id: 'cross-prod', name: 'Cross Product', category: 'matrices', latex: '\\vec{u} \\times \\vec{v} = \\begin{vmatrix} \\hat{i} & \\hat{j} & \\hat{k} \\\\ u_x & u_y & u_z \\\\ v_x & v_y & v_z \\end{vmatrix}', display: '\\vec{u} \\times \\vec{v}', desc: 'Vector 3D cross product' },
+  { id: 'mat-inv-2x2', name: '2×2 Matrix Inverse', category: 'matrices', latex: 'A^{-1} = \\frac{1}{ad - bc} \\begin{pmatrix} d & -b \\\\ -c & a \\end{pmatrix}', display: 'A^{-1} = \\frac{1}{\\det A}\\begin{pmatrix} d & -b \\\\ -c & a \\end{pmatrix}', desc: 'Closed formula for 2x2 matrix inversion' },
+  { id: 'mat-eigen', name: 'Eigenvalue & Eigenvector Equation', category: 'matrices', latex: 'A \\vec{v} = \\lambda \\vec{v} \\iff \\det(A - \\lambda I) = 0', display: 'A\\vec{v} = \\lambda\\vec{v}', desc: 'Characteristic matrix spectrum equation' },
+  { id: 'mat-svd', name: 'Singular Value Decomposition (SVD)', category: 'matrices', latex: 'A = U \\Sigma V^{T}', display: 'A = U \\Sigma V^T', desc: 'Matrix factorization into singular components' },
 
-  // ==========================================
-  // 4. TRIGONOMETRY & FUNCTIONS
-  // ==========================================
-  { id: 'sin', name: 'Sine', category: 'trig', latex: '\\sin(x)', display: '\\sin(x)', desc: 'Sine function' },
-  { id: 'cos', name: 'Cosine', category: 'trig', latex: '\\cos(x)', display: '\\cos(x)', desc: 'Cosine function' },
-  { id: 'tan', name: 'Tangent', category: 'trig', latex: '\\tan(x)', display: '\\tan(x)', desc: 'Tangent function' },
-  { id: 'csc', name: 'Cosecant', category: 'trig', latex: '\\csc(x)', display: '\\csc(x)', desc: 'Cosecant' },
-  { id: 'sec', name: 'Secant', category: 'trig', latex: '\\sec(x)', display: '\\sec(x)', desc: 'Secant' },
-  { id: 'cot', name: 'Cotangent', category: 'trig', latex: '\\cot(x)', display: '\\cot(x)', desc: 'Cotangent' },
-  { id: 'arcsin', name: 'Inverse Sine (Arcsine)', category: 'trig', latex: '\\arcsin(x)', display: '\\arcsin(x)', desc: 'Arc-sine' },
-  { id: 'arccos', name: 'Inverse Cosine (Arccosine)', category: 'trig', latex: '\\arccos(x)', display: '\\arccos(x)', desc: 'Arc-cosine' },
-  { id: 'arctan', name: 'Inverse Tangent (Arctangent)', category: 'trig', latex: '\\arctan(x)', display: '\\arctan(x)', desc: 'Arc-tangent' },
-  { id: 'sinh', name: 'Hyperbolic Sine', category: 'trig', latex: '\\sinh(x)', display: '\\sinh(x)', desc: 'Hyperbolic sine' },
-  { id: 'cosh', name: 'Hyperbolic Cosine', category: 'trig', latex: '\\cosh(x)', display: '\\cosh(x)', desc: 'Hyperbolic cosine' },
-  { id: 'tanh', name: 'Hyperbolic Tangent', category: 'trig', latex: '\\tanh(x)', display: '\\tanh(x)', desc: 'Hyperbolic tangent' },
-  { id: 'ln', name: 'Natural Logarithm', category: 'trig', latex: '\\ln(x)', display: '\\ln(x)', desc: 'Natural log base e' },
-  { id: 'log10', name: 'Base-10 Logarithm', category: 'trig', latex: '\\log_{10}(x)', display: '\\log_{10}(x)', desc: 'Common logarithm' },
-  { id: 'logb', name: 'Base-b Logarithm', category: 'trig', latex: '\\log_{b}(x)', display: '\\log_{b}(x)', desc: 'Arbitrary base logarithm' },
-  { id: 'exp', name: 'Exponential', category: 'trig', latex: 'e^{x} = \\exp(x)', display: 'e^{x}', desc: 'Exponential function' },
+  // =========================================================================
+  // 5. TRIGONOMETRY & IDENTITIES
+  // =========================================================================
+  { id: 'trig-pyth', name: 'Pythagorean Trig Identity', category: 'trig', latex: '\\sin^2(\\theta) + \\cos^2(\\theta) = 1', display: '\\sin^2\\theta + \\cos^2\\theta = 1', desc: 'Core trigonometric identity' },
+  { id: 'trig-tan-sec', name: 'Tangent-Secant Identity', category: 'trig', latex: '1 + \\tan^2(\\theta) = \\sec^2(\\theta), \\quad 1 + \\cot^2(\\theta) = \\csc^2(\\theta)', display: '1 + \\tan^2\\theta = \\sec^2\\theta', desc: 'Derived Pythagorean identities' },
+  { id: 'trig-sin-add', name: 'Sine Angle Sum & Difference', category: 'trig', latex: '\\sin(\\alpha \\pm \\beta) = \\sin\\alpha\\cos\\beta \\pm \\cos\\alpha\\sin\\beta', display: '\\sin(\\alpha \\pm \\beta)', desc: 'Sine addition theorem' },
+  { id: 'trig-cos-add', name: 'Cosine Angle Sum & Difference', category: 'trig', latex: '\\cos(\\alpha \\pm \\beta) = \\cos\\alpha\\cos\\beta \\mp \\sin\\alpha\\sin\\beta', display: '\\cos(\\alpha \\pm \\beta)', desc: 'Cosine addition theorem' },
+  { id: 'trig-double-sin', name: 'Double Angle Sine', category: 'trig', latex: '\\sin(2\\theta) = 2 \\sin\\theta \\cos\\theta', display: '\\sin(2\\theta) = 2\\sin\\theta\\cos\\theta', desc: 'Double angle expansion' },
+  { id: 'trig-double-cos', name: 'Double Angle Cosine', category: 'trig', latex: '\\cos(2\\theta) = \\cos^2\\theta - \\sin^2\\theta = 2\\cos^2\\theta - 1 = 1 - 2\\sin^2\\theta', display: '\\cos(2\\theta) = \\cos^2\\theta - \\sin^2\\theta', desc: 'Double angle cosine expansions' },
+  { id: 'trig-law-sines', name: 'Law of Sines', category: 'trig', latex: '\\frac{a}{\\sin A} = \\frac{b}{\\sin B} = \\frac{c}{\\sin C} = 2 R', display: '\\frac{a}{\\sin A} = \\frac{b}{\\sin B} = \\frac{c}{\\sin C}', desc: 'Triangular ratio of sides to opposite sines' },
+  { id: 'trig-law-cos', name: 'Law of Cosines', category: 'trig', latex: 'c^2 = a^2 + b^2 - 2 a b \\cos C', display: 'c^2 = a^2 + b^2 - 2ab\\cos C', desc: 'Generalization of Pythagorean theorem' },
 
-  // ==========================================
-  // 5. PHYSICS & ENGINEERING FORMULAS
-  // ==========================================
-  {
-    id: 'phys-newton2',
-    name: "Newton's Second Law",
-    category: 'physics',
-    latex: '\\vec{F} = m \\vec{a} = \\frac{d\\vec{p}}{dt}',
-    display: '\\vec{F} = m\\vec{a}',
-    desc: 'Force equals mass times acceleration',
-    isPreset: true,
-  },
-  {
-    id: 'phys-gravity',
-    name: 'Universal Gravitation',
-    category: 'physics',
-    latex: 'F = G \\frac{m_1 m_2}{r^2}',
-    display: 'F = G\\frac{m_1 m_2}{r^2}',
-    desc: "Newton's universal law of gravitation",
-    isPreset: true,
-  },
-  {
-    id: 'phys-kinetic',
-    name: 'Kinetic Energy',
-    category: 'physics',
-    latex: 'E_k = \\frac{1}{2} m v^2 = \\frac{p^2}{2m}',
-    display: 'E_k = \\frac{1}{2}mv^2',
-    desc: 'Translational kinetic energy of motion',
-    isPreset: true,
-  },
-  {
-    id: 'phys-potential',
-    name: 'Gravitational Potential Energy',
-    category: 'physics',
-    latex: 'U = m g h',
-    display: 'U = mgh',
-    desc: 'Gravitational potential energy near Earth',
-    isPreset: true,
-  },
-  {
-    id: 'phys-relativity',
-    name: 'Mass-Energy Equivalence',
-    category: 'physics',
-    latex: 'E = m c^2 = \\sqrt{(p c)^2 + (m_0 c^2)^2}',
-    display: 'E = mc^2',
-    desc: "Einstein's mass-energy formula",
-    isPreset: true,
-  },
-  {
-    id: 'phys-coulomb',
-    name: "Coulomb's Law",
-    category: 'physics',
-    latex: 'F = k_e \\frac{|q_1 q_2|}{r^2} = \\frac{1}{4\\pi\\varepsilon_0} \\frac{|q_1 q_2|}{r^2}',
-    display: 'F = k_e \\frac{|q_1 q_2|}{r^2}',
-    desc: 'Electrostatic force between two point charges',
-    isPreset: true,
-  },
-  {
-    id: 'phys-ohm',
-    name: "Ohm's Law & Electric Power",
-    category: 'physics',
-    latex: 'V = I R \\implies P = I V = I^2 R = \\frac{V^2}{R}',
-    display: 'V = IR, \\, P = IV',
-    desc: 'Voltage, current, resistance, and electrical power',
-    isPreset: true,
-  },
-  {
-    id: 'phys-lorentz',
-    name: 'Lorentz Force Law',
-    category: 'physics',
-    latex: '\\vec{F} = q \\left( \\vec{E} + \\vec{v} \\times \\vec{B} \\right)',
-    display: '\\vec{F} = q(\\vec{E} + \\vec{v}\\times\\vec{B})',
-    desc: 'Force on a charged particle in electromagnetic fields',
-    isPreset: true,
-  },
-  {
-    id: 'phys-schrodinger',
-    name: 'Schrödinger Wave Equation',
-    category: 'physics',
-    latex: 'i\\hbar \\frac{\\partial}{\\partial t}\\Psi(\\vec{r}, t) = \\hat{H}\\Psi(\\vec{r}, t)',
-    display: 'i\\hbar \\frac{\\partial}{\\partial t}\\Psi = \\hat{H}\\Psi',
-    desc: 'Fundamental equation of quantum mechanics',
-    isPreset: true,
-  },
-  {
-    id: 'phys-heisenberg',
-    name: 'Heisenberg Uncertainty Principle',
-    category: 'physics',
-    latex: '\\Delta x \\, \\Delta p \\ge \\frac{\\hbar}{2}',
-    display: '\\Delta x \\Delta p \\ge \\frac{\\hbar}{2}',
-    desc: 'Quantum position and momentum uncertainty',
-    isPreset: true,
-  },
-  {
-    id: 'phys-planck',
-    name: 'Planck-Einstein Relation',
-    category: 'physics',
-    latex: 'E = h \\nu = \\hbar \\omega = \\frac{h c}{\\lambda}',
-    display: 'E = h\\nu = \\hbar\\omega',
-    desc: 'Energy of photon as function of frequency',
-    isPreset: true,
-  },
-  {
-    id: 'phys-debroglie',
-    name: 'de Broglie Wavelength',
-    category: 'physics',
-    latex: '\\lambda = \\frac{h}{p} = \\frac{h}{m v}',
-    display: '\\lambda = \\frac{h}{p}',
-    desc: 'Wave-particle duality wavelength',
-    isPreset: true,
-  },
-  {
-    id: 'phys-timedil',
-    name: 'Relativistic Time Dilation',
-    category: 'physics',
-    latex: '\\Delta t\' = \\frac{\\Delta t}{\\sqrt{1 - \\frac{v^2}{c^2}}} = \\gamma \\Delta t',
-    display: '\\Delta t\' = \\gamma \\Delta t',
-    desc: 'Time dilation at relativistic velocity',
-    isPreset: true,
-  },
-  {
-    id: 'phys-snell',
-    name: "Snell's Law of Refraction",
-    category: 'physics',
-    latex: 'n_1 \\sin(\\theta_1) = n_2 \\sin(\\theta_2)',
-    display: 'n_1 \\sin\\theta_1 = n_2 \\sin\\theta_2',
-    desc: 'Optics law of light refraction at interface',
-    isPreset: true,
-  },
-  {
-    id: 'phys-thermo1',
-    name: 'First Law of Thermodynamics',
-    category: 'physics',
-    latex: '\\Delta U = Q - W',
-    display: '\\Delta U = Q - W',
-    desc: 'Conservation of internal energy, heat, and work',
-    isPreset: true,
-  },
-  {
-    id: 'phys-entropy',
-    name: "Boltzmann's Entropy Formula",
-    category: 'physics',
-    latex: 'S = k_B \\ln(\\Omega)',
-    display: 'S = k_B \\ln\\Omega',
-    desc: 'Statistical definition of entropy',
-    isPreset: true,
-  },
-  {
-    id: 'phys-maxwell4',
-    name: "Maxwell's Equations (Differential)",
-    category: 'physics',
-    latex: '\\nabla \\cdot \\vec{E} = \\frac{\\rho}{\\varepsilon_0}, \\quad \\nabla \\cdot \\vec{B} = 0, \\quad \\nabla \\times \\vec{E} = -\\frac{\\partial\\vec{B}}{\\partial t}, \\quad \\nabla \\times \\vec{B} = \\mu_0\\vec{J} + \\mu_0\\varepsilon_0\\frac{\\partial\\vec{E}}{\\partial t}',
-    display: '\\nabla \\cdot \\vec{E}=\\frac{\\rho}{\\varepsilon_0}, \\; \\nabla \\times \\vec{B}=\\mu_0\\vec{J}+\\dots',
-    desc: 'Complete classical electromagnetism set',
-    isPreset: true,
-  },
+  // =========================================================================
+  // 6. PHYSICS & ENGINEERING
+  // =========================================================================
+  { id: 'phys-newton2', name: "Newton's Second Law", category: 'physics', latex: '\\vec{F} = m \\vec{a} = \\frac{d\\vec{p}}{dt}', display: '\\vec{F} = m\\vec{a}', desc: 'Force equals mass times acceleration', isPreset: true },
+  { id: 'phys-gravity', name: 'Universal Gravitation', category: 'physics', latex: 'F = G \\frac{m_1 m_2}{r^2}', display: 'F = G\\frac{m_1 m_2}{r^2}', desc: "Newton's universal law of gravitation", isPreset: true },
+  { id: 'phys-kinematics', name: 'Kinematic Motion Equations', category: 'physics', latex: 'v = v_0 + a t, \\quad x = x_0 + v_0 t + \\frac{1}{2}a t^2, \\quad v^2 = v_0^2 + 2a(x - x_0)', display: 'x = x_0 + v_0 t + \\frac{1}{2}at^2', desc: 'Constant acceleration equations of motion', isPreset: true },
+  { id: 'phys-kinetic', name: 'Kinetic Energy & Work', category: 'physics', latex: 'E_k = \\frac{1}{2} m v^2, \\quad W = \\int \\vec{F} \\cdot d\\vec{r} = \\Delta E_k', display: 'E_k = \\frac{1}{2}mv^2, \\, W = \\Delta E_k', desc: 'Work-energy theorem', isPreset: true },
+  { id: 'phys-potential', name: 'Gravitational Potential Energy', category: 'physics', latex: 'U = m g h', display: 'U = mgh', desc: 'Potential energy near surface of Earth' },
+  { id: 'phys-relativity', name: 'Mass-Energy Equivalence', category: 'physics', latex: 'E = m c^2 = \\sqrt{(p c)^2 + (m_0 c^2)^2}', display: 'E = mc^2', desc: "Einstein's theory of special relativity", isPreset: true },
+  { id: 'phys-coulomb', name: "Coulomb's Law", category: 'physics', latex: 'F = k_e \\frac{|q_1 q_2|}{r^2} = \\frac{1}{4\\pi\\varepsilon_0} \\frac{|q_1 q_2|}{r^2}', display: 'F = k_e \\frac{|q_1 q_2|}{r^2}', desc: 'Electrostatic force between point charges', isPreset: true },
+  { id: 'phys-ohm', name: "Ohm's Law & Electric Power", category: 'physics', latex: 'V = I R, \\quad P = I V = I^2 R = \\frac{V^2}{R}', display: 'V = IR, \\, P = IV', desc: 'Voltage, current, resistance, and electrical power', isPreset: true },
+  { id: 'phys-lorentz', name: 'Lorentz Force Law', category: 'physics', latex: '\\vec{F} = q \\left( \\vec{E} + \\vec{v} \\times \\vec{B} \\right)', display: '\\vec{F} = q(\\vec{E} + \\vec{v}\\times\\vec{B})', desc: 'Force on charged particle in electromagnetic fields', isPreset: true },
+  { id: 'phys-faraday', name: "Faraday's Induction Law", category: 'physics', latex: '\\mathcal{E} = -\\frac{d\\Phi_B}{dt} = -\\frac{d}{dt}\\iint \\vec{B} \\cdot d\\vec{A}', display: '\\mathcal{E} = -\\frac{d\\Phi_B}{dt}', desc: 'Electromotive force induced by changing magnetic flux' },
+  { id: 'phys-schrodinger', name: 'Schrödinger Wave Equation', category: 'physics', latex: 'i\\hbar \\frac{\\partial}{\\partial t}\\Psi(\\vec{r}, t) = \\hat{H}\\Psi(\\vec{r}, t)', display: 'i\\hbar \\frac{\\partial}{\\partial t}\\Psi = \\hat{H}\\Psi', desc: 'Fundamental quantum state time evolution equation', isPreset: true },
+  { id: 'phys-heisenberg', name: 'Heisenberg Uncertainty Principle', category: 'physics', latex: '\\Delta x \\, \\Delta p \\ge \\frac{\\hbar}{2}', display: '\\Delta x \\Delta p \\ge \\frac{\\hbar}{2}', desc: 'Quantum position and momentum uncertainty', isPreset: true },
+  { id: 'phys-planck', name: 'Planck-Einstein Relation', category: 'physics', latex: 'E = h \\nu = \\hbar \\omega = \\frac{h c}{\\lambda}', display: 'E = h\\nu = \\hbar\\omega', desc: 'Photon energy as function of frequency', isPreset: true },
+  { id: 'phys-debroglie', name: 'de Broglie Wavelength', category: 'physics', latex: '\\lambda = \\frac{h}{p} = \\frac{h}{m v}', display: '\\lambda = \\frac{h}{p}', desc: 'Wave-particle duality matter wavelength', isPreset: true },
+  { id: 'phys-timedil', name: 'Relativistic Time Dilation', category: 'physics', latex: '\\Delta t\' = \\frac{\\Delta t}{\\sqrt{1 - \\frac{v^2}{c^2}}} = \\gamma \\Delta t', display: '\\Delta t\' = \\gamma \\Delta t', desc: 'Time dilation at relativistic velocity', isPreset: true },
+  { id: 'phys-snell', name: "Snell's Law of Refraction", category: 'physics', latex: 'n_1 \\sin(\\theta_1) = n_2 \\sin(\\theta_2)', display: 'n_1 \\sin\\theta_1 = n_2 \\sin\\theta_2', desc: 'Optics light refraction at refractive interface', isPreset: true },
+  { id: 'phys-lens', name: "Thin Lens / Lensmaker Equation", category: 'physics', latex: '\\frac{1}{f} = \\frac{1}{d_o} + \\frac{1}{d_i}, \\quad M = -\\frac{d_i}{d_o}', display: '\\frac{1}{f} = \\frac{1}{d_o} + \\frac{1}{d_i}', desc: 'Focal length and magnification' },
+  { id: 'phys-thermo1', name: 'First Law of Thermodynamics', category: 'physics', latex: '\\Delta U = Q - W', display: '\\Delta U = Q - W', desc: 'Conservation of internal energy, heat, and work', isPreset: true },
+  { id: 'phys-entropy', name: "Boltzmann's Entropy Formula", category: 'physics', latex: 'S = k_B \\ln(\\Omega)', display: 'S = k_B \\ln\\Omega', desc: 'Statistical definition of entropy', isPreset: true },
+  { id: 'phys-maxwell4', name: "Maxwell's Equations (Full Set)", category: 'physics', latex: '\\nabla \\cdot \\vec{E} = \\frac{\\rho}{\\varepsilon_0}, \\quad \\nabla \\cdot \\vec{B} = 0, \\quad \\nabla \\times \\vec{E} = -\\frac{\\partial\\vec{B}}{\\partial t}, \\quad \\nabla \\times \\vec{B} = \\mu_0\\vec{J} + \\mu_0\\varepsilon_0\\frac{\\partial\\vec{E}}{\\partial t}', display: '\\nabla \\cdot \\vec{E}=\\frac{\\rho}{\\varepsilon_0}, \\; \\nabla \\times \\vec{B}=\\mu_0\\vec{J}+\\dots', desc: 'Complete classical electromagnetism system', isPreset: true },
 
-  // ==========================================
-  // 6. CHEMISTRY & CHEMICAL EQUATIONS
-  // ==========================================
-  {
-    id: 'chem-ideal-gas',
-    name: 'Ideal Gas Law',
-    category: 'chemistry',
-    latex: 'P V = n R T = N k_B T',
-    display: 'P V = n R T',
-    desc: 'Equation of state of a hypothetical ideal gas',
-    isPreset: true,
-  },
-  {
-    id: 'chem-gibbs',
-    name: 'Gibbs Free Energy',
-    category: 'chemistry',
-    latex: '\\Delta G = \\Delta H - T \\Delta S = -R T \\ln(K)',
-    display: '\\Delta G = \\Delta H - T\\Delta S',
-    desc: 'Spontaneity criterion for chemical reactions',
-    isPreset: true,
-  },
-  {
-    id: 'chem-arrhenius',
-    name: 'Arrhenius Rate Equation',
-    category: 'chemistry',
-    latex: 'k = A e^{-\\frac{E_a}{R T}}',
-    display: 'k = A e^{-\\frac{E_a}{RT}}',
-    desc: 'Reaction rate constant dependence on temperature',
-    isPreset: true,
-  },
-  {
-    id: 'chem-nernst',
-    name: 'Nernst Equation (Electrochemistry)',
-    category: 'chemistry',
-    latex: 'E = E^\\circ - \\frac{R T}{n F} \\ln(Q) = E^\\circ - \\frac{0.0592}{n} \\log_{10}(Q)',
-    display: 'E = E^\\circ - \\frac{RT}{nF}\\ln Q',
-    desc: 'Cell potential under non-standard conditions',
-    isPreset: true,
-  },
-  {
-    id: 'chem-henderson',
-    name: 'Henderson-Hasselbalch Equation',
-    category: 'chemistry',
-    latex: '\\text{pH} = \\text{p}K_a + \\log_{10}\\left( \\frac{[\\text{A}^-]}{[\\text{HA}]} \\right)',
-    display: '\\text{pH} = \\text{p}K_a + \\log\\frac{[\\text{A}^-]}{[\\text{HA}]}',
-    desc: 'Buffer solution pH calculation',
-    isPreset: true,
-  },
-  {
-    id: 'chem-beer',
-    name: 'Beer-Lambert Law',
-    category: 'chemistry',
-    latex: 'A = \\varepsilon \\cdot c \\cdot l = -\\log_{10}\\left( \\frac{I}{I_0} \\right)',
-    display: 'A = \\varepsilon c l',
-    desc: 'Spectrophotometric light absorption law',
-    isPreset: true,
-  },
-  {
-    id: 'chem-photosynth',
-    name: 'Photosynthesis Reaction',
-    category: 'chemistry',
-    latex: '6\\text{CO}_2 + 6\\text{H}_2\\text{O} \\xrightarrow{\\text{light}} \\text{C}_6\\text{H}_{12}\\text{O}_6 + 6\\text{O}_2',
-    display: '6\\text{CO}_2 + 6\\text{H}_2\\text{O} \\to \\text{C}_6\\text{H}_{12}\\text{O}_6 + 6\\text{O}_2',
-    desc: 'Biological light-driven carbon fixation',
-    isPreset: true,
-  },
-  {
-    id: 'chem-respiration',
-    name: 'Cellular Respiration Reaction',
-    category: 'chemistry',
-    latex: '\\text{C}_6\\text{H}_{12}\\text{O}_6 + 6\\text{O}_2 \\longrightarrow 6\\text{CO}_2 + 6\\text{H}_2\\text{O} + 36\\text{ATP}',
-    display: '\\text{C}_6\\text{H}_{12}\\text{O}_6 + 6\\text{O}_2 \\to 6\\text{CO}_2 + 6\\text{H}_2\\text{O} + 36\\text{ATP}',
-    desc: 'Aerobic metabolism ATP generation',
-    isPreset: true,
-  },
-  {
-    id: 'chem-equilibrium',
-    name: 'Equilibrium Constant (Keq)',
-    category: 'chemistry',
-    latex: 'K_{eq} = \\frac{[\\text{C}]^c [\\text{D}]^d}{[\\text{A}]^a [\\text{B}]^b}',
-    display: 'K_{eq} = \\frac{[\\text{C}]^c [\\text{D}]^d}{[\\text{A}]^a [\\text{B}]^b}',
-    desc: 'Law of mass action equilibrium ratio',
-    isPreset: true,
-  },
-  {
-    id: 'chem-rate-law',
-    name: 'Chemical Rate Law',
-    category: 'chemistry',
-    latex: 'r = k [\\text{A}]^m [\\text{B}]^n',
-    display: 'r = k [\\text{A}]^m [\\text{B}]^n',
-    desc: 'Reaction rate order dependence',
-    isPreset: true,
-  },
+  // =========================================================================
+  // 7. CHEMISTRY & BIOCHEMISTRY
+  // =========================================================================
+  { id: 'chem-ideal-gas', name: 'Ideal Gas Law', category: 'chemistry', latex: 'P V = n R T = N k_B T', display: 'P V = n R T', desc: 'Equation of state of ideal gas', isPreset: true },
+  { id: 'chem-gibbs', name: 'Gibbs Free Energy', category: 'chemistry', latex: '\\Delta G = \\Delta H - T \\Delta S = -R T \\ln(K)', display: '\\Delta G = \\Delta H - T\\Delta S', desc: 'Spontaneity criterion for chemical reactions', isPreset: true },
+  { id: 'chem-arrhenius', name: 'Arrhenius Rate Equation', category: 'chemistry', latex: 'k = A e^{-\\frac{E_a}{R T}}', display: 'k = A e^{-\\frac{E_a}{RT}}', desc: 'Reaction rate constant temperature dependence', isPreset: true },
+  { id: 'chem-nernst', name: 'Nernst Equation (Electrochemistry)', category: 'chemistry', latex: 'E = E^\\circ - \\frac{R T}{n F} \\ln(Q) = E^\\circ - \\frac{0.0592}{n} \\log_{10}(Q)', display: 'E = E^\\circ - \\frac{RT}{nF}\\ln Q', desc: 'Cell potential under non-standard conditions', isPreset: true },
+  { id: 'chem-henderson', name: 'Henderson-Hasselbalch Equation', category: 'chemistry', latex: '\\text{pH} = \\text{p}K_a + \\log_{10}\\left( \\frac{[\\text{A}^-]}{[\\text{HA}]} \\right)', display: '\\text{pH} = \\text{p}K_a + \\log\\frac{[\\text{A}^-]}{[\\text{HA}]}', desc: 'Buffer solution pH calculation', isPreset: true },
+  { id: 'chem-beer', name: 'Beer-Lambert Law', category: 'chemistry', latex: 'A = \\varepsilon \\cdot c \\cdot l = -\\log_{10}\\left( \\frac{I}{I_0} \\right)', display: 'A = \\varepsilon c l', desc: 'Spectrophotometric light absorption law', isPreset: true },
+  { id: 'chem-equilibrium', name: 'Equilibrium Constant (Keq)', category: 'chemistry', latex: 'K_{eq} = \\frac{[\\text{C}]^c [\\text{D}]^d}{[\\text{A}]^a [\\text{B}]^b}', display: 'K_{eq} = \\frac{[\\text{C}]^c [\\text{D}]^d}{[\\text{A}]^a [\\text{B}]^b}', desc: 'Law of mass action equilibrium ratio', isPreset: true },
+  { id: 'chem-rate-law', name: 'Chemical Rate Law', category: 'chemistry', latex: 'r = k [\\text{A}]^m [\\text{B}]^n', display: 'r = k [\\text{A}]^m [\\text{B}]^n', desc: 'Reaction rate order dependence', isPreset: true },
+  { id: 'chem-photosynth', name: 'Photosynthesis Reaction', category: 'chemistry', latex: '6\\text{CO}_2 + 6\\text{H}_2\\text{O} \\xrightarrow{\\text{light}} \\text{C}_6\\text{H}_{12}\\text{O}_6 + 6\\text{O}_2', display: '6\\text{CO}_2 + 6\\text{H}_2\\text{O} \\to \\text{C}_6\\text{H}_{12}\\text{O}_6 + 6\\text{O}_2', desc: 'Biological light-driven carbon fixation', isPreset: true },
+  { id: 'chem-respiration', name: 'Cellular Respiration Reaction', category: 'chemistry', latex: '\\text{C}_6\\text{H}_{12}\\text{O}_6 + 6\\text{O}_2 \\longrightarrow 6\\text{CO}_2 + 6\\text{H}_2\\text{O} + 36\\text{ATP}', display: '\\text{C}_6\\text{H}_{12}\\text{O}_6 + 6\\text{O}_2 \\to 6\\text{CO}_2 + 6\\text{H}_2\\text{O} + 36\\text{ATP}', desc: 'Aerobic metabolism ATP generation', isPreset: true },
 
-  // ==========================================
-  // 7. BIOLOGY, GENETICS & BIOCHEMISTRY
-  // ==========================================
-  {
-    id: 'bio-hardy',
-    name: 'Hardy-Weinberg Equilibrium',
-    category: 'biology',
-    latex: 'p^2 + 2pq + q^2 = 1 \\quad \\text{and} \\quad p + q = 1',
-    display: 'p^2 + 2pq + q^2 = 1',
-    desc: 'Population genetics allele frequency distribution',
-    isPreset: true,
-  },
-  {
-    id: 'bio-michaelis',
-    name: 'Michaelis-Menten Kinetics',
-    category: 'biology',
-    latex: 'v = \\frac{V_{\\max} [S]}{K_m + [S]}',
-    display: 'v = \\frac{V_{\\max}[S]}{K_m + [S]}',
-    desc: 'Enzyme catalysis velocity reaction model',
-    isPreset: true,
-  },
-  {
-    id: 'bio-lineweaver',
-    name: 'Lineweaver-Burk Double Reciprocal',
-    category: 'biology',
-    latex: '\\frac{1}{v} = \\frac{K_m}{V_{\\max}} \\frac{1}{[S]} + \\frac{1}{V_{\\max}}',
-    display: '\\frac{1}{v} = \\frac{K_m}{V_{\\max}}\\frac{1}{[S]} + \\frac{1}{V_{\\max}}',
-    desc: 'Linearized enzyme kinetics transformation',
-    isPreset: true,
-  },
-  {
-    id: 'bio-exp-growth',
-    name: 'Exponential Population Growth',
-    category: 'biology',
-    latex: '\\frac{dN}{dt} = r N \\implies N(t) = N_0 e^{r t}',
-    display: 'N(t) = N_0 e^{rt}',
-    desc: 'Malthusian unconstrained population growth',
-    isPreset: true,
-  },
-  {
-    id: 'bio-logistic',
-    name: 'Logistic Population Growth',
-    category: 'biology',
-    latex: '\\frac{dN}{dt} = r N \\left( 1 - \\frac{N}{K} \\right) \\implies N(t) = \\frac{K}{1 + \\left(\\frac{K - N_0}{N_0}\\right)e^{-rt}}',
-    display: '\\frac{dN}{dt} = rN\\left(1 - \\frac{N}{K}\\right)',
-    desc: 'Carrying capacity K constrained growth model',
-    isPreset: true,
-  },
-  {
-    id: 'bio-shannon',
-    name: 'Shannon-Wiener Diversity Index',
-    category: 'biology',
-    latex: 'H\' = -\\sum_{i=1}^{S} p_i \\ln(p_i)',
-    display: 'H\' = -\\sum_{i=1}^{S} p_i \\ln(p_i)',
-    desc: 'Ecological community biodiversity measurement',
-    isPreset: true,
-  },
-  {
-    id: 'bio-ghk',
-    name: 'Goldman-Hodgkin-Katz (GHK) Voltage',
-    category: 'biology',
-    latex: 'V_m = \\frac{R T}{F} \\ln\\left( \\frac{P_{\\text{K}}[\\text{K}^+]_o + P_{\\text{Na}}[\\text{Na}^+]_o + P_{\\text{Cl}}[\\text{Cl}^-]_i}{P_{\\text{K}}[\\text{K}^+]_i + P_{\\text{Na}}[\\text{Na}^+]_i + P_{\\text{Cl}}[\\text{Cl}^-]_o} \\right)',
-    display: 'V_m = \\frac{RT}{F}\\ln\\left(\\frac{P_{\\text{K}}[\\text{K}^+]_o + \\dots}{P_{\\text{K}}[\\text{K}^+]_i + \\dots}\\right)',
-    desc: 'Cell membrane resting potential across ion permeabilities',
-    isPreset: true,
-  },
-  {
-    id: 'bio-lotka',
-    name: 'Lotka-Volterra Predator-Prey',
-    category: 'biology',
-    latex: '\\frac{dx}{dt} = \\alpha x - \\beta x y, \\quad \\frac{dy}{dt} = \\delta x y - \\gamma y',
-    display: '\\frac{dx}{dt} = \\alpha x - \\beta xy, \\; \\frac{dy}{dt} = \\delta xy - \\gamma y',
-    desc: 'Nonlinear biological predator-prey dynamics',
-    isPreset: true,
-  },
-  {
-    id: 'bio-kleiber',
-    name: "Kleiber's Law (Metabolic Scaling)",
-    category: 'biology',
-    latex: 'B = B_0 \\, M^{\\frac{3}{4}}',
-    display: 'B \\propto M^{3/4}',
-    desc: 'Allometric scaling law of basal metabolic rate to animal mass',
-    isPreset: true,
-  },
+  // =========================================================================
+  // 8. BIOLOGY, GENETICS & ECOLOGY
+  // =========================================================================
+  { id: 'bio-hardy', name: 'Hardy-Weinberg Equilibrium', category: 'biology', latex: 'p^2 + 2pq + q^2 = 1 \\quad \\text{and} \\quad p + q = 1', display: 'p^2 + 2pq + q^2 = 1', desc: 'Population genetics allele frequency distribution', isPreset: true },
+  { id: 'bio-michaelis', name: 'Michaelis-Menten Kinetics', category: 'biology', latex: 'v = \\frac{V_{\\max} [S]}{K_m + [S]}', display: 'v = \\frac{V_{\\max}[S]}{K_m + [S]}', desc: 'Enzyme catalysis velocity reaction model', isPreset: true },
+  { id: 'bio-lineweaver', name: 'Lineweaver-Burk Double Reciprocal', category: 'biology', latex: '\\frac{1}{v} = \\frac{K_m}{V_{\\max}} \\frac{1}{[S]} + \\frac{1}{V_{\\max}}', display: '\\frac{1}{v} = \\frac{K_m}{V_{\\max}}\\frac{1}{[S]} + \\frac{1}{V_{\\max}}', desc: 'Linearized enzyme kinetics transformation', isPreset: true },
+  { id: 'bio-exp-growth', name: 'Exponential Population Growth', category: 'biology', latex: '\\frac{dN}{dt} = r N \\implies N(t) = N_0 e^{r t}', display: 'N(t) = N_0 e^{rt}', desc: 'Malthusian unconstrained population growth', isPreset: true },
+  { id: 'bio-logistic', name: 'Logistic Population Growth', category: 'biology', latex: '\\frac{dN}{dt} = r N \\left( 1 - \\frac{N}{K} \\right)', display: '\\frac{dN}{dt} = rN\\left(1 - \\frac{N}{K}\\right)', desc: 'Carrying capacity K constrained growth model', isPreset: true },
+  { id: 'bio-shannon', name: 'Shannon-Wiener Diversity Index', category: 'biology', latex: 'H\' = -\\sum_{i=1}^{S} p_i \\ln(p_i)', display: 'H\' = -\\sum_{i=1}^{S} p_i \\ln(p_i)', desc: 'Ecological community biodiversity measurement', isPreset: true },
+  { id: 'bio-ghk', name: 'Goldman-Hodgkin-Katz (GHK) Voltage', category: 'biology', latex: 'V_m = \\frac{R T}{F} \\ln\\left( \\frac{P_{\\text{K}}[\\text{K}^+]_o + P_{\\text{Na}}[\\text{Na}^+]_o + P_{\\text{Cl}}[\\text{Cl}^-]_i}{P_{\\text{K}}[\\text{K}^+]_i + P_{\\text{Na}}[\\text{Na}^+]_i + P_{\\text{Cl}}[\\text{Cl}^-]_o} \\right)', display: 'V_m = \\frac{RT}{F}\\ln\\left(\\frac{P_K[K^+]_o + \\dots}{P_K[K^+]_i + \\dots}\\right)', desc: 'Cell membrane resting potential across ion permeabilities', isPreset: true },
+  { id: 'bio-lotka', name: 'Lotka-Volterra Predator-Prey', category: 'biology', latex: '\\frac{dx}{dt} = \\alpha x - \\beta x y, \\quad \\frac{dy}{dt} = \\delta x y - \\gamma y', display: '\\frac{dx}{dt} = \\alpha x - \\beta xy, \\; \\frac{dy}{dt} = \\delta xy - \\gamma y', desc: 'Nonlinear biological predator-prey dynamics', isPreset: true },
+  { id: 'bio-kleiber', name: "Kleiber's Law (Metabolic Scaling)", category: 'biology', latex: 'B = B_0 \\, M^{\\frac{3}{4}}', display: 'B \\propto M^{3/4}', desc: 'Allometric scaling law of basal metabolic rate to mass', isPreset: true },
 
-  // ==========================================
-  // 8. STATISTICS & DATA SCIENCE
-  // ==========================================
-  {
-    id: 'stat-bayes',
-    name: "Bayes' Theorem",
-    category: 'stats',
-    latex: 'P(A|B) = \\frac{P(B|A) \\, P(A)}{P(B)} = \\frac{P(B|A) \\, P(A)}{\\sum_{i} P(B|A_i) P(A_i)}',
-    display: 'P(A|B) = \\frac{P(B|A) P(A)}{P(B)}',
-    desc: 'Fundamental posterior probability inversion',
-    isPreset: true,
-  },
-  {
-    id: 'stat-norm-pdf',
-    name: 'Gaussian Normal Distribution',
-    category: 'stats',
-    latex: 'f(x) = \\frac{1}{\\sigma \\sqrt{2\\pi}} e^{-\\frac{1}{2}\\left(\\frac{x-\\mu}{\\sigma}\\right)^2}',
-    display: 'f(x) = \\frac{1}{\\sigma \\sqrt{2\\pi}} e^{-\\frac{1}{2}\\left(\\frac{x-\\mu}{\\sigma}\\right)^2}',
-    desc: 'Continuous probability density function',
-    isPreset: true,
-  },
-  {
-    id: 'stat-var',
-    name: 'Sample Variance & Std Deviation',
-    category: 'stats',
-    latex: 's^2 = \\frac{1}{n - 1} \\sum_{i=1}^{n} (x_i - \\bar{x})^2, \\quad s = \\sqrt{s^2}',
-    display: 's^2 = \\frac{1}{n-1}\\sum (x_i - \\bar{x})^2',
-    desc: 'Unbiased estimator of variance',
-    isPreset: true,
-  },
-  {
-    id: 'stat-pearson',
-    name: 'Pearson Correlation (r)',
-    category: 'stats',
-    latex: 'r = \\frac{\\sum (x_i - \\bar{x})(y_i - \\bar{y})}{\\sqrt{\\sum (x_i - \\bar{x})^2 \\sum (y_i - \\bar{y})^2}}',
-    display: 'r = \\frac{\\sum (x-\\bar{x})(y-\\bar{y})}{\\sqrt{\\sum(x-\\bar{x})^2 \\sum(y-\\bar{y})^2}}',
-    desc: 'Linear bivariate correlation coefficient',
-    isPreset: true,
-  },
-  {
-    id: 'stat-binom',
-    name: 'Binomial Probability Mass (PMF)',
-    category: 'stats',
-    latex: 'P(X = k) = \\binom{n}{k} p^k (1 - p)^{n - k}',
-    display: 'P(X=k) = \\binom{n}{k} p^k (1-p)^{n-k}',
-    desc: 'Probability of k successes in n trials',
-    isPreset: true,
-  },
-  {
-    id: 'stat-poisson',
-    name: 'Poisson Distribution PMF',
-    category: 'stats',
-    latex: 'P(X = k) = \\frac{\\lambda^k e^{-\\lambda}}{k!}',
-    display: 'P(X=k) = \\frac{\\lambda^k e^{-\\lambda}}{k!}',
-    desc: 'Probability of count occurrences per interval',
-    isPreset: true,
-  },
-  {
-    id: 'stat-sigmoid',
-    name: 'Sigmoid / Logistic Activation',
-    category: 'stats',
-    latex: '\\sigma(z) = \\frac{1}{1 + e^{-z}} = \\frac{e^z}{e^z + 1}',
-    display: '\\sigma(z) = \\frac{1}{1 + e^{-z}}',
-    desc: 'Machine learning logistic activation function',
-    isPreset: true,
-  },
-  {
-    id: 'stat-softmax',
-    name: 'Softmax Probability Function',
-    category: 'stats',
-    latex: '\\text{Softmax}(z_i) = \\frac{e^{z_i}}{\\sum_{j=1}^{K} e^{z_j}}',
-    display: '\\text{Softmax}(z_i) = \\frac{e^{z_i}}{\\sum_j e^{z_j}}',
-    desc: 'Multi-class probability distribution normalization',
-    isPreset: true,
-  },
-  {
-    id: 'stat-cross-entropy',
-    name: 'Cross-Entropy Loss',
-    category: 'stats',
-    latex: '\\mathcal{L} = -\\frac{1}{N} \\sum_{i=1}^{N} \\sum_{k=1}^{K} y_{i,k} \\log(\\hat{y}_{i,k})',
-    display: '\\mathcal{L} = -\\sum y \\log(\\hat{y})',
-    desc: 'Deep learning classification loss function',
-    isPreset: true,
-  },
-  {
-    id: 'stat-mse',
-    name: 'Mean Squared Error (MSE)',
-    category: 'stats',
-    latex: '\\text{MSE} = \\frac{1}{n} \\sum_{i=1}^{n} (y_i - \\hat{y}_i)^2',
-    display: '\\text{MSE} = \\frac{1}{n} \\sum (y - \\hat{y})^2',
-    desc: 'Regression mean squared deviation loss',
-    isPreset: true,
-  },
-  {
-    id: 'stat-chisq',
-    name: 'Chi-Square Test Statistic',
-    category: 'stats',
-    latex: '\\chi^2 = \\sum_{i=1}^{k} \\frac{(O_i - E_i)^2}{E_i}',
-    display: '\\chi^2 = \\sum \\frac{(O_i - E_i)^2}{E_i}',
-    desc: 'Goodness of fit statistical test',
-    isPreset: true,
-  },
+  // =========================================================================
+  // 9. STATISTICS, PROBABILITY & MACHINE LEARNING
+  // =========================================================================
+  { id: 'stat-bayes', name: "Bayes' Theorem", category: 'stats', latex: 'P(A|B) = \\frac{P(B|A) \\, P(A)}{P(B)} = \\frac{P(B|A) \\, P(A)}{\\sum_{i} P(B|A_i) P(A_i)}', display: 'P(A|B) = \\frac{P(B|A) P(A)}{P(B)}', desc: 'Fundamental posterior probability inversion', isPreset: true },
+  { id: 'stat-norm-pdf', name: 'Gaussian Normal Distribution', category: 'stats', latex: 'f(x) = \\frac{1}{\\sigma \\sqrt{2\\pi}} e^{-\\frac{1}{2}\\left(\\frac{x-\\mu}{\\sigma}\\right)^2}', display: 'f(x) = \\frac{1}{\\sigma \\sqrt{2\\pi}} e^{-\\frac{1}{2}\\left(\\frac{x-\\mu}{\\sigma}\\right)^2}', desc: 'Continuous probability density function', isPreset: true },
+  { id: 'stat-var', name: 'Sample Variance & Std Deviation', category: 'stats', latex: 's^2 = \\frac{1}{n - 1} \\sum_{i=1}^{n} (x_i - \\bar{x})^2, \\quad s = \\sqrt{s^2}', display: 's^2 = \\frac{1}{n-1}\\sum (x_i - \\bar{x})^2', desc: 'Unbiased estimator of variance', isPreset: true },
+  { id: 'stat-pearson', name: 'Pearson Correlation (r)', category: 'stats', latex: 'r = \\frac{\\sum (x_i - \\bar{x})(y_i - \\bar{y})}{\\sqrt{\\sum (x_i - \\bar{x})^2 \\sum (y_i - \\bar{y})^2}}', display: 'r = \\frac{\\sum (x-\\bar{x})(y-\\bar{y})}{\\sqrt{\\sum(x-\\bar{x})^2 \\sum(y-\\bar{y})^2}}', desc: 'Linear bivariate correlation coefficient', isPreset: true },
+  { id: 'stat-binom', name: 'Binomial Probability Mass (PMF)', category: 'stats', latex: 'P(X = k) = \\binom{n}{k} p^k (1 - p)^{n - k}', display: 'P(X=k) = \\binom{n}{k} p^k (1-p)^{n-k}', desc: 'Probability of k successes in n trials', isPreset: true },
+  { id: 'stat-poisson', name: 'Poisson Distribution PMF', category: 'stats', latex: 'P(X = k) = \\frac{\\lambda^k e^{-\\lambda}}{k!}', display: 'P(X=k) = \\frac{\\lambda^k e^{-\\lambda}}{k!}', desc: 'Probability of count occurrences per interval', isPreset: true },
+  { id: 'stat-sigmoid', name: 'Sigmoid / Logistic Activation', category: 'stats', latex: '\\sigma(z) = \\frac{1}{1 + e^{-z}} = \\frac{e^z}{e^z + 1}', display: '\\sigma(z) = \\frac{1}{1 + e^{-z}}', desc: 'Machine learning logistic activation function', isPreset: true },
+  { id: 'stat-softmax', name: 'Softmax Probability Function', category: 'stats', latex: '\\text{Softmax}(z_i) = \\frac{e^{z_i}}{\\sum_{j=1}^{K} e^{z_j}}', display: '\\text{Softmax}(z_i) = \\frac{e^{z_i}}{\\sum_j e^{z_j}}', desc: 'Multi-class probability distribution normalization', isPreset: true },
+  { id: 'stat-cross-entropy', name: 'Cross-Entropy Loss', category: 'stats', latex: '\\mathcal{L} = -\\frac{1}{N} \\sum_{i=1}^{N} \\sum_{k=1}^{K} y_{i,k} \\log(\\hat{y}_{i,k})', display: '\\mathcal{L} = -\\sum y \\log(\\hat{y})', desc: 'Deep learning classification loss function', isPreset: true },
+  { id: 'stat-mse', name: 'Mean Squared Error (MSE)', category: 'stats', latex: '\\text{MSE} = \\frac{1}{n} \\sum_{i=1}^{n} (y_i - \\hat{y}_i)^2', display: '\\text{MSE} = \\frac{1}{n} \\sum (y - \\hat{y})^2', desc: 'Regression mean squared deviation loss', isPreset: true },
+  { id: 'stat-chisq', name: 'Chi-Square Test Statistic', category: 'stats', latex: '\\chi^2 = \\sum_{i=1}^{k} \\frac{(O_i - E_i)^2}{E_i}', display: '\\chi^2 = \\sum \\frac{(O_i - E_i)^2}{E_i}', desc: 'Goodness of fit statistical test', isPreset: true },
 ];
 
 export const SYMBOL_ITEMS: { label: string; latex: string; category: string; desc: string }[] = [
@@ -687,12 +327,12 @@ export class MathModal {
     const initialFormula = selectedText || 'x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}';
 
     this.backdrop.innerHTML = `
-      <div class="nova-modal nova-math-modal" style="max-width: 820px; width: 96vw;">
+      <div class="nova-modal nova-math-modal" style="max-width: 860px; width: 96vw;">
         <!-- Header -->
         <div class="nova-modal-header">
           <div style="display: flex; align-items: center; gap: 8px;">
             <span style="font-size: 20px; color: var(--ne-accent); font-weight: bold; line-height: 1;">∑</span>
-            <h3 class="nova-modal-title">Math & Scientific Equation Studio</h3>
+            <h3 class="nova-modal-title">Complete Math & Scientific Formula Studio</h3>
           </div>
           <button type="button" class="nova-modal-close-btn" data-action="close">${icons.close}</button>
         </div>
@@ -701,19 +341,20 @@ export class MathModal {
         <div class="nova-modal-body" style="gap: 10px; padding: 14px 20px;">
           <!-- Search & Filter Bar -->
           <div style="display: flex; gap: 8px; align-items: center;">
-            <input type="text" id="ne-math-search" class="nova-form-input" placeholder="🔍 Search formulas across Math, Physics, Chemistry, Biology, Stats & Greek (e.g. newton, enzyme, hardy, gibbs, bayes, integral, matrix)..." style="font-size: 12.5px; padding: 7px 10px; flex: 1;" />
+            <input type="text" id="ne-math-search" class="nova-form-input" placeholder="🔍 Search any formula (e.g. newton, quadratic, hardy, enzyme, gibbs, bayes, integral, matrix, fourier, stokes)..." style="font-size: 12.5px; padding: 7px 10px; flex: 1;" />
           </div>
 
           <!-- Category Tabs -->
           <div class="nova-math-tabs" id="ne-math-tab-bar">
             <button type="button" class="nova-math-tab-btn is-active" data-tab="structures">📐 Structures</button>
+            <button type="button" class="nova-math-tab-btn" data-tab="algebra">📐 Algebra & Geo</button>
             <button type="button" class="nova-math-tab-btn" data-tab="calculus">📈 Calculus</button>
             <button type="button" class="nova-math-tab-btn" data-tab="matrices">🔢 Matrices</button>
             <button type="button" class="nova-math-tab-btn" data-tab="trig">📐 Trig & Logs</button>
             <button type="button" class="nova-math-tab-btn" data-tab="physics">⚡ Physics</button>
             <button type="button" class="nova-math-tab-btn" data-tab="chemistry">🧪 Chemistry</button>
             <button type="button" class="nova-math-tab-btn" data-tab="biology">🧬 Biology</button>
-            <button type="button" class="nova-math-tab-btn" data-tab="stats">📊 Statistics</button>
+            <button type="button" class="nova-math-tab-btn" data-tab="stats">📊 Statistics & AI</button>
             <button type="button" class="nova-math-tab-btn" data-tab="symbols">🔣 Symbols</button>
             <button type="button" class="nova-math-tab-btn" data-tab="greek">🏛️ Greek</button>
           </div>
@@ -949,8 +590,8 @@ export class MathModal {
         return;
       }
 
-      // Specific Preset Sections (physics, chemistry, biology, stats)
-      if (['physics', 'chemistry', 'biology', 'stats'].includes(this.currentTab)) {
+      // Presets & Science Tabs (physics, chemistry, biology, stats, algebra)
+      if (['physics', 'chemistry', 'biology', 'stats', 'algebra'].includes(this.currentTab)) {
         const presets = ALL_MATH_ITEMS.filter((m) => m.category === this.currentTab);
         panelsContainer.innerHTML = `
           <div class="nova-math-panel">
@@ -958,7 +599,7 @@ export class MathModal {
               ${presets
                 .map(
                   (p, idx) => `
-                <button type="button" class="nova-math-preset-card" data-act="replace" data-latex="${encodeURIComponent(p.latex)}" title="${p.name}">
+                <button type="button" class="nova-math-preset-card" data-act="${p.isPreset ? 'replace' : 'insert'}" data-latex="${encodeURIComponent(p.latex)}" title="${p.name}">
                   <div class="nova-math-preset-header">
                     <span class="nova-math-preset-title">${p.name}</span>
                     <span class="nova-math-preset-desc">${p.desc || ''}</span>
