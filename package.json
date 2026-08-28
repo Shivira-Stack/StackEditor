@@ -48,6 +48,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "build:lib": "vite build --mode lib",
+    "generate:pdf": "node scripts/generate-pdf.js",
     "prepare": "npm run build:lib",
     "preview": "vite preview"
   },
