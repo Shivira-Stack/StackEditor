@@ -41,43 +41,47 @@ export const ALL_MATH_ITEMS: MathItem[] = [
   // =========================================================================
   // 2. ALGEBRA & GEOMETRY (BASE TO CORE)
   // =========================================================================
-  { id: 'alg-linear', name: 'Slope-Intercept Form', category: 'algebra', latex: 'y = m x + b', display: 'y = mx + b', desc: 'Equation of straight line' },
+  { id: 'alg-linear', name: 'Slope-Intercept Line', category: 'algebra', latex: 'y = m x + b', display: 'y = mx + b', desc: 'Standard slope-intercept form' },
   { id: 'alg-point-slope', name: 'Point-Slope Equation', category: 'algebra', latex: 'y - y_1 = m (x - x_1)', display: 'y - y_1 = m(x-x_1)', desc: 'Line passing through (x1, y1)' },
   { id: 'alg-quad', name: 'Quadratic Formula', category: 'algebra', latex: 'x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}', display: 'x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}', desc: 'Roots of ax² + bx + c = 0', isPreset: true },
   { id: 'alg-vertex', name: 'Parabola Vertex Form', category: 'algebra', latex: 'y = a (x - h)^2 + k', display: 'y = a(x-h)^2 + k', desc: 'Parabola with vertex at (h, k)' },
   { id: 'alg-dist', name: '2D Distance Formula', category: 'algebra', latex: 'd = \\sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}', display: 'd = \\sqrt{\\Delta x^2 + \\Delta y^2}', desc: 'Euclidean distance between points' },
-  { id: 'alg-midpoint', name: 'Midpoint Formula', category: 'algebra', latex: 'M = \\left( \\frac{x_1 + x_2}{2}, \\frac{y_1 + y_2}{2} \\right)', display: 'M = \\left(\\frac{x_1+x_2}{2}, \\frac{y_1+y_2}{2}\\right)', desc: 'Coordinates of line segment midpoint' },
-  { id: 'alg-circle-eq', name: 'Equation of Circle', category: 'algebra', latex: '(x - h)^2 + (y - k)^2 = r^2', display: '(x-h)^2 + (y-k)^2 = r^2', desc: 'Circle with center (h, k) and radius r' },
-  { id: 'alg-ellipse', name: 'Equation of Ellipse', category: 'algebra', latex: '\\frac{(x - h)^2}{a^2} + \\frac{(y - k)^2}{b^2} = 1', display: '\\frac{(x-h)^2}{a^2} + \\frac{(y-k)^2}{b^2} = 1', desc: 'Standard conic section ellipse' },
-  { id: 'alg-hyperbola', name: 'Equation of Hyperbola', category: 'algebra', latex: '\\frac{(x - h)^2}{a^2} - \\frac{(y - k)^2}{b^2} = 1', display: '\\frac{(x-h)^2}{a^2} - \\frac{(y-k)^2}{b^2} = 1', desc: 'Standard conic section hyperbola' },
+  { id: 'alg-midpoint', name: 'Midpoint Formula', category: 'algebra', latex: 'M = \\left( \\frac{x_1 + x_2}{2}, \\frac{y_1 + y_2}{2} \\right)', display: 'M = \\left(\\frac{x_1+x_2}{2}, \\frac{y_1+y_2}{2}\\right)', desc: 'Coordinates of line midpoint' },
+  { id: 'alg-circle-eq', name: 'Equation of Circle', category: 'algebra', latex: '(x - h)^2 + (y - k)^2 = r^2', display: '(x-h)^2 + (y-k)^2 = r^2', desc: 'Circle center (h, k), radius r' },
+  { id: 'alg-ellipse', name: 'Equation of Ellipse', category: 'algebra', latex: '\\frac{(x - h)^2}{a^2} + \\frac{(y - k)^2}{b^2} = 1', display: '\\frac{x^2}{a^2} + \\frac{y^2}{b^2} = 1', desc: 'Standard conic section ellipse' },
+  { id: 'alg-hyperbola', name: 'Equation of Hyperbola', category: 'algebra', latex: '\\frac{(x - h)^2}{a^2} - \\frac{(y - k)^2}{b^2} = 1', display: '\\frac{x^2}{a^2} - \\frac{y^2}{b^2} = 1', desc: 'Standard conic section hyperbola' },
   { id: 'alg-pyth', name: 'Pythagorean Theorem', category: 'algebra', latex: 'a^2 + b^2 = c^2', display: 'a^2 + b^2 = c^2', desc: 'Right triangle hypotenuse relation', isPreset: true },
   { id: 'alg-area-tri', name: 'Triangle Area', category: 'algebra', latex: 'A = \\frac{1}{2} b h', display: 'A = \\frac{1}{2}bh', desc: 'Base times height area' },
-  { id: 'alg-heron', name: "Heron's Formula", category: 'algebra', latex: 'A = \\sqrt{s(s - a)(s - b)(s - c)}, \\quad s = \\frac{a + b + c}{2}', display: 'A = \\sqrt{s(s-a)(s-b)(s-c)}', desc: 'Triangle area from all three sides' },
+  { id: 'alg-heron', name: "Heron's Formula", category: 'algebra', latex: 'A = \\sqrt{s(s - a)(s - b)(s - c)}, \\quad s = \\frac{a + b + c}{2}', display: 'A = \\sqrt{s(s-a)(s-b)(s-c)}', desc: 'Triangle area from 3 sides' },
   { id: 'alg-circle-area', name: 'Area & Circumference of Circle', category: 'algebra', latex: 'A = \\pi r^2, \\quad C = 2 \\pi r', display: 'A = \\pi r^2, \\, C = 2\\pi r', desc: 'Circular geometry formulas', isPreset: true },
   { id: 'alg-sphere-vol', name: 'Sphere Volume & Surface Area', category: 'algebra', latex: 'V = \\frac{4}{3}\\pi r^3, \\quad A = 4\\pi r^2', display: 'V = \\frac{4}{3}\\pi r^3, \\, A = 4\\pi r^2', desc: '3D sphere spatial formulas', isPreset: true },
   { id: 'alg-cylinder', name: 'Cylinder Volume', category: 'algebra', latex: 'V = \\pi r^2 h', display: 'V = \\pi r^2 h', desc: 'Right circular cylinder volume' },
   { id: 'alg-cone', name: 'Cone Volume', category: 'algebra', latex: 'V = \\frac{1}{3}\\pi r^2 h', display: 'V = \\frac{1}{3}\\pi r^2 h', desc: 'Right circular cone volume' },
   { id: 'alg-binom', name: 'Binomial Theorem', category: 'algebra', latex: '(x + y)^n = \\sum_{k=0}^{n} \\binom{n}{k} x^{n-k} y^k', display: '(x+y)^n = \\sum \\binom{n}{k}x^{n-k}y^k', desc: 'Polynomial power expansion', isPreset: true },
-  { id: 'alg-arith-seq', name: 'Arithmetic Sequence', category: 'algebra', latex: 'a_n = a_1 + (n - 1)d, \\quad S_n = \\frac{n}{2}(a_1 + a_n)', display: 'a_n = a_1 + (n-1)d', desc: 'N-th term and sum of arithmetic series' },
+  { id: 'alg-arith-seq', name: 'Arithmetic Sequence & Sum', category: 'algebra', latex: 'a_n = a_1 + (n - 1)d, \\quad S_n = \\frac{n}{2}(a_1 + a_n)', display: 'a_n = a_1 + (n-1)d', desc: 'N-th term and sum of arithmetic series' },
   { id: 'alg-geom-seq', name: 'Geometric Sequence & Series', category: 'algebra', latex: 'a_n = a_1 r^{n-1}, \\quad S_n = a_1 \\frac{1 - r^n}{1 - r}, \\quad S_\\infty = \\frac{a_1}{1 - r}', display: 'S_\\infty = \\frac{a_1}{1-r}', desc: 'Finite and infinite geometric series sum' },
   { id: 'alg-euler-form', name: "Euler's Identity & Formula", category: 'algebra', latex: 'e^{i \\pi} + 1 = 0 \\iff e^{i \\theta} = \\cos\\theta + i \\sin\\theta', display: 'e^{i\\pi} + 1 = 0', desc: 'Fundamental mathematical identity', isPreset: true },
-  { id: 'alg-demoivre', name: "De Moivre's Formula", category: 'algebra', latex: '(\\cos\\theta + i \\sin\\theta)^n = \\cos(n\\theta) + i \\sin(n\\theta)', display: '(\\cos\\theta + i\\sin\\theta)^n = \\dots', desc: 'Powers of complex numbers' },
+  { id: 'alg-demoivre', name: "De Moivre's Formula", category: 'algebra', latex: '(\\cos\\theta + i \\sin\\theta)^n = \\cos(n\\theta) + i \\sin(n\\theta)', display: '(\\cos\\theta + i\\sin\\theta)^n', desc: 'Powers of complex numbers' },
+  { id: 'alg-comb-perm', name: 'Combinations & Permutations', category: 'algebra', latex: '\\binom{n}{k} = \\frac{n!}{k!(n - k)!}, \\quad P(n,k) = \\frac{n!}{(n - k)!}', display: '\\binom{n}{k} = \\frac{n!}{k!(n-k)!}', desc: 'Combinatorics counting formulas' },
 
   // =========================================================================
   // 3. CALCULUS & DIFFERENTIAL EQUATIONS
   // =========================================================================
-  { id: 'calc-deriv-def', name: 'Derivative Definition (Limit)', category: 'calculus', latex: 'f\'(x) = \\lim_{h \\to 0} \\frac{f(x + h) - f(x)}{h}', display: 'f\'(x) = \\lim_{h \\to 0}\\frac{f(x+h)-f(x)}{h}', desc: 'Formal Newton-Leibniz difference quotient' },
+  { id: 'calc-deriv-def', name: 'Derivative Definition (Limit)', category: 'calculus', latex: 'f\'(x) = \\lim_{h \\to 0} \\frac{f(x + h) - f(x)}{h}', display: 'f\'(x) = \\lim_{h \\to 0}\\frac{\\Delta f}{h}', desc: 'Formal difference quotient' },
+  { id: 'calc-lhopital', name: "L'Hôpital's Rule", category: 'calculus', latex: '\\lim_{x \\to c} \\frac{f(x)}{g(x)} = \\lim_{x \\to c} \\frac{f\'(x)}{g\'(x)}', display: '\\lim\\frac{f(x)}{g(x)} = \\lim\\frac{f\'(x)}{g\'(x)}', desc: 'Indeterminate limit evaluation' },
   { id: 'calc-prod-rule', name: 'Product Rule', category: 'calculus', latex: '\\frac{d}{dx}[u \\cdot v] = u\' v + u v\'', display: '(uv)\' = u\'v + uv\'', desc: 'Derivative of product of functions' },
   { id: 'calc-quot-rule', name: 'Quotient Rule', category: 'calculus', latex: '\\frac{d}{dx}\\left[\\frac{u}{v}\\right] = \\frac{u\' v - u v\'}{v^2}', display: '\\left(\\frac{u}{v}\\right)\' = \\frac{u\'v - uv\'}{v^2}', desc: 'Derivative of fraction of functions' },
   { id: 'calc-chain-rule', name: 'Chain Rule', category: 'calculus', latex: '\\frac{d}{dx}f(g(x)) = f\'(g(x)) \\cdot g\'(x)', display: '\\frac{df}{dx} = \\frac{df}{dg}\\frac{dg}{dx}', desc: 'Composite function differentiation' },
   { id: 'calc-int-parts', name: 'Integration by Parts', category: 'calculus', latex: '\\int u \\, dv = u v - \\int v \\, du', display: '\\int u\\,dv = uv - \\int v\\,du', desc: 'Integral of product of functions' },
   { id: 'calc-ftc', name: 'Fundamental Theorem of Calculus', category: 'calculus', latex: '\\int_{a}^{b} f(x) \\, dx = F(b) - F(a), \\quad F\'(x) = f(x)', display: '\\int_a^b f(x) dx = F(b)-F(a)', desc: 'Connection between integral and antiderivative' },
+  { id: 'calc-arc-length', name: 'Arc Length of Curve', category: 'calculus', latex: 'L = \\int_{a}^{b} \\sqrt{1 + \\left[f\'(x)\\right]^2} \\, dx', display: 'L = \\int_a^b \\sqrt{1 + (f\')^2} dx', desc: 'Curve arc length integration' },
   { id: 'calc-taylor', name: 'Taylor Series Expansion', category: 'calculus', latex: 'f(x) = \\sum_{n=0}^{\\infty} \\frac{f^{(n)}(a)}{n!} (x - a)^n', display: 'f(x) = \\sum_{n=0}^\\infty \\frac{f^{(n)}(a)}{n!}(x-a)^n', desc: 'Infinite polynomial approximation', isPreset: true },
-  { id: 'calc-fourier', name: 'Fourier Transform', category: 'calculus', latex: '\\hat{f}(\\xi) = \\int_{-\\infty}^{\\infty} f(x) e^{-2\\pi i x \\xi} \\, dx', display: '\\hat{f}(\\xi) = \\int_{-\\infty}^\\infty f(x) e^{-2\\pi i x \\xi} dx', desc: 'Time to frequency domain transform', isPreset: true },
-  { id: 'calc-laplace', name: 'Laplace Transform', category: 'calculus', latex: '\\mathcal{L}\\{f(t)\\}(s) = \\int_{0}^{\\infty} f(t) e^{-s t} \\, dt', display: '\\mathcal{L}\\{f\\}(s) = \\int_0^\\infty f(t) e^{-st} dt', desc: 'Time to complex frequency domain transform' },
-  { id: 'calc-ode1', name: 'First-Order Linear ODE', category: 'calculus', latex: '\\frac{dy}{dx} + P(x) y = Q(x) \\implies y = e^{-\\int P dx} \\left( \\int Q e^{\\int P dx} dx + C \\right)', display: 'y\' + P(x)y = Q(x)', desc: 'Integrating factor general solution' },
-  { id: 'calc-wave-eq', name: 'Wave Equation (1D/3D)', category: 'calculus', latex: '\\frac{\\partial^2 u}{\\partial t^2} = c^2 \\nabla^2 u = c^2 \\frac{\\partial^2 u}{\\partial x^2}', display: '\\frac{\\partial^2 u}{\\partial t^2} = c^2 \\nabla^2 u', desc: 'Hyperbolic PDE governing propagation of waves' },
-  { id: 'calc-heat-eq', name: 'Heat / Diffusion Equation', category: 'calculus', latex: '\\frac{\\partial u}{\\partial t} = \\alpha \\nabla^2 u = \\alpha \\frac{\\partial^2 u}{\\partial x^2}', display: '\\frac{\\partial u}{\\partial t} = \\alpha \\nabla^2 u', desc: 'Parabolic PDE governing thermal diffusion' },
+  { id: 'calc-maclaurin-exp', name: 'Maclaurin Exponential Series', category: 'calculus', latex: 'e^x = \\sum_{n=0}^{\\infty} \\frac{x^n}{n!} = 1 + x + \\frac{x^2}{2!} + \\frac{x^3}{3!} + \\dots', display: 'e^x = \\sum_{n=0}^\\infty \\frac{x^n}{n!}', desc: 'Exponential power series' },
+  { id: 'calc-fourier', name: 'Fourier Transform', category: 'calculus', latex: '\\hat{f}(\\xi) = \\int_{-\\infty}^{\\infty} f(x) e^{-2\\pi i x \\xi} \\, dx', display: '\\hat{f}(\\xi) = \\int_{-\\infty}^\\infty f(x) e^{-2\\pi i x \\xi} dx', desc: 'Continuous Fourier frequency transform', isPreset: true },
+  { id: 'calc-laplace', name: 'Laplace Transform', category: 'calculus', latex: '\\mathcal{L}\\{f(t)\\}(s) = \\int_{0}^{\\infty} f(t) e^{-s t} \\, dt', display: '\\mathcal{L}\\{f\\}(s) = \\int_0^\\infty f(t) e^{-st} dt', desc: 'Complex frequency domain transform' },
+  { id: 'calc-ode1', name: 'First-Order Linear ODE', category: 'calculus', latex: '\\frac{dy}{dx} + P(x) y = Q(x) \\implies y = e^{-\\int P dx} \\left( \\int Q e^{\\int P dx} dx + C \\right)', display: 'y\' + P(x)y = Q(x)', desc: 'Integrating factor ODE solution' },
+  { id: 'calc-wave-eq', name: 'Wave Equation (1D/3D)', category: 'calculus', latex: '\\frac{\\partial^2 u}{\\partial t^2} = c^2 \\nabla^2 u = c^2 \\frac{\\partial^2 u}{\\partial x^2}', display: '\\frac{\\partial^2 u}{\\partial t^2} = c^2 \\nabla^2 u', desc: 'Hyperbolic wave propagation PDE' },
+  { id: 'calc-heat-eq', name: 'Heat / Diffusion Equation', category: 'calculus', latex: '\\frac{\\partial u}{\\partial t} = \\alpha \\nabla^2 u = \\alpha \\frac{\\partial^2 u}{\\partial x^2}', display: '\\frac{\\partial u}{\\partial t} = \\alpha \\nabla^2 u', desc: 'Parabolic thermal diffusion PDE' },
   { id: 'calc-stokes', name: "Stokes' Theorem", category: 'calculus', latex: '\\oint_{\\partial S} \\vec{F} \\cdot d\\vec{r} = \\iint_{S} (\\nabla \\times \\vec{F}) \\cdot d\\vec{S}', display: '\\oint_{\\partial S} \\vec{F} \\cdot d\\vec{r} = \\iint_S (\\nabla \\times \\vec{F}) \\cdot d\\vec{S}', desc: 'Surface curl to boundary circulation integral' },
   { id: 'calc-div-thm', name: 'Divergence (Gauss) Theorem', category: 'calculus', latex: '\\iint_{\\partial V} \\vec{F} \\cdot d\\vec{S} = \\iiint_{V} (\\nabla \\cdot \\vec{F}) \\, dV', display: '\\iint_{\\partial V} \\vec{F} \\cdot d\\vec{S} = \\iiint_V (\\nabla \\cdot \\vec{F}) dV', desc: 'Volume divergence to surface flux integral' },
 
@@ -94,8 +98,8 @@ export const ALL_MATH_ITEMS: MathItem[] = [
   { id: 'row-vec', name: 'Row Vector (3D)', category: 'matrices', latex: '\\begin{pmatrix} x & y & z \\end{pmatrix}', display: '\\begin{pmatrix} x & y & z \\end{pmatrix}', desc: '1x3 row vector' },
   { id: 'dot-prod', name: 'Dot Product', category: 'matrices', latex: '\\vec{u} \\cdot \\vec{v} = |\\vec{u}| |\\vec{v}| \\cos\\theta = u_x v_x + u_y v_y + u_z v_z', display: '\\vec{u} \\cdot \\vec{v}', desc: 'Scalar dot product' },
   { id: 'cross-prod', name: 'Cross Product', category: 'matrices', latex: '\\vec{u} \\times \\vec{v} = \\begin{vmatrix} \\hat{i} & \\hat{j} & \\hat{k} \\\\ u_x & u_y & u_z \\\\ v_x & v_y & v_z \\end{vmatrix}', display: '\\vec{u} \\times \\vec{v}', desc: 'Vector 3D cross product' },
-  { id: 'mat-inv-2x2', name: '2×2 Matrix Inverse', category: 'matrices', latex: 'A^{-1} = \\frac{1}{ad - bc} \\begin{pmatrix} d & -b \\\\ -c & a \\end{pmatrix}', display: 'A^{-1} = \\frac{1}{\\det A}\\begin{pmatrix} d & -b \\\\ -c & a \\end{pmatrix}', desc: 'Closed formula for 2x2 matrix inversion' },
-  { id: 'mat-eigen', name: 'Eigenvalue & Eigenvector Equation', category: 'matrices', latex: 'A \\vec{v} = \\lambda \\vec{v} \\iff \\det(A - \\lambda I) = 0', display: 'A\\vec{v} = \\lambda\\vec{v}', desc: 'Characteristic matrix spectrum equation' },
+  { id: 'mat-inv-2x2', name: '2×2 Matrix Inverse', category: 'matrices', latex: 'A^{-1} = \\frac{1}{ad - bc} \\begin{pmatrix} d & -b \\\\ -c & a \\end{pmatrix}', display: 'A^{-1} = \\frac{1}{\\det A}\\begin{pmatrix} d & -b \\\\ -c & a \\end{pmatrix}', desc: '2x2 matrix inversion' },
+  { id: 'mat-eigen', name: 'Eigenvalue & Eigenvector Equation', category: 'matrices', latex: 'A \\vec{v} = \\lambda \\vec{v} \\iff \\det(A - \\lambda I) = 0', display: 'A\\vec{v} = \\lambda\\vec{v}', desc: 'Characteristic matrix equation' },
   { id: 'mat-svd', name: 'Singular Value Decomposition (SVD)', category: 'matrices', latex: 'A = U \\Sigma V^{T}', display: 'A = U \\Sigma V^T', desc: 'Matrix factorization into singular components' },
 
   // =========================================================================
@@ -118,18 +122,20 @@ export const ALL_MATH_ITEMS: MathItem[] = [
   { id: 'phys-kinematics', name: 'Kinematic Motion Equations', category: 'physics', latex: 'v = v_0 + a t, \\quad x = x_0 + v_0 t + \\frac{1}{2}a t^2, \\quad v^2 = v_0^2 + 2a(x - x_0)', display: 'x = x_0 + v_0 t + \\frac{1}{2}at^2', desc: 'Constant acceleration equations of motion', isPreset: true },
   { id: 'phys-kinetic', name: 'Kinetic Energy & Work', category: 'physics', latex: 'E_k = \\frac{1}{2} m v^2, \\quad W = \\int \\vec{F} \\cdot d\\vec{r} = \\Delta E_k', display: 'E_k = \\frac{1}{2}mv^2, \\, W = \\Delta E_k', desc: 'Work-energy theorem', isPreset: true },
   { id: 'phys-potential', name: 'Gravitational Potential Energy', category: 'physics', latex: 'U = m g h', display: 'U = mgh', desc: 'Potential energy near surface of Earth' },
+  { id: 'phys-hooke', name: "Hooke's Law & Elastic Potential", category: 'physics', latex: 'F = -k x, \\quad U_s = \\frac{1}{2} k x^2, \\quad T = 2\\pi \\sqrt{\\frac{m}{k}}', display: 'F = -kx, \\, U = \\frac{1}{2}kx^2', desc: 'Spring restorative force and period' },
   { id: 'phys-relativity', name: 'Mass-Energy Equivalence', category: 'physics', latex: 'E = m c^2 = \\sqrt{(p c)^2 + (m_0 c^2)^2}', display: 'E = mc^2', desc: "Einstein's theory of special relativity", isPreset: true },
   { id: 'phys-coulomb', name: "Coulomb's Law", category: 'physics', latex: 'F = k_e \\frac{|q_1 q_2|}{r^2} = \\frac{1}{4\\pi\\varepsilon_0} \\frac{|q_1 q_2|}{r^2}', display: 'F = k_e \\frac{|q_1 q_2|}{r^2}', desc: 'Electrostatic force between point charges', isPreset: true },
   { id: 'phys-ohm', name: "Ohm's Law & Electric Power", category: 'physics', latex: 'V = I R, \\quad P = I V = I^2 R = \\frac{V^2}{R}', display: 'V = IR, \\, P = IV', desc: 'Voltage, current, resistance, and electrical power', isPreset: true },
   { id: 'phys-lorentz', name: 'Lorentz Force Law', category: 'physics', latex: '\\vec{F} = q \\left( \\vec{E} + \\vec{v} \\times \\vec{B} \\right)', display: '\\vec{F} = q(\\vec{E} + \\vec{v}\\times\\vec{B})', desc: 'Force on charged particle in electromagnetic fields', isPreset: true },
   { id: 'phys-faraday', name: "Faraday's Induction Law", category: 'physics', latex: '\\mathcal{E} = -\\frac{d\\Phi_B}{dt} = -\\frac{d}{dt}\\iint \\vec{B} \\cdot d\\vec{A}', display: '\\mathcal{E} = -\\frac{d\\Phi_B}{dt}', desc: 'Electromotive force induced by changing magnetic flux' },
+  { id: 'phys-bernoulli', name: "Bernoulli's Fluid Equation", category: 'physics', latex: 'P + \\frac{1}{2}\\rho v^2 + \\rho g h = \\text{constant}', display: 'P + \\frac{1}{2}\\rho v^2 + \\rho gh = C', desc: 'Conservation of energy in fluid dynamics' },
   { id: 'phys-schrodinger', name: 'Schrödinger Wave Equation', category: 'physics', latex: 'i\\hbar \\frac{\\partial}{\\partial t}\\Psi(\\vec{r}, t) = \\hat{H}\\Psi(\\vec{r}, t)', display: 'i\\hbar \\frac{\\partial}{\\partial t}\\Psi = \\hat{H}\\Psi', desc: 'Fundamental quantum state time evolution equation', isPreset: true },
   { id: 'phys-heisenberg', name: 'Heisenberg Uncertainty Principle', category: 'physics', latex: '\\Delta x \\, \\Delta p \\ge \\frac{\\hbar}{2}', display: '\\Delta x \\Delta p \\ge \\frac{\\hbar}{2}', desc: 'Quantum position and momentum uncertainty', isPreset: true },
   { id: 'phys-planck', name: 'Planck-Einstein Relation', category: 'physics', latex: 'E = h \\nu = \\hbar \\omega = \\frac{h c}{\\lambda}', display: 'E = h\\nu = \\hbar\\omega', desc: 'Photon energy as function of frequency', isPreset: true },
   { id: 'phys-debroglie', name: 'de Broglie Wavelength', category: 'physics', latex: '\\lambda = \\frac{h}{p} = \\frac{h}{m v}', display: '\\lambda = \\frac{h}{p}', desc: 'Wave-particle duality matter wavelength', isPreset: true },
   { id: 'phys-timedil', name: 'Relativistic Time Dilation', category: 'physics', latex: '\\Delta t\' = \\frac{\\Delta t}{\\sqrt{1 - \\frac{v^2}{c^2}}} = \\gamma \\Delta t', display: '\\Delta t\' = \\gamma \\Delta t', desc: 'Time dilation at relativistic velocity', isPreset: true },
   { id: 'phys-snell', name: "Snell's Law of Refraction", category: 'physics', latex: 'n_1 \\sin(\\theta_1) = n_2 \\sin(\\theta_2)', display: 'n_1 \\sin\\theta_1 = n_2 \\sin\\theta_2', desc: 'Optics light refraction at refractive interface', isPreset: true },
-  { id: 'phys-lens', name: "Thin Lens / Lensmaker Equation", category: 'physics', latex: '\\frac{1}{f} = \\frac{1}{d_o} + \\frac{1}{d_i}, \\quad M = -\\frac{d_i}{d_o}', display: '\\frac{1}{f} = \\frac{1}{d_o} + \\frac{1}{d_i}', desc: 'Focal length and magnification' },
+  { id: 'phys-lens', name: "Thin Lens / Lensmaker Equation", category: 'physics', latex: '\\frac{1}{f} = \\frac{1}{d_o} + \\frac{1}{d_i}, \\quad M = -\\frac{d_i}{d_o}', display: '\\frac{1}{f} = \\frac{1}{d_o} + \\frac{1}{d_i}', desc: 'Focal length and optical magnification' },
   { id: 'phys-thermo1', name: 'First Law of Thermodynamics', category: 'physics', latex: '\\Delta U = Q - W', display: '\\Delta U = Q - W', desc: 'Conservation of internal energy, heat, and work', isPreset: true },
   { id: 'phys-entropy', name: "Boltzmann's Entropy Formula", category: 'physics', latex: 'S = k_B \\ln(\\Omega)', display: 'S = k_B \\ln\\Omega', desc: 'Statistical definition of entropy', isPreset: true },
   { id: 'phys-maxwell4', name: "Maxwell's Equations (Full Set)", category: 'physics', latex: '\\nabla \\cdot \\vec{E} = \\frac{\\rho}{\\varepsilon_0}, \\quad \\nabla \\cdot \\vec{B} = 0, \\quad \\nabla \\times \\vec{E} = -\\frac{\\partial\\vec{B}}{\\partial t}, \\quad \\nabla \\times \\vec{B} = \\mu_0\\vec{J} + \\mu_0\\varepsilon_0\\frac{\\partial\\vec{E}}{\\partial t}', display: '\\nabla \\cdot \\vec{E}=\\frac{\\rho}{\\varepsilon_0}, \\; \\nabla \\times \\vec{B}=\\mu_0\\vec{J}+\\dots', desc: 'Complete classical electromagnetism system', isPreset: true },
@@ -138,6 +144,7 @@ export const ALL_MATH_ITEMS: MathItem[] = [
   // 7. CHEMISTRY & BIOCHEMISTRY
   // =========================================================================
   { id: 'chem-ideal-gas', name: 'Ideal Gas Law', category: 'chemistry', latex: 'P V = n R T = N k_B T', display: 'P V = n R T', desc: 'Equation of state of ideal gas', isPreset: true },
+  { id: 'chem-vanderwaals', name: 'Van der Waals Real Gas', category: 'chemistry', latex: '\\left(P + \\frac{a n^2}{V^2}\\right)(V - n b) = n R T', display: '\\left(P + \\frac{an^2}{V^2}\\right)(V-nb) = nRT', desc: 'Equation of state of real gas' },
   { id: 'chem-gibbs', name: 'Gibbs Free Energy', category: 'chemistry', latex: '\\Delta G = \\Delta H - T \\Delta S = -R T \\ln(K)', display: '\\Delta G = \\Delta H - T\\Delta S', desc: 'Spontaneity criterion for chemical reactions', isPreset: true },
   { id: 'chem-arrhenius', name: 'Arrhenius Rate Equation', category: 'chemistry', latex: 'k = A e^{-\\frac{E_a}{R T}}', display: 'k = A e^{-\\frac{E_a}{RT}}', desc: 'Reaction rate constant temperature dependence', isPreset: true },
   { id: 'chem-nernst', name: 'Nernst Equation (Electrochemistry)', category: 'chemistry', latex: 'E = E^\\circ - \\frac{R T}{n F} \\ln(Q) = E^\\circ - \\frac{0.0592}{n} \\log_{10}(Q)', display: 'E = E^\\circ - \\frac{RT}{nF}\\ln Q', desc: 'Cell potential under non-standard conditions', isPreset: true },
@@ -467,16 +474,16 @@ export class MathModal {
           (g) => g.name.toLowerCase().includes(q) || g.label.toLowerCase().includes(q)
         );
 
-        let html = `<div class="nova-math-panel"><div style="font-size: 12px; color: var(--ne-text-muted); margin-bottom: 6px;">Search results for "${q}":</div>`;
+        let html = `<div class="nova-math-panel"><div style="font-size: 11px; color: var(--ne-text-muted); margin-bottom: 4px;">Search results for "${q}":</div>`;
 
         if (mathMatches.length === 0 && symMatches.length === 0 && greekMatches.length === 0) {
-          html += `<div style="padding: 20px; text-align: center; color: var(--ne-text-muted); font-size: 13px;">No matching formulas or symbols found.</div></div>`;
+          html += `<div style="padding: 16px; text-align: center; color: var(--ne-text-muted); font-size: 12px;">No matching formulas or symbols found.</div></div>`;
           panelsContainer.innerHTML = html;
           return;
         }
 
         if (mathMatches.length > 0) {
-          html += `<div class="nova-math-grid-templates" style="margin-bottom: 10px;">`;
+          html += `<div class="nova-math-grid-templates" style="margin-bottom: 6px;">`;
           mathMatches.forEach((m, idx) => {
             html += `
               <button type="button" class="nova-math-card" data-act="${m.isPreset ? 'replace' : 'insert'}" data-latex="${encodeURIComponent(m.latex)}" title="${m.name}: ${m.desc || ''}">
@@ -530,8 +537,8 @@ export class MathModal {
         categories.forEach((cat) => {
           const items = SYMBOL_ITEMS.filter((s) => s.category === cat.filter);
           html += `
-            <div style="font-size: 11.5px; font-weight: 600; color: var(--ne-text-muted); margin: 6px 0 4px;">${cat.name}</div>
-            <div class="nova-math-grid-symbols" style="margin-bottom: 6px;">
+            <div style="font-size: 11px; font-weight: 600; color: var(--ne-text-muted); margin: 4px 0 2px;">${cat.name}</div>
+            <div class="nova-math-grid-symbols" style="margin-bottom: 4px;">
               ${items
                 .map(
                   (s) => `
@@ -557,8 +564,8 @@ export class MathModal {
 
         panelsContainer.innerHTML = `
           <div class="nova-math-panel">
-            <div style="font-size: 11.5px; font-weight: 600; color: var(--ne-text-muted); margin: 4px 0 4px;">Lowercase Greek Letters</div>
-            <div class="nova-math-grid-symbols" style="margin-bottom: 8px;">
+            <div style="font-size: 11px; font-weight: 600; color: var(--ne-text-muted); margin: 2px 0 3px;">Lowercase Greek Letters</div>
+            <div class="nova-math-grid-symbols" style="margin-bottom: 6px;">
               ${lower
                 .map(
                   (g) => `
@@ -569,7 +576,7 @@ export class MathModal {
                 )
                 .join('')}
             </div>
-            <div style="font-size: 11.5px; font-weight: 600; color: var(--ne-text-muted); margin: 4px 0 4px;">Uppercase Greek Letters</div>
+            <div style="font-size: 11px; font-weight: 600; color: var(--ne-text-muted); margin: 2px 0 3px;">Uppercase Greek Letters</div>
             <div class="nova-math-grid-symbols">
               ${upper
                 .map(
