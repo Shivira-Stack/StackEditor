@@ -334,14 +334,21 @@ export class MathModal {
   }
 
   public show(): void {
-    // Check if user selected text in the editor canvas
-    const selectedText = this.editor.state.doc.textBetween(
-      this.editor.state.selection.from,
-      this.editor.state.selection.to,
-      ' '
-    ).trim();
+    // Check if user selected math node or text in editor
+    let initialFormula = '';
+    let isInitialBlock = false;
 
-    const initialFormula = selectedText || 'x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}';
+    const { state } = this.editor;
+    const { from, to } = state.selection;
+    const node = state.doc.nodeAt(from);
+
+    if (node && (node.type.name === 'mathInline' || node.type.name === 'mathBlock')) {
+      initialFormula = node.attrs.formula || '';
+      isInitialBlock = node.type.name === 'mathBlock';
+    } else {
+      const selectedText = state.doc.textBetween(from, to, ' ').trim();
+      initialFormula = selectedText || '\\frac{dy}{dx}';
+    }
 
     this.backdrop.innerHTML = `
       <div class="nova-modal nova-math-modal" style="max-width: 680px; width: 92vw;">
@@ -400,10 +407,10 @@ export class MathModal {
           <div style="display: flex; align-items: center; justify-content: space-between; padding-top: 1px;">
             <div style="display: flex; gap: 14px; align-items: center;">
               <label style="display: flex; align-items: center; gap: 5px; font-size: 11.5px; font-weight: 500; cursor: pointer;">
-                <input type="radio" name="ne-math-type" value="block" checked /> Block (Centered)
+                <input type="radio" name="ne-math-type" value="inline" ${!isInitialBlock ? 'checked' : ''} /> <b>Inline Equation</b> (flows inside text)
               </label>
               <label style="display: flex; align-items: center; gap: 5px; font-size: 11.5px; font-weight: 500; cursor: pointer;">
-                <input type="radio" name="ne-math-type" value="inline" /> Inline
+                <input type="radio" name="ne-math-type" value="block" ${isInitialBlock ? 'checked' : ''} /> Block (Centered standalone)
               </label>
             </div>
             <button type="button" class="nova-btn-secondary" id="ne-math-clear" style="padding: 2px 8px; font-size: 11px; height: 24px;">Clear</button>

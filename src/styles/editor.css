@@ -328,30 +328,46 @@
 }
 
 /* Math / KaTeX nodes */
-.nova-math-inline,
-.nova-math-block {
+.nova-math-inline {
   display: inline-flex;
   align-items: center;
-  background: var(--ne-bg-secondary);
+  vertical-align: middle;
+  margin: 0 3px;
+  padding: 1px 5px;
+  background: var(--ne-bg-tertiary);
   border: 1px solid var(--ne-border-color);
   border-radius: var(--ne-radius-sm);
-  padding: 2px 8px;
   cursor: pointer;
   transition: all var(--ne-transition-fast);
   user-select: none;
+  font-size: 0.96em;
+  line-height: 1.1;
 }
 
-.nova-math-inline:hover,
-.nova-math-block:hover {
+.nova-math-inline:hover {
   border-color: var(--ne-accent);
+  background: var(--ne-bg-hover);
   box-shadow: 0 0 0 1px var(--ne-accent);
 }
 
 .nova-math-block {
   display: flex;
+  align-items: center;
   justify-content: center;
-  padding: 12px 16px;
-  margin: 1em 0;
+  background: var(--ne-bg-secondary);
+  border: 1px solid var(--ne-border-color);
+  border-radius: var(--ne-radius-md);
+  padding: 14px 20px;
+  margin: 1.2em 0;
+  cursor: pointer;
+  transition: all var(--ne-transition-fast);
+  user-select: none;
+  overflow-x: auto;
+}
+
+.nova-math-block:hover {
+  border-color: var(--ne-accent);
+  box-shadow: 0 0 0 1px var(--ne-accent);
 }
 
 /* Find & Replace search match highlights */
