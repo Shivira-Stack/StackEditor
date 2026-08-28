@@ -4,6 +4,8 @@ import { i18nDictionary, type SupportedLanguage } from '../core/i18n';
 import { icons } from '../core/icons';
 import { LinkModal } from './modals/link-modal';
 import { ImageModal } from './modals/image-modal';
+import { VideoModal } from './modals/video-modal';
+import { MathModal } from './modals/math-modal';
 import { TableGridModal } from './modals/table-grid-modal';
 import { SourceCodeModal } from './modals/source-code-modal';
 import { ShortcutsModal } from './modals/shortcuts-modal';
@@ -266,6 +268,12 @@ export class Toolbar {
       <!-- 🖼️ (Image) -->
       <button type="button" class="nova-btn" data-action="image" title="Insert Image">${icons.image}</button>
 
+      <!-- 🎥 (Video) -->
+      <button type="button" class="nova-btn" data-action="video" title="Embed Video">${icons.video}</button>
+
+      <!-- √x (Math Formula) -->
+      <button type="button" class="nova-btn" data-action="math" title="Insert Math Formula (LaTeX)">${icons.math}</button>
+
       <!-- Dropdown 6: 📅 ▾ (Table Grid Picker) -->
       <div class="nova-toolbar-dropdown">
         <button type="button" class="nova-btn" data-dropdown="table-grid" title="Insert Table">
@@ -525,6 +533,8 @@ export class Toolbar {
           case 'quote': editor.chain().focus().toggleBlockquote().run(); break;
           case 'link': new LinkModal(editor).show(); break;
           case 'image': new ImageModal(editor, this.instance.options.uploadImage).show(); break;
+          case 'video': new VideoModal(editor).show(); break;
+          case 'math': new MathModal(editor).show(); break;
           case 'table': new TableGridModal(editor).show(); break;
           case 'bullet-list': editor.chain().focus().toggleBulletList().run(); break;
           case 'ordered-list': editor.chain().focus().toggleOrderedList().run(); break;
