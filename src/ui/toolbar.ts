@@ -598,6 +598,11 @@ export class Toolbar {
       });
     });
 
+    // Listen for custom open math modal (e.g. on formula double click)
+    window.addEventListener('nova:open-math-modal', () => {
+      new MathModal(this.editor).show();
+    });
+
     // Font family options
     this.container.querySelectorAll('[data-font]').forEach((btn) => {
       btn.addEventListener('click', (e) => {

@@ -684,7 +684,10 @@ export class MathModal {
     renderActivePanel();
     updatePreview();
     input.addEventListener('input', updatePreview);
-    setTimeout(() => input.focus(), 50);
+    setTimeout(() => {
+      input.focus();
+      input.select();
+    }, 50);
 
     // Clear code button
     this.backdrop.querySelector('#ne-math-clear')?.addEventListener('click', () => {
@@ -703,9 +706,9 @@ export class MathModal {
       const formula = input.value.trim();
       if (!formula) return;
 
-      let isBlock = true;
+      let isBlock = false;
       radios.forEach((r: any) => {
-        if (r.checked && r.value === 'inline') isBlock = false;
+        if (r.checked && r.value === 'block') isBlock = true;
       });
 
       if (isBlock) {

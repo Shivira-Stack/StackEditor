@@ -49,10 +49,11 @@ export const MathInline = Node.create({
   },
 
   addNodeView() {
-    return ({ node }) => {
+    return ({ node, editor, getPos }) => {
       const dom = document.createElement('span');
       dom.className = 'nova-math-inline';
       dom.setAttribute('data-formula', node.attrs.formula);
+      dom.title = 'Double-click to edit formula';
 
       try {
         katex.render(node.attrs.formula || '?', dom, {
@@ -62,6 +63,18 @@ export const MathInline = Node.create({
       } catch (err) {
         dom.innerText = node.attrs.formula;
       }
+
+      dom.addEventListener('dblclick', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        if (typeof getPos === 'function') {
+          const pos = getPos();
+          if (typeof pos === 'number') {
+            editor.commands.setNodeSelection(pos);
+          }
+        }
+        window.dispatchEvent(new CustomEvent('nova:open-math-modal'));
+      });
 
       return {
         dom,
@@ -134,10 +147,11 @@ export const MathBlock = Node.create({
   },
 
   addNodeView() {
-    return ({ node }) => {
+    return ({ node, editor, getPos }) => {
       const dom = document.createElement('div');
       dom.className = 'nova-math-block';
       dom.setAttribute('data-formula', node.attrs.formula);
+      dom.title = 'Double-click to edit formula';
 
       try {
         katex.render(node.attrs.formula || '?', dom, {
@@ -147,6 +161,18 @@ export const MathBlock = Node.create({
       } catch {
         dom.innerText = node.attrs.formula;
       }
+
+      dom.addEventListener('dblclick', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        if (typeof getPos === 'function') {
+          const pos = getPos();
+          if (typeof pos === 'number') {
+            editor.commands.setNodeSelection(pos);
+          }
+        }
+        window.dispatchEvent(new CustomEvent('nova:open-math-modal'));
+      });
 
       return {
         dom,
