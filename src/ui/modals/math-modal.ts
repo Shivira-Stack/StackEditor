@@ -476,15 +476,12 @@ export class MathModal {
         }
 
         if (mathMatches.length > 0) {
-          html += `<div class="nova-math-grid-presets" style="margin-bottom: 10px;">`;
+          html += `<div class="nova-math-grid-templates" style="margin-bottom: 10px;">`;
           mathMatches.forEach((m, idx) => {
             html += `
-              <button type="button" class="nova-math-preset-card" data-act="${m.isPreset ? 'replace' : 'insert'}" data-latex="${encodeURIComponent(m.latex)}" title="${m.name}: ${m.desc || ''}">
-                <div class="nova-math-preset-header">
-                  <span class="nova-math-preset-title">${m.name}</span>
-                  <span class="nova-math-preset-desc">${m.desc || ''}</span>
-                </div>
-                <div class="nova-math-preset-formula" id="search-math-${idx}"></div>
+              <button type="button" class="nova-math-card" data-act="${m.isPreset ? 'replace' : 'insert'}" data-latex="${encodeURIComponent(m.latex)}" title="${m.name}: ${m.desc || ''}">
+                <div class="nova-math-card-preview" id="search-math-${idx}"></div>
+                <span class="nova-math-card-label">${m.name}</span>
               </button>
             `;
           });
@@ -510,7 +507,7 @@ export class MathModal {
           const el = panelsContainer.querySelector(`#search-math-${idx}`) as HTMLElement;
           if (el) {
             try {
-              katex.render(m.display, el, { throwOnError: false, displayMode: true });
+              katex.render(m.display, el, { throwOnError: false, displayMode: false });
             } catch {}
           }
         });
@@ -590,43 +587,7 @@ export class MathModal {
         return;
       }
 
-      // Presets & Science Tabs (physics, chemistry, biology, stats, algebra)
-      if (['physics', 'chemistry', 'biology', 'stats', 'algebra'].includes(this.currentTab)) {
-        const presets = ALL_MATH_ITEMS.filter((m) => m.category === this.currentTab);
-        panelsContainer.innerHTML = `
-          <div class="nova-math-panel">
-            <div class="nova-math-grid-presets">
-              ${presets
-                .map(
-                  (p, idx) => `
-                <button type="button" class="nova-math-preset-card" data-act="${p.isPreset ? 'replace' : 'insert'}" data-latex="${encodeURIComponent(p.latex)}" title="${p.name}">
-                  <div class="nova-math-preset-header">
-                    <span class="nova-math-preset-title">${p.name}</span>
-                    <span class="nova-math-preset-desc">${p.desc || ''}</span>
-                  </div>
-                  <div class="nova-math-preset-formula" id="cat-preset-${idx}"></div>
-                </button>
-              `
-                )
-                .join('')}
-            </div>
-          </div>
-        `;
-
-        presets.forEach((p, idx) => {
-          const el = panelsContainer.querySelector(`#cat-preset-${idx}`) as HTMLElement;
-          if (el) {
-            try {
-              katex.render(p.display, el, { throwOnError: false, displayMode: true });
-            } catch {}
-          }
-        });
-
-        bindItemClicks();
-        return;
-      }
-
-      // Structures, Calculus, Matrices, Trig
+      // All discipline tabs (Structures, Algebra, Calculus, Matrices, Trig, Physics, Chemistry, Biology, Stats)
       const items = ALL_MATH_ITEMS.filter((m) => m.category === this.currentTab);
       panelsContainer.innerHTML = `
         <div class="nova-math-panel">
@@ -634,7 +595,7 @@ export class MathModal {
             ${items
               .map(
                 (m, idx) => `
-              <button type="button" class="nova-math-card" data-act="insert" data-latex="${encodeURIComponent(m.latex)}" title="${m.name}: ${m.desc || ''}">
+              <button type="button" class="nova-math-card" data-act="${m.isPreset ? 'replace' : 'insert'}" data-latex="${encodeURIComponent(m.latex)}" title="${m.name}: ${m.desc || ''}">
                 <div class="nova-math-card-preview" id="cat-tmpl-${idx}"></div>
                 <span class="nova-math-card-label">${m.name}</span>
               </button>
@@ -661,6 +622,9 @@ export class MathModal {
     const bindItemClicks = () => {
       panelsContainer.querySelectorAll('[data-latex]').forEach((btn) => {
         btn.addEventListener('click', () => {
+          panelsContainer.querySelectorAll('.nova-math-card, .nova-math-sym-btn').forEach((b) => b.classList.remove('is-selected'));
+          btn.classList.add('is-selected');
+
           const act = btn.getAttribute('data-act');
           const raw = btn.getAttribute('data-latex');
           if (!raw) return;
