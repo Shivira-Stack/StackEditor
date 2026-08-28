@@ -98,168 +98,441 @@ export const ALL_MATH_ITEMS: MathItem[] = [
   { id: 'exp', name: 'Exponential', category: 'trig', latex: 'e^{x} = \\exp(x)', display: 'e^{x}', desc: 'Exponential function' },
 
   // ==========================================
-  // 5. FAMOUS & POPULAR PRESET FORMULAS
+  // 5. PHYSICS & ENGINEERING FORMULAS
   // ==========================================
   {
-    id: 'form-quad',
-    name: 'Quadratic Formula',
-    category: 'presets',
-    latex: 'x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}',
-    display: 'x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}',
-    desc: 'Solutions of quadratic equation ax² + bx + c = 0',
+    id: 'phys-newton2',
+    name: "Newton's Second Law",
+    category: 'physics',
+    latex: '\\vec{F} = m \\vec{a} = \\frac{d\\vec{p}}{dt}',
+    display: '\\vec{F} = m\\vec{a}',
+    desc: 'Force equals mass times acceleration',
     isPreset: true,
   },
   {
-    id: 'form-pyth',
-    name: 'Pythagorean Theorem',
-    category: 'presets',
-    latex: 'a^2 + b^2 = c^2',
-    display: 'a^2 + b^2 = c^2',
-    desc: 'Geometric right triangle side relations',
+    id: 'phys-gravity',
+    name: 'Universal Gravitation',
+    category: 'physics',
+    latex: 'F = G \\frac{m_1 m_2}{r^2}',
+    display: 'F = G\\frac{m_1 m_2}{r^2}',
+    desc: "Newton's universal law of gravitation",
     isPreset: true,
   },
   {
-    id: 'form-euler',
-    name: "Euler's Identity",
-    category: 'presets',
-    latex: 'e^{i\\pi} + 1 = 0',
-    display: 'e^{i\\pi} + 1 = 0',
-    desc: 'Connection between e, pi, i, 1, and 0',
+    id: 'phys-kinetic',
+    name: 'Kinetic Energy',
+    category: 'physics',
+    latex: 'E_k = \\frac{1}{2} m v^2 = \\frac{p^2}{2m}',
+    display: 'E_k = \\frac{1}{2}mv^2',
+    desc: 'Translational kinetic energy of motion',
     isPreset: true,
   },
   {
-    id: 'form-mass',
+    id: 'phys-potential',
+    name: 'Gravitational Potential Energy',
+    category: 'physics',
+    latex: 'U = m g h',
+    display: 'U = mgh',
+    desc: 'Gravitational potential energy near Earth',
+    isPreset: true,
+  },
+  {
+    id: 'phys-relativity',
     name: 'Mass-Energy Equivalence',
-    category: 'presets',
-    latex: 'E = m c^2',
-    display: 'E = m c^2',
-    desc: "Einstein's theory of special relativity",
+    category: 'physics',
+    latex: 'E = m c^2 = \\sqrt{(p c)^2 + (m_0 c^2)^2}',
+    display: 'E = mc^2',
+    desc: "Einstein's mass-energy formula",
     isPreset: true,
   },
   {
-    id: 'form-area-circle',
-    name: 'Area of Circle',
-    category: 'presets',
-    latex: 'A = \\pi r^2',
-    display: 'A = \\pi r^2',
-    desc: 'Circular geometry area formula',
+    id: 'phys-coulomb',
+    name: "Coulomb's Law",
+    category: 'physics',
+    latex: 'F = k_e \\frac{|q_1 q_2|}{r^2} = \\frac{1}{4\\pi\\varepsilon_0} \\frac{|q_1 q_2|}{r^2}',
+    display: 'F = k_e \\frac{|q_1 q_2|}{r^2}',
+    desc: 'Electrostatic force between two point charges',
     isPreset: true,
   },
   {
-    id: 'form-vol-sphere',
-    name: 'Volume of Sphere',
-    category: 'presets',
-    latex: 'V = \\frac{4}{3}\\pi r^3',
-    display: 'V = \\frac{4}{3}\\pi r^3',
-    desc: '3D sphere volume formula',
+    id: 'phys-ohm',
+    name: "Ohm's Law & Electric Power",
+    category: 'physics',
+    latex: 'V = I R \\implies P = I V = I^2 R = \\frac{V^2}{R}',
+    display: 'V = IR, \\, P = IV',
+    desc: 'Voltage, current, resistance, and electrical power',
     isPreset: true,
   },
   {
-    id: 'form-binom',
-    name: 'Binomial Theorem',
-    category: 'presets',
-    latex: '(x + a)^n = \\sum_{k=0}^{n} \\binom{n}{k} x^k a^{n-k}',
-    display: '(x+a)^n = \\sum_{k=0}^n \\binom{n}{k} x^k a^{n-k}',
-    desc: 'Polynomial power expansion',
+    id: 'phys-lorentz',
+    name: 'Lorentz Force Law',
+    category: 'physics',
+    latex: '\\vec{F} = q \\left( \\vec{E} + \\vec{v} \\times \\vec{B} \\right)',
+    display: '\\vec{F} = q(\\vec{E} + \\vec{v}\\times\\vec{B})',
+    desc: 'Force on a charged particle in electromagnetic fields',
     isPreset: true,
   },
   {
-    id: 'form-gauss',
-    name: 'Gaussian Integral',
-    category: 'presets',
-    latex: '\\int_{-\\infty}^{\\infty} e^{-x^2} \\, dx = \\sqrt{\\pi}',
-    display: '\\int_{-\\infty}^{\\infty} e^{-x^2} dx = \\sqrt{\\pi}',
-    desc: 'Integral of gaussian probability density',
-    isPreset: true,
-  },
-  {
-    id: 'form-norm-pdf',
-    name: 'Normal Distribution PDF',
-    category: 'presets',
-    latex: 'f(x) = \\frac{1}{\\sigma \\sqrt{2\\pi}} e^{-\\frac{1}{2}\\left(\\frac{x-\\mu}{\\sigma}\\right)^2}',
-    display: 'f(x) = \\frac{1}{\\sigma \\sqrt{2\\pi}} e^{-\\frac{1}{2}\\left(\\frac{x-\\mu}{\\sigma}\\right)^2}',
-    desc: 'Gaussian standard distribution probability density',
-    isPreset: true,
-  },
-  {
-    id: 'form-bayes',
-    name: "Bayes' Theorem",
-    category: 'presets',
-    latex: 'P(A|B) = \\frac{P(B|A) \\, P(A)}{P(B)}',
-    display: 'P(A|B) = \\frac{P(B|A) P(A)}{P(B)}',
-    desc: 'Conditional probability inversion formula',
-    isPreset: true,
-  },
-  {
-    id: 'form-schrodinger',
+    id: 'phys-schrodinger',
     name: 'Schrödinger Wave Equation',
-    category: 'presets',
+    category: 'physics',
     latex: 'i\\hbar \\frac{\\partial}{\\partial t}\\Psi(\\vec{r}, t) = \\hat{H}\\Psi(\\vec{r}, t)',
     display: 'i\\hbar \\frac{\\partial}{\\partial t}\\Psi = \\hat{H}\\Psi',
-    desc: 'Fundamental quantum state time evolution equation',
+    desc: 'Fundamental equation of quantum mechanics',
     isPreset: true,
   },
   {
-    id: 'form-heisenberg',
+    id: 'phys-heisenberg',
     name: 'Heisenberg Uncertainty Principle',
-    category: 'presets',
-    latex: '\\sigma_x \\sigma_p \\ge \\frac{\\hbar}{2}',
-    display: '\\sigma_x \\sigma_p \\ge \\frac{\\hbar}{2}',
-    desc: 'Position and momentum uncertainty lower bound',
+    category: 'physics',
+    latex: '\\Delta x \\, \\Delta p \\ge \\frac{\\hbar}{2}',
+    display: '\\Delta x \\Delta p \\ge \\frac{\\hbar}{2}',
+    desc: 'Quantum position and momentum uncertainty',
     isPreset: true,
   },
   {
-    id: 'form-taylor',
-    name: 'Taylor Series Expansion',
-    category: 'presets',
-    latex: 'f(x) = \\sum_{n=0}^{\\infty} \\frac{f^{(n)}(a)}{n!} (x - a)^n',
-    display: 'f(x) = \\sum_{n=0}^\\infty \\frac{f^{(n)}(a)}{n!} (x-a)^n',
-    desc: 'Infinite polynomial approximation about point a',
+    id: 'phys-planck',
+    name: 'Planck-Einstein Relation',
+    category: 'physics',
+    latex: 'E = h \\nu = \\hbar \\omega = \\frac{h c}{\\lambda}',
+    display: 'E = h\\nu = \\hbar\\omega',
+    desc: 'Energy of photon as function of frequency',
     isPreset: true,
   },
   {
-    id: 'form-fourier',
-    name: 'Fourier Transform',
-    category: 'presets',
-    latex: '\\hat{f}(\\xi) = \\int_{-\\infty}^{\\infty} f(x) e^{-2\\pi i x \\xi} \\, dx',
-    display: '\\hat{f}(\\xi) = \\int_{-\\infty}^\\infty f(x) e^{-2\\pi i x \\xi} dx',
-    desc: 'Time to frequency domain continuous transform',
+    id: 'phys-debroglie',
+    name: 'de Broglie Wavelength',
+    category: 'physics',
+    latex: '\\lambda = \\frac{h}{p} = \\frac{h}{m v}',
+    display: '\\lambda = \\frac{h}{p}',
+    desc: 'Wave-particle duality wavelength',
     isPreset: true,
   },
   {
-    id: 'form-maxwell-gauss',
-    name: "Gauss's Law (Maxwell)",
-    category: 'presets',
-    latex: '\\nabla \\cdot \\vec{E} = \\frac{\\rho}{\\varepsilon_0}',
-    display: '\\nabla \\cdot \\vec{E} = \\frac{\\rho}{\\varepsilon_0}',
-    desc: 'Electric field flux divergence in electromagnetism',
+    id: 'phys-timedil',
+    name: 'Relativistic Time Dilation',
+    category: 'physics',
+    latex: '\\Delta t\' = \\frac{\\Delta t}{\\sqrt{1 - \\frac{v^2}{c^2}}} = \\gamma \\Delta t',
+    display: '\\Delta t\' = \\gamma \\Delta t',
+    desc: 'Time dilation at relativistic velocity',
     isPreset: true,
   },
   {
-    id: 'form-law-cos',
-    name: 'Law of Cosines',
-    category: 'presets',
-    latex: 'c^2 = a^2 + b^2 - 2ab \\cos(\\gamma)',
-    display: 'c^2 = a^2 + b^2 - 2ab \\cos(\\gamma)',
-    desc: 'Generalized triangle law for non-right triangles',
+    id: 'phys-snell',
+    name: "Snell's Law of Refraction",
+    category: 'physics',
+    latex: 'n_1 \\sin(\\theta_1) = n_2 \\sin(\\theta_2)',
+    display: 'n_1 \\sin\\theta_1 = n_2 \\sin\\theta_2',
+    desc: 'Optics law of light refraction at interface',
     isPreset: true,
   },
   {
-    id: 'form-sample-var',
-    name: 'Sample Variance & Std Dev',
-    category: 'presets',
-    latex: 's^2 = \\frac{1}{n - 1} \\sum_{i=1}^{n} (x_i - \\bar{x})^2',
-    display: 's^2 = \\frac{1}{n-1}\\sum_{i=1}^n (x_i-\\bar{x})^2',
-    desc: 'Unbiased sample variance estimator',
+    id: 'phys-thermo1',
+    name: 'First Law of Thermodynamics',
+    category: 'physics',
+    latex: '\\Delta U = Q - W',
+    display: '\\Delta U = Q - W',
+    desc: 'Conservation of internal energy, heat, and work',
     isPreset: true,
   },
   {
-    id: 'form-ideal-gas',
+    id: 'phys-entropy',
+    name: "Boltzmann's Entropy Formula",
+    category: 'physics',
+    latex: 'S = k_B \\ln(\\Omega)',
+    display: 'S = k_B \\ln\\Omega',
+    desc: 'Statistical definition of entropy',
+    isPreset: true,
+  },
+  {
+    id: 'phys-maxwell4',
+    name: "Maxwell's Equations (Differential)",
+    category: 'physics',
+    latex: '\\nabla \\cdot \\vec{E} = \\frac{\\rho}{\\varepsilon_0}, \\quad \\nabla \\cdot \\vec{B} = 0, \\quad \\nabla \\times \\vec{E} = -\\frac{\\partial\\vec{B}}{\\partial t}, \\quad \\nabla \\times \\vec{B} = \\mu_0\\vec{J} + \\mu_0\\varepsilon_0\\frac{\\partial\\vec{E}}{\\partial t}',
+    display: '\\nabla \\cdot \\vec{E}=\\frac{\\rho}{\\varepsilon_0}, \\; \\nabla \\times \\vec{B}=\\mu_0\\vec{J}+\\dots',
+    desc: 'Complete classical electromagnetism set',
+    isPreset: true,
+  },
+
+  // ==========================================
+  // 6. CHEMISTRY & CHEMICAL EQUATIONS
+  // ==========================================
+  {
+    id: 'chem-ideal-gas',
     name: 'Ideal Gas Law',
-    category: 'presets',
-    latex: 'P V = n R T',
+    category: 'chemistry',
+    latex: 'P V = n R T = N k_B T',
     display: 'P V = n R T',
-    desc: 'Thermodynamic pressure-volume-temperature relation',
+    desc: 'Equation of state of a hypothetical ideal gas',
+    isPreset: true,
+  },
+  {
+    id: 'chem-gibbs',
+    name: 'Gibbs Free Energy',
+    category: 'chemistry',
+    latex: '\\Delta G = \\Delta H - T \\Delta S = -R T \\ln(K)',
+    display: '\\Delta G = \\Delta H - T\\Delta S',
+    desc: 'Spontaneity criterion for chemical reactions',
+    isPreset: true,
+  },
+  {
+    id: 'chem-arrhenius',
+    name: 'Arrhenius Rate Equation',
+    category: 'chemistry',
+    latex: 'k = A e^{-\\frac{E_a}{R T}}',
+    display: 'k = A e^{-\\frac{E_a}{RT}}',
+    desc: 'Reaction rate constant dependence on temperature',
+    isPreset: true,
+  },
+  {
+    id: 'chem-nernst',
+    name: 'Nernst Equation (Electrochemistry)',
+    category: 'chemistry',
+    latex: 'E = E^\\circ - \\frac{R T}{n F} \\ln(Q) = E^\\circ - \\frac{0.0592}{n} \\log_{10}(Q)',
+    display: 'E = E^\\circ - \\frac{RT}{nF}\\ln Q',
+    desc: 'Cell potential under non-standard conditions',
+    isPreset: true,
+  },
+  {
+    id: 'chem-henderson',
+    name: 'Henderson-Hasselbalch Equation',
+    category: 'chemistry',
+    latex: '\\text{pH} = \\text{p}K_a + \\log_{10}\\left( \\frac{[\\text{A}^-]}{[\\text{HA}]} \\right)',
+    display: '\\text{pH} = \\text{p}K_a + \\log\\frac{[\\text{A}^-]}{[\\text{HA}]}',
+    desc: 'Buffer solution pH calculation',
+    isPreset: true,
+  },
+  {
+    id: 'chem-beer',
+    name: 'Beer-Lambert Law',
+    category: 'chemistry',
+    latex: 'A = \\varepsilon \\cdot c \\cdot l = -\\log_{10}\\left( \\frac{I}{I_0} \\right)',
+    display: 'A = \\varepsilon c l',
+    desc: 'Spectrophotometric light absorption law',
+    isPreset: true,
+  },
+  {
+    id: 'chem-photosynth',
+    name: 'Photosynthesis Reaction',
+    category: 'chemistry',
+    latex: '6\\text{CO}_2 + 6\\text{H}_2\\text{O} \\xrightarrow{\\text{light}} \\text{C}_6\\text{H}_{12}\\text{O}_6 + 6\\text{O}_2',
+    display: '6\\text{CO}_2 + 6\\text{H}_2\\text{O} \\to \\text{C}_6\\text{H}_{12}\\text{O}_6 + 6\\text{O}_2',
+    desc: 'Biological light-driven carbon fixation',
+    isPreset: true,
+  },
+  {
+    id: 'chem-respiration',
+    name: 'Cellular Respiration Reaction',
+    category: 'chemistry',
+    latex: '\\text{C}_6\\text{H}_{12}\\text{O}_6 + 6\\text{O}_2 \\longrightarrow 6\\text{CO}_2 + 6\\text{H}_2\\text{O} + 36\\text{ATP}',
+    display: '\\text{C}_6\\text{H}_{12}\\text{O}_6 + 6\\text{O}_2 \\to 6\\text{CO}_2 + 6\\text{H}_2\\text{O} + 36\\text{ATP}',
+    desc: 'Aerobic metabolism ATP generation',
+    isPreset: true,
+  },
+  {
+    id: 'chem-equilibrium',
+    name: 'Equilibrium Constant (Keq)',
+    category: 'chemistry',
+    latex: 'K_{eq} = \\frac{[\\text{C}]^c [\\text{D}]^d}{[\\text{A}]^a [\\text{B}]^b}',
+    display: 'K_{eq} = \\frac{[\\text{C}]^c [\\text{D}]^d}{[\\text{A}]^a [\\text{B}]^b}',
+    desc: 'Law of mass action equilibrium ratio',
+    isPreset: true,
+  },
+  {
+    id: 'chem-rate-law',
+    name: 'Chemical Rate Law',
+    category: 'chemistry',
+    latex: 'r = k [\\text{A}]^m [\\text{B}]^n',
+    display: 'r = k [\\text{A}]^m [\\text{B}]^n',
+    desc: 'Reaction rate order dependence',
+    isPreset: true,
+  },
+
+  // ==========================================
+  // 7. BIOLOGY, GENETICS & BIOCHEMISTRY
+  // ==========================================
+  {
+    id: 'bio-hardy',
+    name: 'Hardy-Weinberg Equilibrium',
+    category: 'biology',
+    latex: 'p^2 + 2pq + q^2 = 1 \\quad \\text{and} \\quad p + q = 1',
+    display: 'p^2 + 2pq + q^2 = 1',
+    desc: 'Population genetics allele frequency distribution',
+    isPreset: true,
+  },
+  {
+    id: 'bio-michaelis',
+    name: 'Michaelis-Menten Kinetics',
+    category: 'biology',
+    latex: 'v = \\frac{V_{\\max} [S]}{K_m + [S]}',
+    display: 'v = \\frac{V_{\\max}[S]}{K_m + [S]}',
+    desc: 'Enzyme catalysis velocity reaction model',
+    isPreset: true,
+  },
+  {
+    id: 'bio-lineweaver',
+    name: 'Lineweaver-Burk Double Reciprocal',
+    category: 'biology',
+    latex: '\\frac{1}{v} = \\frac{K_m}{V_{\\max}} \\frac{1}{[S]} + \\frac{1}{V_{\\max}}',
+    display: '\\frac{1}{v} = \\frac{K_m}{V_{\\max}}\\frac{1}{[S]} + \\frac{1}{V_{\\max}}',
+    desc: 'Linearized enzyme kinetics transformation',
+    isPreset: true,
+  },
+  {
+    id: 'bio-exp-growth',
+    name: 'Exponential Population Growth',
+    category: 'biology',
+    latex: '\\frac{dN}{dt} = r N \\implies N(t) = N_0 e^{r t}',
+    display: 'N(t) = N_0 e^{rt}',
+    desc: 'Malthusian unconstrained population growth',
+    isPreset: true,
+  },
+  {
+    id: 'bio-logistic',
+    name: 'Logistic Population Growth',
+    category: 'biology',
+    latex: '\\frac{dN}{dt} = r N \\left( 1 - \\frac{N}{K} \\right) \\implies N(t) = \\frac{K}{1 + \\left(\\frac{K - N_0}{N_0}\\right)e^{-rt}}',
+    display: '\\frac{dN}{dt} = rN\\left(1 - \\frac{N}{K}\\right)',
+    desc: 'Carrying capacity K constrained growth model',
+    isPreset: true,
+  },
+  {
+    id: 'bio-shannon',
+    name: 'Shannon-Wiener Diversity Index',
+    category: 'biology',
+    latex: 'H\' = -\\sum_{i=1}^{S} p_i \\ln(p_i)',
+    display: 'H\' = -\\sum_{i=1}^{S} p_i \\ln(p_i)',
+    desc: 'Ecological community biodiversity measurement',
+    isPreset: true,
+  },
+  {
+    id: 'bio-ghk',
+    name: 'Goldman-Hodgkin-Katz (GHK) Voltage',
+    category: 'biology',
+    latex: 'V_m = \\frac{R T}{F} \\ln\\left( \\frac{P_{\\text{K}}[\\text{K}^+]_o + P_{\\text{Na}}[\\text{Na}^+]_o + P_{\\text{Cl}}[\\text{Cl}^-]_i}{P_{\\text{K}}[\\text{K}^+]_i + P_{\\text{Na}}[\\text{Na}^+]_i + P_{\\text{Cl}}[\\text{Cl}^-]_o} \\right)',
+    display: 'V_m = \\frac{RT}{F}\\ln\\left(\\frac{P_{\\text{K}}[\\text{K}^+]_o + \\dots}{P_{\\text{K}}[\\text{K}^+]_i + \\dots}\\right)',
+    desc: 'Cell membrane resting potential across ion permeabilities',
+    isPreset: true,
+  },
+  {
+    id: 'bio-lotka',
+    name: 'Lotka-Volterra Predator-Prey',
+    category: 'biology',
+    latex: '\\frac{dx}{dt} = \\alpha x - \\beta x y, \\quad \\frac{dy}{dt} = \\delta x y - \\gamma y',
+    display: '\\frac{dx}{dt} = \\alpha x - \\beta xy, \\; \\frac{dy}{dt} = \\delta xy - \\gamma y',
+    desc: 'Nonlinear biological predator-prey dynamics',
+    isPreset: true,
+  },
+  {
+    id: 'bio-kleiber',
+    name: "Kleiber's Law (Metabolic Scaling)",
+    category: 'biology',
+    latex: 'B = B_0 \\, M^{\\frac{3}{4}}',
+    display: 'B \\propto M^{3/4}',
+    desc: 'Allometric scaling law of basal metabolic rate to animal mass',
+    isPreset: true,
+  },
+
+  // ==========================================
+  // 8. STATISTICS & DATA SCIENCE
+  // ==========================================
+  {
+    id: 'stat-bayes',
+    name: "Bayes' Theorem",
+    category: 'stats',
+    latex: 'P(A|B) = \\frac{P(B|A) \\, P(A)}{P(B)} = \\frac{P(B|A) \\, P(A)}{\\sum_{i} P(B|A_i) P(A_i)}',
+    display: 'P(A|B) = \\frac{P(B|A) P(A)}{P(B)}',
+    desc: 'Fundamental posterior probability inversion',
+    isPreset: true,
+  },
+  {
+    id: 'stat-norm-pdf',
+    name: 'Gaussian Normal Distribution',
+    category: 'stats',
+    latex: 'f(x) = \\frac{1}{\\sigma \\sqrt{2\\pi}} e^{-\\frac{1}{2}\\left(\\frac{x-\\mu}{\\sigma}\\right)^2}',
+    display: 'f(x) = \\frac{1}{\\sigma \\sqrt{2\\pi}} e^{-\\frac{1}{2}\\left(\\frac{x-\\mu}{\\sigma}\\right)^2}',
+    desc: 'Continuous probability density function',
+    isPreset: true,
+  },
+  {
+    id: 'stat-var',
+    name: 'Sample Variance & Std Deviation',
+    category: 'stats',
+    latex: 's^2 = \\frac{1}{n - 1} \\sum_{i=1}^{n} (x_i - \\bar{x})^2, \\quad s = \\sqrt{s^2}',
+    display: 's^2 = \\frac{1}{n-1}\\sum (x_i - \\bar{x})^2',
+    desc: 'Unbiased estimator of variance',
+    isPreset: true,
+  },
+  {
+    id: 'stat-pearson',
+    name: 'Pearson Correlation (r)',
+    category: 'stats',
+    latex: 'r = \\frac{\\sum (x_i - \\bar{x})(y_i - \\bar{y})}{\\sqrt{\\sum (x_i - \\bar{x})^2 \\sum (y_i - \\bar{y})^2}}',
+    display: 'r = \\frac{\\sum (x-\\bar{x})(y-\\bar{y})}{\\sqrt{\\sum(x-\\bar{x})^2 \\sum(y-\\bar{y})^2}}',
+    desc: 'Linear bivariate correlation coefficient',
+    isPreset: true,
+  },
+  {
+    id: 'stat-binom',
+    name: 'Binomial Probability Mass (PMF)',
+    category: 'stats',
+    latex: 'P(X = k) = \\binom{n}{k} p^k (1 - p)^{n - k}',
+    display: 'P(X=k) = \\binom{n}{k} p^k (1-p)^{n-k}',
+    desc: 'Probability of k successes in n trials',
+    isPreset: true,
+  },
+  {
+    id: 'stat-poisson',
+    name: 'Poisson Distribution PMF',
+    category: 'stats',
+    latex: 'P(X = k) = \\frac{\\lambda^k e^{-\\lambda}}{k!}',
+    display: 'P(X=k) = \\frac{\\lambda^k e^{-\\lambda}}{k!}',
+    desc: 'Probability of count occurrences per interval',
+    isPreset: true,
+  },
+  {
+    id: 'stat-sigmoid',
+    name: 'Sigmoid / Logistic Activation',
+    category: 'stats',
+    latex: '\\sigma(z) = \\frac{1}{1 + e^{-z}} = \\frac{e^z}{e^z + 1}',
+    display: '\\sigma(z) = \\frac{1}{1 + e^{-z}}',
+    desc: 'Machine learning logistic activation function',
+    isPreset: true,
+  },
+  {
+    id: 'stat-softmax',
+    name: 'Softmax Probability Function',
+    category: 'stats',
+    latex: '\\text{Softmax}(z_i) = \\frac{e^{z_i}}{\\sum_{j=1}^{K} e^{z_j}}',
+    display: '\\text{Softmax}(z_i) = \\frac{e^{z_i}}{\\sum_j e^{z_j}}',
+    desc: 'Multi-class probability distribution normalization',
+    isPreset: true,
+  },
+  {
+    id: 'stat-cross-entropy',
+    name: 'Cross-Entropy Loss',
+    category: 'stats',
+    latex: '\\mathcal{L} = -\\frac{1}{N} \\sum_{i=1}^{N} \\sum_{k=1}^{K} y_{i,k} \\log(\\hat{y}_{i,k})',
+    display: '\\mathcal{L} = -\\sum y \\log(\\hat{y})',
+    desc: 'Deep learning classification loss function',
+    isPreset: true,
+  },
+  {
+    id: 'stat-mse',
+    name: 'Mean Squared Error (MSE)',
+    category: 'stats',
+    latex: '\\text{MSE} = \\frac{1}{n} \\sum_{i=1}^{n} (y_i - \\hat{y}_i)^2',
+    display: '\\text{MSE} = \\frac{1}{n} \\sum (y - \\hat{y})^2',
+    desc: 'Regression mean squared deviation loss',
+    isPreset: true,
+  },
+  {
+    id: 'stat-chisq',
+    name: 'Chi-Square Test Statistic',
+    category: 'stats',
+    latex: '\\chi^2 = \\sum_{i=1}^{k} \\frac{(O_i - E_i)^2}{E_i}',
+    display: '\\chi^2 = \\sum \\frac{(O_i - E_i)^2}{E_i}',
+    desc: 'Goodness of fit statistical test',
     isPreset: true,
   },
 ];
@@ -414,12 +687,12 @@ export class MathModal {
     const initialFormula = selectedText || 'x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}';
 
     this.backdrop.innerHTML = `
-      <div class="nova-modal nova-math-modal" style="max-width: 780px; width: 95vw;">
+      <div class="nova-modal nova-math-modal" style="max-width: 820px; width: 96vw;">
         <!-- Header -->
         <div class="nova-modal-header">
           <div style="display: flex; align-items: center; gap: 8px;">
             <span style="font-size: 20px; color: var(--ne-accent); font-weight: bold; line-height: 1;">∑</span>
-            <h3 class="nova-modal-title">Math & Scientific Equation Builder</h3>
+            <h3 class="nova-modal-title">Math & Scientific Equation Studio</h3>
           </div>
           <button type="button" class="nova-modal-close-btn" data-action="close">${icons.close}</button>
         </div>
@@ -428,7 +701,7 @@ export class MathModal {
         <div class="nova-modal-body" style="gap: 10px; padding: 14px 20px;">
           <!-- Search & Filter Bar -->
           <div style="display: flex; gap: 8px; align-items: center;">
-            <input type="text" id="ne-math-search" class="nova-form-input" placeholder="🔍 Search formula, symbol, or structure (e.g. integral, matrix, sqrt, bayes, beta, sin)..." style="font-size: 12.5px; padding: 7px 10px; flex: 1;" />
+            <input type="text" id="ne-math-search" class="nova-form-input" placeholder="🔍 Search formulas across Math, Physics, Chemistry, Biology, Stats & Greek (e.g. newton, enzyme, hardy, gibbs, bayes, integral, matrix)..." style="font-size: 12.5px; padding: 7px 10px; flex: 1;" />
           </div>
 
           <!-- Category Tabs -->
@@ -436,8 +709,11 @@ export class MathModal {
             <button type="button" class="nova-math-tab-btn is-active" data-tab="structures">📐 Structures</button>
             <button type="button" class="nova-math-tab-btn" data-tab="calculus">📈 Calculus</button>
             <button type="button" class="nova-math-tab-btn" data-tab="matrices">🔢 Matrices</button>
-            <button type="button" class="nova-math-tab-btn" data-tab="trig">📐 Functions & Trig</button>
-            <button type="button" class="nova-math-tab-btn" data-tab="presets">📚 Popular Formulas</button>
+            <button type="button" class="nova-math-tab-btn" data-tab="trig">📐 Trig & Logs</button>
+            <button type="button" class="nova-math-tab-btn" data-tab="physics">⚡ Physics</button>
+            <button type="button" class="nova-math-tab-btn" data-tab="chemistry">🧪 Chemistry</button>
+            <button type="button" class="nova-math-tab-btn" data-tab="biology">🧬 Biology</button>
+            <button type="button" class="nova-math-tab-btn" data-tab="stats">📊 Statistics</button>
             <button type="button" class="nova-math-tab-btn" data-tab="symbols">🔣 Symbols</button>
             <button type="button" class="nova-math-tab-btn" data-tab="greek">🏛️ Greek</button>
           </div>
@@ -532,7 +808,7 @@ export class MathModal {
     const renderActivePanel = () => {
       const q = this.searchQuery.toLowerCase().trim();
 
-      // If user typed in search bar, show matching results across all categories
+      // Search across everything
       if (q) {
         const mathMatches = ALL_MATH_ITEMS.filter(
           (m) =>
@@ -559,12 +835,15 @@ export class MathModal {
         }
 
         if (mathMatches.length > 0) {
-          html += `<div class="nova-math-grid-templates" style="margin-bottom: 10px;">`;
+          html += `<div class="nova-math-grid-presets" style="margin-bottom: 10px;">`;
           mathMatches.forEach((m, idx) => {
             html += `
-              <button type="button" class="nova-math-card" data-act="${m.isPreset ? 'replace' : 'insert'}" data-latex="${encodeURIComponent(m.latex)}" title="${m.name}: ${m.desc || ''}">
-                <div class="nova-math-card-preview" id="search-math-${idx}"></div>
-                <span class="nova-math-card-label">${m.name}</span>
+              <button type="button" class="nova-math-preset-card" data-act="${m.isPreset ? 'replace' : 'insert'}" data-latex="${encodeURIComponent(m.latex)}" title="${m.name}: ${m.desc || ''}">
+                <div class="nova-math-preset-header">
+                  <span class="nova-math-preset-title">${m.name}</span>
+                  <span class="nova-math-preset-desc">${m.desc || ''}</span>
+                </div>
+                <div class="nova-math-preset-formula" id="search-math-${idx}"></div>
               </button>
             `;
           });
@@ -590,7 +869,7 @@ export class MathModal {
           const el = panelsContainer.querySelector(`#search-math-${idx}`) as HTMLElement;
           if (el) {
             try {
-              katex.render(m.display, el, { throwOnError: false, displayMode: false });
+              katex.render(m.display, el, { throwOnError: false, displayMode: true });
             } catch {}
           }
         });
@@ -599,7 +878,7 @@ export class MathModal {
         return;
       }
 
-      // Normal Category Tab Views
+      // Symbols View
       if (this.currentTab === 'symbols') {
         const categories = [
           { name: 'Operators & Arithmetic', filter: 'operators' },
@@ -633,6 +912,7 @@ export class MathModal {
         return;
       }
 
+      // Greek View
       if (this.currentTab === 'greek') {
         const lower = GREEK_ITEMS.filter((g) => !g.isUpper);
         const upper = GREEK_ITEMS.filter((g) => g.isUpper);
@@ -669,8 +949,9 @@ export class MathModal {
         return;
       }
 
-      if (this.currentTab === 'presets') {
-        const presets = ALL_MATH_ITEMS.filter((m) => m.category === 'presets');
+      // Specific Preset Sections (physics, chemistry, biology, stats)
+      if (['physics', 'chemistry', 'biology', 'stats'].includes(this.currentTab)) {
+        const presets = ALL_MATH_ITEMS.filter((m) => m.category === this.currentTab);
         panelsContainer.innerHTML = `
           <div class="nova-math-panel">
             <div class="nova-math-grid-presets">
