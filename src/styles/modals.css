@@ -352,6 +352,191 @@
   color: #f3f4f6;
 }
 
+/* ========================================================
+   Math Equation & Formula Builder Modal
+======================================================== */
+.nova-math-tabs {
+  display: flex;
+  gap: 4px;
+  background: var(--ne-bg-tertiary);
+  padding: 4px;
+  border-radius: var(--ne-radius-md);
+  border: 1px solid var(--ne-border-color);
+  overflow-x: auto;
+}
+
+.nova-math-tab-btn {
+  flex: 1;
+  padding: 6px 10px;
+  border: none;
+  background: transparent;
+  color: var(--ne-text-secondary);
+  font-size: 12.5px;
+  font-weight: 500;
+  border-radius: 4px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all var(--ne-transition-fast);
+  text-align: center;
+}
+
+.nova-math-tab-btn:hover {
+  background: var(--ne-bg-hover);
+  color: var(--ne-text-primary);
+}
+
+.nova-math-tab-btn.is-active {
+  background: var(--ne-bg-primary);
+  color: var(--ne-accent);
+  font-weight: 600;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.nova-math-panel {
+  max-height: 180px;
+  overflow-y: auto;
+  padding: 2px;
+}
+
+/* Template Cards (Fractions, Integrals, Roots, Powers, etc.) */
+.nova-math-grid-templates {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 8px;
+}
+
+.nova-math-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 6px;
+  background: var(--ne-bg-secondary);
+  border: 1px solid var(--ne-border-color);
+  border-radius: var(--ne-radius-md);
+  cursor: pointer;
+  transition: all var(--ne-transition-fast);
+  text-align: center;
+}
+
+.nova-math-card:hover {
+  border-color: var(--ne-accent);
+  background: var(--ne-bg-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.nova-math-card-preview {
+  min-height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ne-text-primary);
+}
+
+.nova-math-card-label {
+  font-size: 11px;
+  color: var(--ne-text-muted);
+  margin-top: 4px;
+}
+
+/* Popular Preset Formula Cards */
+.nova-math-grid-presets {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 8px;
+}
+
+.nova-math-preset-card {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 12px;
+  background: var(--ne-bg-secondary);
+  border: 1px solid var(--ne-border-color);
+  border-radius: var(--ne-radius-md);
+  cursor: pointer;
+  transition: all var(--ne-transition-fast);
+  text-align: left;
+}
+
+.nova-math-preset-card:hover {
+  border-color: var(--ne-accent);
+  background: var(--ne-bg-hover);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.nova-math-preset-header {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 6px;
+}
+
+.nova-math-preset-title {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--ne-text-primary);
+}
+
+.nova-math-preset-desc {
+  font-size: 11px;
+  color: var(--ne-text-muted);
+}
+
+.nova-math-preset-formula {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  background: var(--ne-bg-primary);
+  border-radius: 4px;
+  color: var(--ne-text-primary);
+  min-height: 36px;
+}
+
+/* Symbols and Greek Grid */
+.nova-math-grid-symbols {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(42px, 1fr));
+  gap: 4px;
+}
+
+.nova-math-sym-btn {
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--ne-bg-secondary);
+  border: 1px solid var(--ne-border-color);
+  border-radius: 4px;
+  font-size: 15px;
+  color: var(--ne-text-primary);
+  cursor: pointer;
+  transition: all var(--ne-transition-fast);
+}
+
+.nova-math-sym-btn:hover {
+  border-color: var(--ne-accent);
+  background: var(--ne-bg-hover);
+  color: var(--ne-accent);
+  transform: scale(1.08);
+}
+
+/* Preview Box */
+.nova-math-preview-box {
+  padding: 14px;
+  background: var(--ne-bg-secondary);
+  border: 1px solid var(--ne-border-color);
+  border-radius: var(--ne-radius-md);
+  text-align: center;
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+  color: var(--ne-text-primary);
+  overflow-x: auto;
+}
+
 @keyframes novaBackdropFade {
   from { opacity: 0; }
   to { opacity: 1; }

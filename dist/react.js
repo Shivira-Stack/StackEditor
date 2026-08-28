@@ -1,4 +1,4 @@
-import { N as t, S as r, u as s, a as e } from "./useStackEditor-wcxAcFCX.mjs";
+import { N as t, S as r, u as s, a as e } from "./useStackEditor-B33grdDV.mjs";
 export {
   t as NovaEditorComponent,
   r as StackEditorComponent,
