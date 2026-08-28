@@ -332,33 +332,37 @@
   display: inline-flex;
   align-items: center;
   vertical-align: middle;
-  margin: 0 3px;
-  padding: 1px 5px;
-  background: var(--ne-bg-tertiary);
-  border: 1px solid var(--ne-border-color);
-  border-radius: var(--ne-radius-sm);
+  margin: 0 2px;
+  padding: 0 1px;
+  background: transparent;
+  border: none;
+  border-radius: 2px;
   cursor: pointer;
-  transition: all var(--ne-transition-fast);
+  transition: background-color var(--ne-transition-fast), outline var(--ne-transition-fast);
   user-select: none;
-  font-size: 0.96em;
-  line-height: 1.1;
+  font-size: 1em;
+  line-height: inherit;
 }
 
 .nova-math-inline:hover {
-  border-color: var(--ne-accent);
-  background: var(--ne-bg-hover);
-  box-shadow: 0 0 0 1px var(--ne-accent);
+  background: rgba(59, 130, 246, 0.08);
+  outline: 1px dashed var(--ne-accent);
+}
+
+.nova-math-inline.ProseMirror-selectednode {
+  background: rgba(59, 130, 246, 0.15);
+  outline: 1.5px solid var(--ne-accent);
 }
 
 .nova-math-block {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--ne-bg-secondary);
-  border: 1px solid var(--ne-border-color);
+  background: transparent;
+  border: 1px dashed transparent;
   border-radius: var(--ne-radius-md);
-  padding: 14px 20px;
-  margin: 1.2em 0;
+  padding: 10px 16px;
+  margin: 1em 0;
   cursor: pointer;
   transition: all var(--ne-transition-fast);
   user-select: none;
@@ -366,6 +370,12 @@
 }
 
 .nova-math-block:hover {
+  background: rgba(59, 130, 246, 0.04);
+  border-color: var(--ne-accent);
+}
+
+.nova-math-block.ProseMirror-selectednode {
+  background: rgba(59, 130, 246, 0.08);
   border-color: var(--ne-accent);
   box-shadow: 0 0 0 1px var(--ne-accent);
 }
