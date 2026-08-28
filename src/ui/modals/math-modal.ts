@@ -39,11 +39,18 @@ export const ALL_MATH_ITEMS: MathItem[] = [
   { id: 'ddot', name: 'Second Time Derivative (Ddot)', category: 'structures', latex: '\\ddot{x}', display: '\\ddot{x}', desc: 'Second time derivative' },
 
   // =========================================================================
-  // 2. ALGEBRA & GEOMETRY (BASE TO CORE)
+  // 2. ALGEBRA & GEOMETRY (BASIC TO CORE)
   // =========================================================================
+  { id: 'alg-simple-int', name: 'Simple Interest', category: 'algebra', latex: 'I = P \\cdot r \\cdot t', display: 'I = P r t', desc: 'Simple interest calculation' },
+  { id: 'alg-compound-int', name: 'Compound Interest', category: 'algebra', latex: 'A = P \\left(1 + \\frac{r}{n}\\right)^{n t}', display: 'A = P\\left(1+\\frac{r}{n}\\right)^{nt}', desc: 'Compound interest with periodic compounding' },
+  { id: 'alg-diff-sq', name: 'Difference of Squares', category: 'algebra', latex: 'a^2 - b^2 = (a - b)(a + b)', display: 'a^2-b^2 = (a-b)(a+b)', desc: 'Algebraic factoring identity' },
+  { id: 'alg-perf-sq', name: 'Perfect Square Trinomial', category: 'algebra', latex: '(a \\pm b)^2 = a^2 \\pm 2 a b + b^2', display: '(a\\pm b)^2 = a^2\\pm 2ab+b^2', desc: 'Binomial expansion identity' },
+  { id: 'alg-sum-cubes', name: 'Sum & Difference of Cubes', category: 'algebra', latex: 'a^3 \\pm b^3 = (a \\pm b)(a^2 \\mp a b + b^2)', display: 'a^3\\pm b^3 = (a\\pm b)(a^2\\mp ab+b^2)', desc: 'Cubic factoring identity' },
   { id: 'alg-linear', name: 'Slope-Intercept Line', category: 'algebra', latex: 'y = m x + b', display: 'y = mx + b', desc: 'Standard slope-intercept form' },
+  { id: 'alg-slope-form', name: 'Slope Formula', category: 'algebra', latex: 'm = \\frac{y_2 - y_1}{x_2 - x_1}', display: 'm = \\frac{y_2-y_1}{x_2-x_1}', desc: 'Rate of change between two coordinates' },
   { id: 'alg-point-slope', name: 'Point-Slope Equation', category: 'algebra', latex: 'y - y_1 = m (x - x_1)', display: 'y - y_1 = m(x-x_1)', desc: 'Line passing through (x1, y1)' },
   { id: 'alg-quad', name: 'Quadratic Formula', category: 'algebra', latex: 'x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}', display: 'x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}', desc: 'Roots of ax² + bx + c = 0', isPreset: true },
+  { id: 'alg-discriminant', name: 'Quadratic Discriminant', category: 'algebra', latex: '\\Delta = b^2 - 4 a c', display: '\\Delta = b^2 - 4ac', desc: 'Determines nature of quadratic roots' },
   { id: 'alg-vertex', name: 'Parabola Vertex Form', category: 'algebra', latex: 'y = a (x - h)^2 + k', display: 'y = a(x-h)^2 + k', desc: 'Parabola with vertex at (h, k)' },
   { id: 'alg-dist', name: '2D Distance Formula', category: 'algebra', latex: 'd = \\sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}', display: 'd = \\sqrt{\\Delta x^2 + \\Delta y^2}', desc: 'Euclidean distance between points' },
   { id: 'alg-midpoint', name: 'Midpoint Formula', category: 'algebra', latex: 'M = \\left( \\frac{x_1 + x_2}{2}, \\frac{y_1 + y_2}{2} \\right)', display: 'M = \\left(\\frac{x_1+x_2}{2}, \\frac{y_1+y_2}{2}\\right)', desc: 'Coordinates of line midpoint' },
@@ -53,6 +60,7 @@ export const ALL_MATH_ITEMS: MathItem[] = [
   { id: 'alg-pyth', name: 'Pythagorean Theorem', category: 'algebra', latex: 'a^2 + b^2 = c^2', display: 'a^2 + b^2 = c^2', desc: 'Right triangle hypotenuse relation', isPreset: true },
   { id: 'alg-area-tri', name: 'Triangle Area', category: 'algebra', latex: 'A = \\frac{1}{2} b h', display: 'A = \\frac{1}{2}bh', desc: 'Base times height area' },
   { id: 'alg-heron', name: "Heron's Formula", category: 'algebra', latex: 'A = \\sqrt{s(s - a)(s - b)(s - c)}, \\quad s = \\frac{a + b + c}{2}', display: 'A = \\sqrt{s(s-a)(s-b)(s-c)}', desc: 'Triangle area from 3 sides' },
+  { id: 'alg-trapezoid', name: 'Trapezoid Area', category: 'algebra', latex: 'A = \\frac{a + b}{2} h', display: 'A = \\frac{a+b}{2}h', desc: 'Area of a trapezoid' },
   { id: 'alg-circle-area', name: 'Area & Circumference of Circle', category: 'algebra', latex: 'A = \\pi r^2, \\quad C = 2 \\pi r', display: 'A = \\pi r^2, \\, C = 2\\pi r', desc: 'Circular geometry formulas', isPreset: true },
   { id: 'alg-sphere-vol', name: 'Sphere Volume & Surface Area', category: 'algebra', latex: 'V = \\frac{4}{3}\\pi r^3, \\quad A = 4\\pi r^2', display: 'V = \\frac{4}{3}\\pi r^3, \\, A = 4\\pi r^2', desc: '3D sphere spatial formulas', isPreset: true },
   { id: 'alg-cylinder', name: 'Cylinder Volume', category: 'algebra', latex: 'V = \\pi r^2 h', display: 'V = \\pi r^2 h', desc: 'Right circular cylinder volume' },
@@ -75,11 +83,13 @@ export const ALL_MATH_ITEMS: MathItem[] = [
   { id: 'calc-int-parts', name: 'Integration by Parts', category: 'calculus', latex: '\\int u \\, dv = u v - \\int v \\, du', display: '\\int u\\,dv = uv - \\int v\\,du', desc: 'Integral of product of functions' },
   { id: 'calc-ftc', name: 'Fundamental Theorem of Calculus', category: 'calculus', latex: '\\int_{a}^{b} f(x) \\, dx = F(b) - F(a), \\quad F\'(x) = f(x)', display: '\\int_a^b f(x) dx = F(b)-F(a)', desc: 'Connection between integral and antiderivative' },
   { id: 'calc-arc-length', name: 'Arc Length of Curve', category: 'calculus', latex: 'L = \\int_{a}^{b} \\sqrt{1 + \\left[f\'(x)\\right]^2} \\, dx', display: 'L = \\int_a^b \\sqrt{1 + (f\')^2} dx', desc: 'Curve arc length integration' },
+  { id: 'calc-vol-rev-disc', name: 'Volume of Revolution (Disc)', category: 'calculus', latex: 'V = \\pi \\int_{a}^{b} [f(x)]^2 \\, dx', display: 'V = \\pi \\int_a^b [f(x)]^2 dx', desc: 'Rotational solid volume' },
   { id: 'calc-taylor', name: 'Taylor Series Expansion', category: 'calculus', latex: 'f(x) = \\sum_{n=0}^{\\infty} \\frac{f^{(n)}(a)}{n!} (x - a)^n', display: 'f(x) = \\sum_{n=0}^\\infty \\frac{f^{(n)}(a)}{n!}(x-a)^n', desc: 'Infinite polynomial approximation', isPreset: true },
   { id: 'calc-maclaurin-exp', name: 'Maclaurin Exponential Series', category: 'calculus', latex: 'e^x = \\sum_{n=0}^{\\infty} \\frac{x^n}{n!} = 1 + x + \\frac{x^2}{2!} + \\frac{x^3}{3!} + \\dots', display: 'e^x = \\sum_{n=0}^\\infty \\frac{x^n}{n!}', desc: 'Exponential power series' },
   { id: 'calc-fourier', name: 'Fourier Transform', category: 'calculus', latex: '\\hat{f}(\\xi) = \\int_{-\\infty}^{\\infty} f(x) e^{-2\\pi i x \\xi} \\, dx', display: '\\hat{f}(\\xi) = \\int_{-\\infty}^\\infty f(x) e^{-2\\pi i x \\xi} dx', desc: 'Continuous Fourier frequency transform', isPreset: true },
   { id: 'calc-laplace', name: 'Laplace Transform', category: 'calculus', latex: '\\mathcal{L}\\{f(t)\\}(s) = \\int_{0}^{\\infty} f(t) e^{-s t} \\, dt', display: '\\mathcal{L}\\{f\\}(s) = \\int_0^\\infty f(t) e^{-st} dt', desc: 'Complex frequency domain transform' },
   { id: 'calc-ode1', name: 'First-Order Linear ODE', category: 'calculus', latex: '\\frac{dy}{dx} + P(x) y = Q(x) \\implies y = e^{-\\int P dx} \\left( \\int Q e^{\\int P dx} dx + C \\right)', display: 'y\' + P(x)y = Q(x)', desc: 'Integrating factor ODE solution' },
+  { id: 'calc-harmonic-ode', name: 'Simple Harmonic Oscillator ODE', category: 'calculus', latex: '\\frac{d^2 y}{dt^2} + \\omega^2 y = 0 \\implies y(t) = A \\cos(\\omega t) + B \\sin(\\omega t)', display: 'y\'\' + \\omega^2 y = 0', desc: 'Second-order harmonic oscillation ODE' },
   { id: 'calc-wave-eq', name: 'Wave Equation (1D/3D)', category: 'calculus', latex: '\\frac{\\partial^2 u}{\\partial t^2} = c^2 \\nabla^2 u = c^2 \\frac{\\partial^2 u}{\\partial x^2}', display: '\\frac{\\partial^2 u}{\\partial t^2} = c^2 \\nabla^2 u', desc: 'Hyperbolic wave propagation PDE' },
   { id: 'calc-heat-eq', name: 'Heat / Diffusion Equation', category: 'calculus', latex: '\\frac{\\partial u}{\\partial t} = \\alpha \\nabla^2 u = \\alpha \\frac{\\partial^2 u}{\\partial x^2}', display: '\\frac{\\partial u}{\\partial t} = \\alpha \\nabla^2 u', desc: 'Parabolic thermal diffusion PDE' },
   { id: 'calc-stokes', name: "Stokes' Theorem", category: 'calculus', latex: '\\oint_{\\partial S} \\vec{F} \\cdot d\\vec{r} = \\iint_{S} (\\nabla \\times \\vec{F}) \\cdot d\\vec{S}', display: '\\oint_{\\partial S} \\vec{F} \\cdot d\\vec{r} = \\iint_S (\\nabla \\times \\vec{F}) \\cdot d\\vec{S}', desc: 'Surface curl to boundary circulation integral' },
@@ -348,7 +358,7 @@ export class MathModal {
         <div class="nova-modal-body" style="gap: 7px; padding: 10px 16px;">
           <!-- Search & Filter Bar -->
           <div style="display: flex; gap: 6px; align-items: center;">
-            <input type="text" id="ne-math-search" class="nova-form-input" placeholder="🔍 Search formula (e.g. newton, quadratic, hardy, enzyme, gibbs, bayes, integral, matrix)..." style="font-size: 11.5px; padding: 4px 8px; height: 28px; flex: 1;" />
+            <input type="text" id="ne-math-search" class="nova-form-input" placeholder="🔍 Search formula across any level (e.g. interest, quadratic, taylor, hardy, newton, gibbs, bayes, sigmoid)..." style="font-size: 11.5px; padding: 4px 8px; height: 28px; flex: 1;" />
           </div>
 
           <!-- Category Tabs -->
